@@ -1,0 +1,179 @@
+matrix_group,matrix_code,variable_a,variable_b,coefficient
+real_pearson,1,Irradiance (W/m²),Irradiance (W/m²),1.0
+real_pearson,1,Irradiance (W/m²),PV Power (kW_e),0.9987
+real_pearson,1,Irradiance (W/m²),Sun Elev (°),0.9131
+real_pearson,1,Irradiance (W/m²),Temp (°C),0.5769
+real_pearson,1,Irradiance (W/m²),RH (%),-0.67
+real_pearson,1,Irradiance (W/m²),Wind (m/s),0.1878
+real_pearson,1,PV Power (kW_e),Irradiance (W/m²),0.9987
+real_pearson,1,PV Power (kW_e),PV Power (kW_e),1.0
+real_pearson,1,PV Power (kW_e),Sun Elev (°),0.906
+real_pearson,1,PV Power (kW_e),Temp (°C),0.5548
+real_pearson,1,PV Power (kW_e),RH (%),-0.659
+real_pearson,1,PV Power (kW_e),Wind (m/s),0.1881
+real_pearson,1,Sun Elev (°),Irradiance (W/m²),0.9131
+real_pearson,1,Sun Elev (°),PV Power (kW_e),0.906
+real_pearson,1,Sun Elev (°),Sun Elev (°),1.0
+real_pearson,1,Sun Elev (°),Temp (°C),0.6357
+real_pearson,1,Sun Elev (°),RH (%),-0.65
+real_pearson,1,Sun Elev (°),Wind (m/s),0.2615
+real_pearson,1,Temp (°C),Irradiance (W/m²),0.5769
+real_pearson,1,Temp (°C),PV Power (kW_e),0.5548
+real_pearson,1,Temp (°C),Sun Elev (°),0.6357
+real_pearson,1,Temp (°C),Temp (°C),1.0
+real_pearson,1,Temp (°C),RH (%),-0.7559
+real_pearson,1,Temp (°C),Wind (m/s),0.3029
+real_pearson,1,RH (%),Irradiance (W/m²),-0.67
+real_pearson,1,RH (%),PV Power (kW_e),-0.659
+real_pearson,1,RH (%),Sun Elev (°),-0.65
+real_pearson,1,RH (%),Temp (°C),-0.7559
+real_pearson,1,RH (%),RH (%),1.0
+real_pearson,1,RH (%),Wind (m/s),-0.2759
+real_pearson,1,Wind (m/s),Irradiance (W/m²),0.1878
+real_pearson,1,Wind (m/s),PV Power (kW_e),0.1881
+real_pearson,1,Wind (m/s),Sun Elev (°),0.2615
+real_pearson,1,Wind (m/s),Temp (°C),0.3029
+real_pearson,1,Wind (m/s),RH (%),-0.2759
+real_pearson,1,Wind (m/s),Wind (m/s),1.0
+real_spearman,2,Irradiance (W/m²),Irradiance (W/m²),1.0
+real_spearman,2,Irradiance (W/m²),PV Power (kW_e),0.9972
+real_spearman,2,Irradiance (W/m²),Sun Elev (°),0.9743
+real_spearman,2,Irradiance (W/m²),Temp (°C),0.5757
+real_spearman,2,Irradiance (W/m²),RH (%),-0.6686
+real_spearman,2,Irradiance (W/m²),Wind (m/s),0.2478
+real_spearman,2,PV Power (kW_e),Irradiance (W/m²),0.9972
+real_spearman,2,PV Power (kW_e),PV Power (kW_e),1.0
+real_spearman,2,PV Power (kW_e),Sun Elev (°),0.9699
+real_spearman,2,PV Power (kW_e),Temp (°C),0.5643
+real_spearman,2,PV Power (kW_e),RH (%),-0.6623
+real_spearman,2,PV Power (kW_e),Wind (m/s),0.247
+real_spearman,2,Sun Elev (°),Irradiance (W/m²),0.9743
+real_spearman,2,Sun Elev (°),PV Power (kW_e),0.9699
+real_spearman,2,Sun Elev (°),Sun Elev (°),1.0
+real_spearman,2,Sun Elev (°),Temp (°C),0.5997
+real_spearman,2,Sun Elev (°),RH (%),-0.6578
+real_spearman,2,Sun Elev (°),Wind (m/s),0.2818
+real_spearman,2,Temp (°C),Irradiance (W/m²),0.5757
+real_spearman,2,Temp (°C),PV Power (kW_e),0.5643
+real_spearman,2,Temp (°C),Sun Elev (°),0.5997
+real_spearman,2,Temp (°C),Temp (°C),1.0
+real_spearman,2,Temp (°C),RH (%),-0.7222
+real_spearman,2,Temp (°C),Wind (m/s),0.3064
+real_spearman,2,RH (%),Irradiance (W/m²),-0.6686
+real_spearman,2,RH (%),PV Power (kW_e),-0.6623
+real_spearman,2,RH (%),Sun Elev (°),-0.6578
+real_spearman,2,RH (%),Temp (°C),-0.7222
+real_spearman,2,RH (%),RH (%),1.0
+real_spearman,2,RH (%),Wind (m/s),-0.2902
+real_spearman,2,Wind (m/s),Irradiance (W/m²),0.2478
+real_spearman,2,Wind (m/s),PV Power (kW_e),0.247
+real_spearman,2,Wind (m/s),Sun Elev (°),0.2818
+real_spearman,2,Wind (m/s),Temp (°C),0.3064
+real_spearman,2,Wind (m/s),RH (%),-0.2902
+real_spearman,2,Wind (m/s),Wind (m/s),1.0
+coupled_active_pearson,3,Temp (°C),Temp (°C),1.0
+coupled_active_pearson,3,Temp (°C),RH (%),-0.7713
+coupled_active_pearson,3,Temp (°C),Irradiance (W/m²),0.4678
+coupled_active_pearson,3,Temp (°C),Dryer Demand (kW_th),-0.9959
+coupled_active_pearson,3,Temp (°C),Solar Th (kW_th),0.5294
+coupled_active_pearson,3,Temp (°C),NCG Rec (kW_th),0.2144
+coupled_active_pearson,3,Temp (°C),Stored Energy (kWh_th),0.7039
+coupled_active_pearson,3,RH (%),Temp (°C),-0.7713
+coupled_active_pearson,3,RH (%),RH (%),1.0
+coupled_active_pearson,3,RH (%),Irradiance (W/m²),-0.552
+coupled_active_pearson,3,RH (%),Dryer Demand (kW_th),0.8206
+coupled_active_pearson,3,RH (%),Solar Th (kW_th),-0.563
+coupled_active_pearson,3,RH (%),NCG Rec (kW_th),-0.295
+coupled_active_pearson,3,RH (%),Stored Energy (kWh_th),-0.6199
+coupled_active_pearson,3,Irradiance (W/m²),Temp (°C),0.4678
+coupled_active_pearson,3,Irradiance (W/m²),RH (%),-0.552
+coupled_active_pearson,3,Irradiance (W/m²),Irradiance (W/m²),1.0
+coupled_active_pearson,3,Irradiance (W/m²),Dryer Demand (kW_th),-0.4885
+coupled_active_pearson,3,Irradiance (W/m²),Solar Th (kW_th),0.9217
+coupled_active_pearson,3,Irradiance (W/m²),NCG Rec (kW_th),0.6959
+coupled_active_pearson,3,Irradiance (W/m²),Stored Energy (kWh_th),0.4002
+coupled_active_pearson,3,Dryer Demand (kW_th),Temp (°C),-0.9959
+coupled_active_pearson,3,Dryer Demand (kW_th),RH (%),0.8206
+coupled_active_pearson,3,Dryer Demand (kW_th),Irradiance (W/m²),-0.4885
+coupled_active_pearson,3,Dryer Demand (kW_th),Dryer Demand (kW_th),1.0
+coupled_active_pearson,3,Dryer Demand (kW_th),Solar Th (kW_th),-0.5493
+coupled_active_pearson,3,Dryer Demand (kW_th),NCG Rec (kW_th),-0.2302
+coupled_active_pearson,3,Dryer Demand (kW_th),Stored Energy (kWh_th),-0.7144
+coupled_active_pearson,3,Solar Th (kW_th),Temp (°C),0.5294
+coupled_active_pearson,3,Solar Th (kW_th),RH (%),-0.563
+coupled_active_pearson,3,Solar Th (kW_th),Irradiance (W/m²),0.9217
+coupled_active_pearson,3,Solar Th (kW_th),Dryer Demand (kW_th),-0.5493
+coupled_active_pearson,3,Solar Th (kW_th),Solar Th (kW_th),1.0
+coupled_active_pearson,3,Solar Th (kW_th),NCG Rec (kW_th),0.51
+coupled_active_pearson,3,Solar Th (kW_th),Stored Energy (kWh_th),0.4368
+coupled_active_pearson,3,NCG Rec (kW_th),Temp (°C),0.2144
+coupled_active_pearson,3,NCG Rec (kW_th),RH (%),-0.295
+coupled_active_pearson,3,NCG Rec (kW_th),Irradiance (W/m²),0.6959
+coupled_active_pearson,3,NCG Rec (kW_th),Dryer Demand (kW_th),-0.2302
+coupled_active_pearson,3,NCG Rec (kW_th),Solar Th (kW_th),0.51
+coupled_active_pearson,3,NCG Rec (kW_th),NCG Rec (kW_th),1.0
+coupled_active_pearson,3,NCG Rec (kW_th),Stored Energy (kWh_th),0.1517
+coupled_active_pearson,3,Stored Energy (kWh_th),Temp (°C),0.7039
+coupled_active_pearson,3,Stored Energy (kWh_th),RH (%),-0.6199
+coupled_active_pearson,3,Stored Energy (kWh_th),Irradiance (W/m²),0.4002
+coupled_active_pearson,3,Stored Energy (kWh_th),Dryer Demand (kW_th),-0.7144
+coupled_active_pearson,3,Stored Energy (kWh_th),Solar Th (kW_th),0.4368
+coupled_active_pearson,3,Stored Energy (kWh_th),NCG Rec (kW_th),0.1517
+coupled_active_pearson,3,Stored Energy (kWh_th),Stored Energy (kWh_th),1.0
+coupled_active_spearman,4,Temp (°C),Temp (°C),1.0
+coupled_active_spearman,4,Temp (°C),RH (%),-0.7769
+coupled_active_spearman,4,Temp (°C),Irradiance (W/m²),0.4738
+coupled_active_spearman,4,Temp (°C),Dryer Demand (kW_th),-0.9953
+coupled_active_spearman,4,Temp (°C),Solar Th (kW_th),0.5335
+coupled_active_spearman,4,Temp (°C),NCG Rec (kW_th),0.2117
+coupled_active_spearman,4,Temp (°C),Stored Energy (kWh_th),0.7525
+coupled_active_spearman,4,RH (%),Temp (°C),-0.7769
+coupled_active_spearman,4,RH (%),RH (%),1.0
+coupled_active_spearman,4,RH (%),Irradiance (W/m²),-0.5411
+coupled_active_spearman,4,RH (%),Dryer Demand (kW_th),0.8318
+coupled_active_spearman,4,RH (%),Solar Th (kW_th),-0.5811
+coupled_active_spearman,4,RH (%),NCG Rec (kW_th),-0.2884
+coupled_active_spearman,4,RH (%),Stored Energy (kWh_th),-0.6925
+coupled_active_spearman,4,Irradiance (W/m²),Temp (°C),0.4738
+coupled_active_spearman,4,Irradiance (W/m²),RH (%),-0.5411
+coupled_active_spearman,4,Irradiance (W/m²),Irradiance (W/m²),1.0
+coupled_active_spearman,4,Irradiance (W/m²),Dryer Demand (kW_th),-0.4998
+coupled_active_spearman,4,Irradiance (W/m²),Solar Th (kW_th),0.9447
+coupled_active_spearman,4,Irradiance (W/m²),NCG Rec (kW_th),0.6909
+coupled_active_spearman,4,Irradiance (W/m²),Stored Energy (kWh_th),0.4792
+coupled_active_spearman,4,Dryer Demand (kW_th),Temp (°C),-0.9953
+coupled_active_spearman,4,Dryer Demand (kW_th),RH (%),0.8318
+coupled_active_spearman,4,Dryer Demand (kW_th),Irradiance (W/m²),-0.4998
+coupled_active_spearman,4,Dryer Demand (kW_th),Dryer Demand (kW_th),1.0
+coupled_active_spearman,4,Dryer Demand (kW_th),Solar Th (kW_th),-0.558
+coupled_active_spearman,4,Dryer Demand (kW_th),NCG Rec (kW_th),-0.2305
+coupled_active_spearman,4,Dryer Demand (kW_th),Stored Energy (kWh_th),-0.7679
+coupled_active_spearman,4,Solar Th (kW_th),Temp (°C),0.5335
+coupled_active_spearman,4,Solar Th (kW_th),RH (%),-0.5811
+coupled_active_spearman,4,Solar Th (kW_th),Irradiance (W/m²),0.9447
+coupled_active_spearman,4,Solar Th (kW_th),Dryer Demand (kW_th),-0.558
+coupled_active_spearman,4,Solar Th (kW_th),Solar Th (kW_th),1.0
+coupled_active_spearman,4,Solar Th (kW_th),NCG Rec (kW_th),0.5737
+coupled_active_spearman,4,Solar Th (kW_th),Stored Energy (kWh_th),0.527
+coupled_active_spearman,4,NCG Rec (kW_th),Temp (°C),0.2117
+coupled_active_spearman,4,NCG Rec (kW_th),RH (%),-0.2884
+coupled_active_spearman,4,NCG Rec (kW_th),Irradiance (W/m²),0.6909
+coupled_active_spearman,4,NCG Rec (kW_th),Dryer Demand (kW_th),-0.2305
+coupled_active_spearman,4,NCG Rec (kW_th),Solar Th (kW_th),0.5737
+coupled_active_spearman,4,NCG Rec (kW_th),NCG Rec (kW_th),1.0
+coupled_active_spearman,4,NCG Rec (kW_th),Stored Energy (kWh_th),0.1642
+coupled_active_spearman,4,Stored Energy (kWh_th),Temp (°C),0.7525
+coupled_active_spearman,4,Stored Energy (kWh_th),RH (%),-0.6925
+coupled_active_spearman,4,Stored Energy (kWh_th),Irradiance (W/m²),0.4792
+coupled_active_spearman,4,Stored Energy (kWh_th),Dryer Demand (kW_th),-0.7679
+coupled_active_spearman,4,Stored Energy (kWh_th),Solar Th (kW_th),0.527
+coupled_active_spearman,4,Stored Energy (kWh_th),NCG Rec (kW_th),0.1642
+coupled_active_spearman,4,Stored Energy (kWh_th),Stored Energy (kWh_th),1.0
+key_pairs,5,irr_vs_pv_pearson,paired_summary,0.9987
+key_pairs,5,irr_vs_pv_spearman,paired_summary,0.9972
+key_pairs,5,temp_vs_rh_pearson,paired_summary,-0.7559
+key_pairs,5,temp_vs_rh_spearman,paired_summary,-0.7222
+key_pairs,5,temp_vs_active_dryer_pearson,paired_summary,-0.9959
+key_pairs,5,rh_vs_active_dryer_pearson,paired_summary,0.8206
+key_pairs,5,solar_th_vs_stored_pearson,paired_summary,0.4823
+key_pairs,5,ncg_vs_stored_pearson,paired_summary,0.3193

@@ -1,0 +1,1528 @@
+{
+  "generated_at_utc": "2026-11-21T11:11:02+00:00",
+  "total_datasets_documented": 39,
+  "total_manifest_deliverables": 73,
+  "total_notebooks": 8,
+  "numeric_type_audit": {
+    "files_audited": 39,
+    "numeric_columns_verified": 366
+  },
+  "master_archive": {
+    "filename": "EcoFarm_Complete_Phases1_to_7.zip",
+    "relative_path": "exports/EcoFarm_Complete_Phases1_to_7.zip",
+    "size_bytes": 13709923,
+    "sha256": "2489a74d5efb4e70f9b845aec6dc9a212cb556aaf552d0b713c269392cf37baf",
+    "file_count": 155
+  },
+  "phase_archives": [
+    {
+      "phase": 1,
+      "title": "Phase 1 \u00b7 Project Definition & Boundaries",
+      "filename": "EcoFarm_Phase01_Package.zip",
+      "relative_path": "exports/phase_01/EcoFarm_Phase01_Package.zip",
+      "size_bytes": 66912,
+      "sha256": "29380cf316846574df2fc4b1e399e1f09b5deaa9f2d01aa8331272e8b17a58e7",
+      "file_count": 17
+    },
+    {
+      "phase": 2,
+      "title": "Phase 2 \u00b7 Real Solar & Weather Data",
+      "filename": "EcoFarm_Phase02_Package.zip",
+      "relative_path": "exports/phase_02/EcoFarm_Phase02_Package.zip",
+      "size_bytes": 4787645,
+      "sha256": "d8306a8fc111d906a919cd308a8b6cdee7c82a7882739946dd0c1edf107ecba9",
+      "file_count": 27
+    },
+    {
+      "phase": 3,
+      "title": "Phase 3 \u00b7 Thermodynamic Simulation",
+      "filename": "EcoFarm_Phase03_Package.zip",
+      "relative_path": "exports/phase_03/EcoFarm_Phase03_Package.zip",
+      "size_bytes": 5105002,
+      "sha256": "5cae2477d2583db5577646f15009d7516fcece5fd8e3712360cd80703d312c4c",
+      "file_count": 24
+    },
+    {
+      "phase": 4,
+      "title": "Phase 4 \u00b7 Exploratory Data Analysis",
+      "filename": "EcoFarm_Phase04_Package.zip",
+      "relative_path": "exports/phase_04/EcoFarm_Phase04_Package.zip",
+      "size_bytes": 897101,
+      "sha256": "83f6419f99b6e74639ee0b9308aaa40020f263b3691dcdd1279f45cedc2fb7af",
+      "file_count": 24
+    },
+    {
+      "phase": 5,
+      "title": "Phase 5 \u00b7 ML Model Training & Comparison",
+      "filename": "EcoFarm_Phase05_Package.zip",
+      "relative_path": "exports/phase_05/EcoFarm_Phase05_Package.zip",
+      "size_bytes": 2585596,
+      "sha256": "ca55fb2a2c8e66309d3114ec6101bf26394951776b8b5b61e9b474eafa61fe9c",
+      "file_count": 52
+    },
+    {
+      "phase": 6,
+      "title": "Phase 6 \u00b7 Intelligent Energy Management",
+      "filename": "EcoFarm_Phase06_Package.zip",
+      "relative_path": "exports/phase_06/EcoFarm_Phase06_Package.zip",
+      "size_bytes": 420313,
+      "sha256": "191ac2ee88a8ccb7474aacf047aa3e1884559b466391bf0dc681ab74db66737c",
+      "file_count": 30
+    },
+    {
+      "phase": 7,
+      "title": "Phase 7 \u00b7 Streamlit Dashboard & QA",
+      "filename": "EcoFarm_Phase07_Package.zip",
+      "relative_path": "exports/phase_07/EcoFarm_Phase07_Package.zip",
+      "size_bytes": 118703,
+      "sha256": "41c940b959e4e7cb0a7d6e0f721d8e7f0c484a9ec146ee490713499f9d69c6e2",
+      "file_count": 30
+    }
+  ],
+  "notebooks": [
+    {
+      "filename": "00_phase1_project_definition.ipynb",
+      "relative_path": "notebooks/00_phase1_project_definition.ipynb",
+      "cells": 7,
+      "size_bytes": 9118,
+      "phase": "Phase 1",
+      "href": "/downloads/00_phase1_project_definition.ipynb",
+      "description": "Colab notebook: Phase 1 boundaries, variable schema & assumptions"
+    },
+    {
+      "filename": "01_data_collection.ipynb",
+      "relative_path": "notebooks/01_data_collection.ipynb",
+      "cells": 7,
+      "size_bytes": 8630,
+      "phase": "Phase 2",
+      "href": "/downloads/01_data_collection.ipynb",
+      "description": "Colab notebook: PVGIS + Open-Meteo collection, UTC alignment & splits"
+    },
+    {
+      "filename": "phase3_thermal_simulation.ipynb",
+      "relative_path": "notebooks/phase3_thermal_simulation.ipynb",
+      "cells": 7,
+      "size_bytes": 8983,
+      "phase": "Phase 3",
+      "href": "/downloads/phase3_thermal_simulation.ipynb",
+      "description": "Colab notebook: First-Law dryer, sand storage & NCG thermal simulation"
+    },
+    {
+      "filename": "02_data_analysis.ipynb",
+      "relative_path": "notebooks/02_data_analysis.ipynb",
+      "cells": 7,
+      "size_bytes": 8467,
+      "phase": "Phase 4",
+      "href": "/downloads/02_data_analysis.ipynb",
+      "description": "Colab notebook: Real weather vs simulated thermal EDA & correlations"
+    },
+    {
+      "filename": "03_solar_prediction.ipynb",
+      "relative_path": "notebooks/03_solar_prediction.ipynb",
+      "cells": 7,
+      "size_bytes": 8992,
+      "phase": "Phase 5",
+      "href": "/downloads/03_solar_prediction.ipynb",
+      "description": "Colab notebook: Model 1 Solar PV regression training & 2023 test"
+    },
+    {
+      "filename": "04_thermal_demand_prediction.ipynb",
+      "relative_path": "notebooks/04_thermal_demand_prediction.ipynb",
+      "cells": 6,
+      "size_bytes": 7626,
+      "phase": "Phase 5",
+      "href": "/downloads/04_thermal_demand_prediction.ipynb",
+      "description": "Colab notebook: Model 2 multi-feedstock dryer demand ML pipeline"
+    },
+    {
+      "filename": "05_energy_management.ipynb",
+      "relative_path": "notebooks/05_energy_management.ipynb",
+      "cells": 6,
+      "size_bytes": 7739,
+      "phase": "Phase 6",
+      "href": "/downloads/05_energy_management.ipynb",
+      "description": "Colab notebook: Rule-based vs Forecast AI dispatch & PLC safety audit"
+    },
+    {
+      "filename": "06_dashboard.ipynb",
+      "relative_path": "notebooks/06_dashboard.ipynb",
+      "cells": 7,
+      "size_bytes": 8004,
+      "phase": "Phase 7",
+      "href": "/downloads/06_dashboard.ipynb",
+      "description": "Colab notebook: Streamlit dashboard launcher & validation suite"
+    }
+  ],
+  "datasets": [
+    {
+      "filename": "pvgis_settat_2020_2023_raw.csv",
+      "xlsx_filename": "pvgis_settat_2020_2023_raw.xlsx",
+      "xlsx_href": "/downloads/pvgis_settat_2020_2023_raw.xlsx",
+      "relative_path": "data/raw/pvgis_settat_2020_2023_raw.csv",
+      "phase_of_origin": "Phase 2",
+      "provenance_status": "measured_external",
+      "row_count": 35064,
+      "col_count": 7,
+      "description": "Original immutable hourly PVGIS solar irradiance and reference 15 kWp PV output for Settat",
+      "href": "/downloads/pvgis_settat_2020_2023_raw.csv"
+    },
+    {
+      "filename": "open_meteo_settat_2020_2023_raw.csv",
+      "xlsx_filename": "open_meteo_settat_2020_2023_raw.xlsx",
+      "xlsx_href": "/downloads/open_meteo_settat_2020_2023_raw.xlsx",
+      "relative_path": "data/raw/open_meteo_settat_2020_2023_raw.csv",
+      "phase_of_origin": "Phase 2",
+      "provenance_status": "measured_external",
+      "row_count": 35064,
+      "col_count": 4,
+      "description": "Original immutable hourly ERA5 ambient temp, RH, and wind speed for Settat",
+      "href": "/downloads/open_meteo_settat_2020_2023_raw.csv"
+    },
+    {
+      "filename": "solar_weather_merged_clean.csv",
+      "xlsx_filename": "solar_weather_merged_clean.xlsx",
+      "xlsx_href": "/downloads/solar_weather_merged_clean.xlsx",
+      "relative_path": "data/processed/solar_weather_merged_clean.csv",
+      "phase_of_origin": "Phase 2",
+      "provenance_status": "measured_external",
+      "row_count": 35064,
+      "col_count": 15,
+      "description": "Cleaned merged UTC hourly solar & meteorological dataset (2020-2023)",
+      "href": "/downloads/solar_weather_merged_clean.csv"
+    },
+    {
+      "filename": "train_2020_2021.csv",
+      "xlsx_filename": "train_2020_2021.xlsx",
+      "xlsx_href": "/downloads/train_2020_2021.xlsx",
+      "relative_path": "data/processed/train_2020_2021.csv",
+      "phase_of_origin": "Phase 2",
+      "provenance_status": "measured_external",
+      "row_count": 17544,
+      "col_count": 15,
+      "description": "Chronological training split (2020-2021) for PV & weather models",
+      "href": "/downloads/train_2020_2021.csv"
+    },
+    {
+      "filename": "val_2022.csv",
+      "xlsx_filename": "val_2022.xlsx",
+      "xlsx_href": "/downloads/val_2022.xlsx",
+      "relative_path": "data/processed/val_2022.csv",
+      "phase_of_origin": "Phase 2",
+      "provenance_status": "measured_external",
+      "row_count": 8760,
+      "col_count": 15,
+      "description": "Chronological validation split (2022) used for hyperparameter & model selection",
+      "href": "/downloads/val_2022.csv"
+    },
+    {
+      "filename": "test_2023.csv",
+      "xlsx_filename": "test_2023.xlsx",
+      "xlsx_href": "/downloads/test_2023.xlsx",
+      "relative_path": "data/processed/test_2023.csv",
+      "phase_of_origin": "Phase 2",
+      "provenance_status": "measured_external",
+      "row_count": 8760,
+      "col_count": 15,
+      "description": "Untouched chronological test split (2023) held out until final evaluation",
+      "href": "/downloads/test_2023.csv"
+    },
+    {
+      "filename": "phase2_data_quality_summary.csv",
+      "xlsx_filename": "phase2_data_quality_summary.xlsx",
+      "xlsx_href": "/downloads/phase2_data_quality_summary.xlsx",
+      "relative_path": "data/processed/phase2_data_quality_summary.csv",
+      "phase_of_origin": "Phase 2",
+      "provenance_status": "calculated",
+      "row_count": 9,
+      "col_count": 4,
+      "description": "Tabular Phase 2 data quality & cross-source temperature audit summary (numeric flags)",
+      "href": "/downloads/phase2_data_quality_summary.csv"
+    },
+    {
+      "filename": "biomass_dryer_simulated.csv",
+      "xlsx_filename": "biomass_dryer_simulated.xlsx",
+      "xlsx_href": "/downloads/biomass_dryer_simulated.xlsx",
+      "relative_path": "data/simulated/biomass_dryer_simulated.csv",
+      "phase_of_origin": "Phase 3",
+      "provenance_status": "simulated_physics",
+      "row_count": 35064,
+      "col_count": 9,
+      "description": "Simulated hourly biomass dryer water evaporation & thermal demand (Medium)",
+      "href": "/downloads/biomass_dryer_simulated.csv"
+    },
+    {
+      "filename": "sand_storage_simulated.csv",
+      "xlsx_filename": "sand_storage_simulated.xlsx",
+      "xlsx_href": "/downloads/sand_storage_simulated.xlsx",
+      "relative_path": "data/simulated/sand_storage_simulated.csv",
+      "phase_of_origin": "Phase 3",
+      "provenance_status": "simulated_physics",
+      "row_count": 35064,
+      "col_count": 15,
+      "description": "Simulated hourly silica sand bed temp, stored kWh_th, HTF temps & losses",
+      "href": "/downloads/sand_storage_simulated.csv"
+    },
+    {
+      "filename": "ncg_heat_recovery_simulated.csv",
+      "xlsx_filename": "ncg_heat_recovery_simulated.xlsx",
+      "xlsx_href": "/downloads/ncg_heat_recovery_simulated.xlsx",
+      "relative_path": "data/simulated/ncg_heat_recovery_simulated.csv",
+      "phase_of_origin": "Phase 3",
+      "provenance_status": "simulated_physics",
+      "row_count": 35064,
+      "col_count": 6,
+      "description": "Simulated hourly pyrolysis NCG burner schedule & recovered thermal power",
+      "href": "/downloads/ncg_heat_recovery_simulated.csv"
+    },
+    {
+      "filename": "thermal_sim_medium.csv",
+      "xlsx_filename": "thermal_sim_medium.xlsx",
+      "xlsx_href": "/downloads/thermal_sim_medium.xlsx",
+      "relative_path": "data/simulated/thermal_sim_medium.csv",
+      "phase_of_origin": "Phase 3",
+      "provenance_status": "simulated_physics",
+      "row_count": 35064,
+      "col_count": 23,
+      "description": "Integrated 4-year coupled thermal & electrical hourly simulation (Medium)",
+      "href": "/downloads/thermal_sim_medium.csv"
+    },
+    {
+      "filename": "thermal_sim_low.csv",
+      "xlsx_filename": "thermal_sim_low.xlsx",
+      "xlsx_href": "/downloads/thermal_sim_low.xlsx",
+      "relative_path": "data/simulated/thermal_sim_low.csv",
+      "phase_of_origin": "Phase 3",
+      "provenance_status": "simulated_physics",
+      "row_count": 35064,
+      "col_count": 23,
+      "description": "Integrated 4-year conservative simulation (Low solar/NCG, high demand)",
+      "href": "/downloads/thermal_sim_low.csv"
+    },
+    {
+      "filename": "thermal_sim_high.csv",
+      "xlsx_filename": "thermal_sim_high.xlsx",
+      "xlsx_href": "/downloads/thermal_sim_high.xlsx",
+      "relative_path": "data/simulated/thermal_sim_high.csv",
+      "phase_of_origin": "Phase 3",
+      "provenance_status": "simulated_physics",
+      "row_count": 35064,
+      "col_count": 23,
+      "description": "Integrated 4-year favorable simulation (High solar/NCG, lower demand)",
+      "href": "/downloads/thermal_sim_high.csv"
+    },
+    {
+      "filename": "phase3_scenario_summary.csv",
+      "xlsx_filename": "phase3_scenario_summary.xlsx",
+      "xlsx_href": "/downloads/phase3_scenario_summary.xlsx",
+      "relative_path": "data/simulated/phase3_scenario_summary.csv",
+      "phase_of_origin": "Phase 3",
+      "provenance_status": "calculated",
+      "row_count": 3,
+      "col_count": 11,
+      "description": "4-year summary totals (MWh_e, MWh_th, coverage %) & energy closure residuals",
+      "href": "/downloads/phase3_scenario_summary.csv"
+    },
+    {
+      "filename": "phase1_design_assumptions.csv",
+      "xlsx_filename": "phase1_design_assumptions.xlsx",
+      "xlsx_href": "/downloads/phase1_design_assumptions.xlsx",
+      "relative_path": "data/outputs/phase1_design_assumptions.csv",
+      "phase_of_origin": "Phase 1",
+      "provenance_status": "design_assumption",
+      "row_count": 37,
+      "col_count": 5,
+      "description": "Baseline pilot-plant parameters & configurable PLC safety limits",
+      "href": "/downloads/phase1_design_assumptions.csv"
+    },
+    {
+      "filename": "phase1_variable_schema.csv",
+      "xlsx_filename": "phase1_variable_schema.xlsx",
+      "xlsx_href": "/downloads/phase1_variable_schema.xlsx",
+      "relative_path": "data/outputs/phase1_variable_schema.csv",
+      "phase_of_origin": "Phase 1",
+      "provenance_status": "design_assumption",
+      "row_count": 20,
+      "col_count": 11,
+      "description": "Formal 20-variable system data dictionary with provenance, numeric bounds & flags",
+      "href": "/downloads/phase1_variable_schema.csv"
+    },
+    {
+      "filename": "phase1_plc_interlocks.csv",
+      "xlsx_filename": "phase1_plc_interlocks.xlsx",
+      "xlsx_href": "/downloads/phase1_plc_interlocks.xlsx",
+      "relative_path": "data/outputs/phase1_plc_interlocks.csv",
+      "phase_of_origin": "Phase 1",
+      "provenance_status": "design_assumption",
+      "row_count": 4,
+      "col_count": 5,
+      "description": "Hardwired PLC safety interlock register (PLC-01 through PLC-04)",
+      "href": "/downloads/phase1_plc_interlocks.csv"
+    },
+    {
+      "filename": "eda_hourly_dataset.csv",
+      "xlsx_filename": "eda_hourly_dataset.xlsx",
+      "xlsx_href": "/downloads/eda_hourly_dataset.xlsx",
+      "relative_path": "data/outputs/eda_hourly_dataset.csv",
+      "phase_of_origin": "Phase 4",
+      "provenance_status": "mixed (real+sim)",
+      "row_count": 35064,
+      "col_count": 19,
+      "description": "EDA-ready hourly merged dataset with numeric season_code (1-4), daylight & SoC",
+      "href": "/downloads/eda_hourly_dataset.csv"
+    },
+    {
+      "filename": "eda_monthly_summary.csv",
+      "xlsx_filename": "eda_monthly_summary.xlsx",
+      "xlsx_href": "/downloads/eda_monthly_summary.xlsx",
+      "relative_path": "data/outputs/eda_monthly_summary.csv",
+      "phase_of_origin": "Phase 4",
+      "provenance_status": "mixed (real+sim)",
+      "row_count": 12,
+      "col_count": 8,
+      "description": "Monthly aggregated real weather & simulated thermal metrics (2020-2023)",
+      "href": "/downloads/eda_monthly_summary.csv"
+    },
+    {
+      "filename": "eda_correlation_matrix.csv",
+      "xlsx_filename": "eda_correlation_matrix.xlsx",
+      "xlsx_href": "/downloads/eda_correlation_matrix.xlsx",
+      "relative_path": "reports/metrics/eda_correlation_matrix.csv",
+      "phase_of_origin": "Phase 4",
+      "provenance_status": "calculated",
+      "row_count": 178,
+      "col_count": 5,
+      "description": "Pearson & Spearman correlation coefficients across key real & simulated pairs",
+      "href": "/downloads/eda_correlation_matrix.csv"
+    },
+    {
+      "filename": "solar_ml_training_2020_2021.csv",
+      "xlsx_filename": "solar_ml_training_2020_2021.xlsx",
+      "xlsx_href": "/downloads/solar_ml_training_2020_2021.xlsx",
+      "relative_path": "data/ml/solar_ml_training_2020_2021.csv",
+      "phase_of_origin": "Phase 5",
+      "provenance_status": "measured_external_ref",
+      "row_count": 17544,
+      "col_count": 13,
+      "description": "Model 1 PV chronological training features & target (2020-2021)",
+      "href": "/downloads/solar_ml_training_2020_2021.csv"
+    },
+    {
+      "filename": "solar_ml_validation_2022.csv",
+      "xlsx_filename": "solar_ml_validation_2022.xlsx",
+      "xlsx_href": "/downloads/solar_ml_validation_2022.xlsx",
+      "relative_path": "data/ml/solar_ml_validation_2022.csv",
+      "phase_of_origin": "Phase 5",
+      "provenance_status": "measured_external_ref",
+      "row_count": 8760,
+      "col_count": 13,
+      "description": "Model 1 PV chronological validation features & target (2022)",
+      "href": "/downloads/solar_ml_validation_2022.csv"
+    },
+    {
+      "filename": "solar_ml_test_2023.csv",
+      "xlsx_filename": "solar_ml_test_2023.xlsx",
+      "xlsx_href": "/downloads/solar_ml_test_2023.xlsx",
+      "relative_path": "data/ml/solar_ml_test_2023.csv",
+      "phase_of_origin": "Phase 5",
+      "provenance_status": "measured_external_ref",
+      "row_count": 8760,
+      "col_count": 13,
+      "description": "Model 1 PV untouched chronological test features & target (2023)",
+      "href": "/downloads/solar_ml_test_2023.csv"
+    },
+    {
+      "filename": "solar_predictions_2023.csv",
+      "xlsx_filename": "solar_predictions_2023.xlsx",
+      "xlsx_href": "/downloads/solar_predictions_2023.xlsx",
+      "relative_path": "data/ml/solar_predictions_2023.csv",
+      "phase_of_origin": "Phase 5",
+      "provenance_status": "predicted_ml",
+      "row_count": 8760,
+      "col_count": 5,
+      "description": "Model 1 (Gradient Boosting) 2023 test actual vs predicted kW_e & residuals",
+      "href": "/downloads/solar_predictions_2023.csv"
+    },
+    {
+      "filename": "dryer_ml_training_2020_2021.csv",
+      "xlsx_filename": "dryer_ml_training_2020_2021.xlsx",
+      "xlsx_href": "/downloads/dryer_ml_training_2020_2021.xlsx",
+      "relative_path": "data/ml/dryer_ml_training_2020_2021.csv",
+      "phase_of_origin": "Phase 5",
+      "provenance_status": "simulated_physics",
+      "row_count": 6000,
+      "col_count": 17,
+      "description": "Model 2 multi-feedstock training set with numeric feedstock_code (1-3) & one-hot",
+      "href": "/downloads/dryer_ml_training_2020_2021.csv"
+    },
+    {
+      "filename": "dryer_ml_validation_2022.csv",
+      "xlsx_filename": "dryer_ml_validation_2022.xlsx",
+      "xlsx_href": "/downloads/dryer_ml_validation_2022.xlsx",
+      "relative_path": "data/ml/dryer_ml_validation_2022.csv",
+      "phase_of_origin": "Phase 5",
+      "provenance_status": "simulated_physics",
+      "row_count": 2250,
+      "col_count": 17,
+      "description": "Model 2 multi-feedstock dryer validation set coupled to 2022 weather",
+      "href": "/downloads/dryer_ml_validation_2022.csv"
+    },
+    {
+      "filename": "dryer_ml_test_2023.csv",
+      "xlsx_filename": "dryer_ml_test_2023.xlsx",
+      "xlsx_href": "/downloads/dryer_ml_test_2023.xlsx",
+      "relative_path": "data/ml/dryer_ml_test_2023.csv",
+      "phase_of_origin": "Phase 5",
+      "provenance_status": "simulated_physics",
+      "row_count": 2250,
+      "col_count": 17,
+      "description": "Model 2 multi-feedstock dryer untouched test set coupled to 2023 weather",
+      "href": "/downloads/dryer_ml_test_2023.csv"
+    },
+    {
+      "filename": "dryer_predictions_2023.csv",
+      "xlsx_filename": "dryer_predictions_2023.xlsx",
+      "xlsx_href": "/downloads/dryer_predictions_2023.xlsx",
+      "relative_path": "data/ml/dryer_predictions_2023.csv",
+      "phase_of_origin": "Phase 5",
+      "provenance_status": "predicted_ml",
+      "row_count": 2250,
+      "col_count": 7,
+      "description": "Model 2 (Gradient Boosting) 2023 test actual vs predicted kW_th & feedstock_code",
+      "href": "/downloads/dryer_predictions_2023.csv"
+    },
+    {
+      "filename": "ml_model_comparison_metrics.csv",
+      "xlsx_filename": "ml_model_comparison_metrics.xlsx",
+      "xlsx_href": "/downloads/ml_model_comparison_metrics.xlsx",
+      "relative_path": "data/ml/ml_model_comparison_metrics.csv",
+      "phase_of_origin": "Phase 5",
+      "provenance_status": "calculated",
+      "row_count": 12,
+      "col_count": 12,
+      "description": "Train/Val/Test RMSE, MAE, R2 with numeric task_code, model_type_code & 1/0 selected",
+      "href": "/downloads/ml_model_comparison_metrics.csv"
+    },
+    {
+      "filename": "ml_residuals_summary.csv",
+      "xlsx_filename": "ml_residuals_summary.xlsx",
+      "xlsx_href": "/downloads/ml_residuals_summary.xlsx",
+      "relative_path": "reports/metrics/ml_residuals_summary.csv",
+      "phase_of_origin": "Phase 5",
+      "provenance_status": "calculated",
+      "row_count": 2,
+      "col_count": 12,
+      "description": "Test 2023 residual summary quantiles (mean, std, min, p05, p25, median, p75, p95, max)",
+      "href": "/downloads/ml_residuals_summary.csv"
+    },
+    {
+      "filename": "ml_feature_importance.csv",
+      "xlsx_filename": "ml_feature_importance.xlsx",
+      "xlsx_href": "/downloads/ml_feature_importance.xlsx",
+      "relative_path": "data/ml/ml_feature_importance.csv",
+      "phase_of_origin": "Phase 5",
+      "provenance_status": "calculated",
+      "row_count": 23,
+      "col_count": 9,
+      "description": "Permutation feature importance (2023 test MAE increase) with numeric task_code & rank",
+      "href": "/downloads/ml_feature_importance.csv"
+    },
+    {
+      "filename": "energy_management_rule_based.csv",
+      "xlsx_filename": "energy_management_rule_based.xlsx",
+      "xlsx_href": "/downloads/energy_management_rule_based.xlsx",
+      "relative_path": "data/outputs/energy_management_rule_based.csv",
+      "phase_of_origin": "Phase 6",
+      "provenance_status": "simulated_physics",
+      "row_count": 1176,
+      "col_count": 17,
+      "description": "Hourly Strategy A dispatch trace with scenario_code (1-7), strategy_code=1, mode_code (0-5)",
+      "href": "/downloads/energy_management_rule_based.csv"
+    },
+    {
+      "filename": "energy_management_ai_based.csv",
+      "xlsx_filename": "energy_management_ai_based.xlsx",
+      "xlsx_href": "/downloads/energy_management_ai_based.xlsx",
+      "relative_path": "data/outputs/energy_management_ai_based.csv",
+      "phase_of_origin": "Phase 6",
+      "provenance_status": "simulated_physics + predicted_ml",
+      "row_count": 1176,
+      "col_count": 17,
+      "description": "Hourly Strategy B AI dispatch trace with scenario_code (1-7), strategy_code=2, mode_code (0-5)",
+      "href": "/downloads/energy_management_ai_based.csv"
+    },
+    {
+      "filename": "energy_management_storage_balance.csv",
+      "xlsx_filename": "energy_management_storage_balance.xlsx",
+      "xlsx_href": "/downloads/energy_management_storage_balance.xlsx",
+      "relative_path": "data/outputs/energy_management_storage_balance.csv",
+      "phase_of_origin": "Phase 6",
+      "provenance_status": "simulated_physics",
+      "row_count": 1176,
+      "col_count": 17,
+      "description": "Side-by-side hourly Strategy A vs B with scenario_code & mode_code integers",
+      "href": "/downloads/energy_management_storage_balance.csv"
+    },
+    {
+      "filename": "operating_mode_transition_logs.csv",
+      "xlsx_filename": "operating_mode_transition_logs.xlsx",
+      "xlsx_href": "/downloads/operating_mode_transition_logs.xlsx",
+      "relative_path": "data/outputs/operating_mode_transition_logs.csv",
+      "phase_of_origin": "Phase 6",
+      "provenance_status": "simulated_physics",
+      "row_count": 367,
+      "col_count": 13,
+      "description": "Mode transition events with from_mode_code, to_mode_code (0-5) & plc_safe (1/0)",
+      "href": "/downloads/operating_mode_transition_logs.csv"
+    },
+    {
+      "filename": "strategy_comparison_metrics.csv",
+      "xlsx_filename": "strategy_comparison_metrics.xlsx",
+      "xlsx_href": "/downloads/strategy_comparison_metrics.xlsx",
+      "relative_path": "data/outputs/strategy_comparison_metrics.csv",
+      "phase_of_origin": "Phase 6",
+      "provenance_status": "calculated",
+      "row_count": 7,
+      "col_count": 15,
+      "description": "Summary KPIs per scenario with scenario_code (1-7)",
+      "href": "/downloads/strategy_comparison_metrics.csv"
+    },
+    {
+      "filename": "plc_fault_injection_results.csv",
+      "xlsx_filename": "plc_fault_injection_results.xlsx",
+      "xlsx_href": "/downloads/plc_fault_injection_results.xlsx",
+      "relative_path": "data/outputs/plc_fault_injection_results.csv",
+      "phase_of_origin": "Phase 6",
+      "provenance_status": "simulated_safety_panel",
+      "row_count": 6,
+      "col_count": 7,
+      "description": "PLC safety interlock verification with 1/0 boolean flags & resulting_mode_code (0-5)",
+      "href": "/downloads/plc_fault_injection_results.csv"
+    },
+    {
+      "filename": "phase7_validation_results.csv",
+      "xlsx_filename": "phase7_validation_results.xlsx",
+      "xlsx_href": "/downloads/phase7_validation_results.xlsx",
+      "relative_path": "data/outputs/phase7_validation_results.csv",
+      "phase_of_origin": "Phase 7",
+      "provenance_status": "calculated",
+      "row_count": 9,
+      "col_count": 6,
+      "description": "Phase 7 dashboard verification results (T01-T09) with passed (1/0) & test_num",
+      "href": "/downloads/phase7_validation_results.csv"
+    },
+    {
+      "filename": "phase7_feedstock_benchmarks.csv",
+      "xlsx_filename": "phase7_feedstock_benchmarks.xlsx",
+      "xlsx_href": "/downloads/phase7_feedstock_benchmarks.xlsx",
+      "relative_path": "data/outputs/phase7_feedstock_benchmarks.csv",
+      "phase_of_origin": "Phase 7",
+      "provenance_status": "simulated_physics + predicted_ml",
+      "row_count": 3,
+      "col_count": 12,
+      "description": "Dashboard simulation bridge vs Phase 5 .pkl check with feedstock_code (1-3)",
+      "href": "/downloads/phase7_feedstock_benchmarks.csv"
+    }
+  ],
+  "staged_downloads": [
+    {
+      "filename": "EcoFarm_Complete_Phases1_to_7.zip",
+      "phase": "Phases 1-7",
+      "format": "ZIP",
+      "href": "/downloads/EcoFarm_Complete_Phases1_to_7.zip",
+      "size_bytes": 13709923,
+      "sha256_short": "2489a74d5efb4e70",
+      "description": "Complete Master Archive (CSV, Typed XLSX Summaries, Notebooks, Code, Models, Reports)"
+    },
+    {
+      "filename": "EcoFarm_Phase7_Package.zip",
+      "phase": "Phase 7",
+      "format": "ZIP",
+      "href": "/downloads/EcoFarm_Phase7_Package.zip",
+      "size_bytes": 8039934,
+      "sha256_short": "4e9c1af7d61666af",
+      "description": "Phase 7 Complete Streamlit & QA Archive"
+    },
+    {
+      "filename": "DATA_DICTIONARY.csv",
+      "phase": "Phases 1-7",
+      "format": "CSV",
+      "href": "/downloads/DATA_DICTIONARY.csv",
+      "size_bytes": 25678,
+      "sha256_short": "2581d9bc102f23d5",
+      "description": "Master Dataset Traceability Dictionary (UTF-8 CSV)"
+    },
+    {
+      "filename": "DATA_DICTIONARY.xlsx",
+      "phase": "Phases 1-7",
+      "format": "XLSX",
+      "href": "/downloads/DATA_DICTIONARY.xlsx",
+      "size_bytes": 10509,
+      "sha256_short": "cab965557e24d793",
+      "description": "Master Dataset Dictionary (Typed Excel .xlsx for WPS/Excel FR)"
+    },
+    {
+      "filename": "PROJECT_MANIFEST.csv",
+      "phase": "Phases 1-7",
+      "format": "CSV",
+      "href": "/downloads/PROJECT_MANIFEST.csv",
+      "size_bytes": 16405,
+      "sha256_short": "554c7dac590ac41f",
+      "description": "Complete File Manifest & SHA-256 Registry (UTF-8 CSV)"
+    },
+    {
+      "filename": "PROJECT_MANIFEST.xlsx",
+      "phase": "Phases 1-7",
+      "format": "XLSX",
+      "href": "/downloads/PROJECT_MANIFEST.xlsx",
+      "size_bytes": 11705,
+      "sha256_short": "9011f2101aeec399",
+      "description": "Complete File Manifest & SHA-256 Registry (Typed Excel .xlsx)"
+    },
+    {
+      "filename": "colab_execution_guide.md",
+      "phase": "Phases 1-7",
+      "format": "MD",
+      "href": "/downloads/colab_execution_guide.md",
+      "size_bytes": 1210,
+      "sha256_short": "5c44da0fe8629bfd",
+      "description": "Google Colab Upload, Excel & Drive Execution Guide"
+    },
+    {
+      "filename": "EcoFarm_Phase01_Package.zip",
+      "phase": "Phase 1",
+      "format": "ZIP",
+      "href": "/downloads/EcoFarm_Phase01_Package.zip",
+      "size_bytes": 66912,
+      "sha256_short": "29380cf316846574",
+      "description": "Phase 1 \u00b7 Project Definition & Boundaries Complete ZIP"
+    },
+    {
+      "filename": "EcoFarm_Phase02_Package.zip",
+      "phase": "Phase 2",
+      "format": "ZIP",
+      "href": "/downloads/EcoFarm_Phase02_Package.zip",
+      "size_bytes": 4787645,
+      "sha256_short": "d8306a8fc111d906",
+      "description": "Phase 2 \u00b7 Real Solar & Weather Data Complete ZIP"
+    },
+    {
+      "filename": "EcoFarm_Phase03_Package.zip",
+      "phase": "Phase 3",
+      "format": "ZIP",
+      "href": "/downloads/EcoFarm_Phase03_Package.zip",
+      "size_bytes": 5105002,
+      "sha256_short": "5cae2477d2583db5",
+      "description": "Phase 3 \u00b7 Thermodynamic Simulation Complete ZIP"
+    },
+    {
+      "filename": "EcoFarm_Phase04_Package.zip",
+      "phase": "Phase 4",
+      "format": "ZIP",
+      "href": "/downloads/EcoFarm_Phase04_Package.zip",
+      "size_bytes": 897101,
+      "sha256_short": "83f6419f99b6e746",
+      "description": "Phase 4 \u00b7 Exploratory Data Analysis Complete ZIP"
+    },
+    {
+      "filename": "EcoFarm_Phase05_Package.zip",
+      "phase": "Phase 5",
+      "format": "ZIP",
+      "href": "/downloads/EcoFarm_Phase05_Package.zip",
+      "size_bytes": 2585596,
+      "sha256_short": "ca55fb2a2c8e6630",
+      "description": "Phase 5 \u00b7 ML Model Training & Comparison Complete ZIP"
+    },
+    {
+      "filename": "EcoFarm_Phase06_Package.zip",
+      "phase": "Phase 6",
+      "format": "ZIP",
+      "href": "/downloads/EcoFarm_Phase06_Package.zip",
+      "size_bytes": 420313,
+      "sha256_short": "191ac2ee88a8ccb7",
+      "description": "Phase 6 \u00b7 Intelligent Energy Management Complete ZIP"
+    },
+    {
+      "filename": "EcoFarm_Phase07_Package.zip",
+      "phase": "Phase 7",
+      "format": "ZIP",
+      "href": "/downloads/EcoFarm_Phase07_Package.zip",
+      "size_bytes": 118703,
+      "sha256_short": "41c940b959e4e7cb",
+      "description": "Phase 7 \u00b7 Streamlit Dashboard & QA Complete ZIP"
+    },
+    {
+      "filename": "00_phase1_project_definition.ipynb",
+      "phase": "Phase 1",
+      "format": "IPYNB",
+      "href": "/downloads/00_phase1_project_definition.ipynb",
+      "size_bytes": 9118,
+      "sha256_short": "b513fa1f78bedfa4",
+      "description": "Google Colab-Compatible Executable Notebook"
+    },
+    {
+      "filename": "01_data_collection.ipynb",
+      "phase": "Phase 2",
+      "format": "IPYNB",
+      "href": "/downloads/01_data_collection.ipynb",
+      "size_bytes": 8630,
+      "sha256_short": "2313917a5dd44f3b",
+      "description": "Google Colab-Compatible Executable Notebook"
+    },
+    {
+      "filename": "phase3_thermal_simulation.ipynb",
+      "phase": "Phase 3",
+      "format": "IPYNB",
+      "href": "/downloads/phase3_thermal_simulation.ipynb",
+      "size_bytes": 8983,
+      "sha256_short": "f07750654721c53e",
+      "description": "Google Colab-Compatible Executable Notebook"
+    },
+    {
+      "filename": "02_data_analysis.ipynb",
+      "phase": "Phase 4",
+      "format": "IPYNB",
+      "href": "/downloads/02_data_analysis.ipynb",
+      "size_bytes": 8467,
+      "sha256_short": "c0a609e7143f3b36",
+      "description": "Google Colab-Compatible Executable Notebook"
+    },
+    {
+      "filename": "03_solar_prediction.ipynb",
+      "phase": "Phase 5",
+      "format": "IPYNB",
+      "href": "/downloads/03_solar_prediction.ipynb",
+      "size_bytes": 8992,
+      "sha256_short": "e15f3be490d6a79c",
+      "description": "Google Colab-Compatible Executable Notebook"
+    },
+    {
+      "filename": "04_thermal_demand_prediction.ipynb",
+      "phase": "Phase 5",
+      "format": "IPYNB",
+      "href": "/downloads/04_thermal_demand_prediction.ipynb",
+      "size_bytes": 7626,
+      "sha256_short": "207ca70515d0e768",
+      "description": "Google Colab-Compatible Executable Notebook"
+    },
+    {
+      "filename": "05_energy_management.ipynb",
+      "phase": "Phase 6",
+      "format": "IPYNB",
+      "href": "/downloads/05_energy_management.ipynb",
+      "size_bytes": 7739,
+      "sha256_short": "7d6e0ae39456d0eb",
+      "description": "Google Colab-Compatible Executable Notebook"
+    },
+    {
+      "filename": "06_dashboard.ipynb",
+      "phase": "Phase 7",
+      "format": "IPYNB",
+      "href": "/downloads/06_dashboard.ipynb",
+      "size_bytes": 8004,
+      "sha256_short": "160e27b5127e49e4",
+      "description": "Google Colab-Compatible Executable Notebook"
+    },
+    {
+      "filename": "pvgis_settat_2020_2023_raw.csv",
+      "phase": "Phase 2",
+      "format": "CSV",
+      "href": "/downloads/pvgis_settat_2020_2023_raw.csv",
+      "size_bytes": 1603252,
+      "sha256_short": "48cee33cba796ce8",
+      "description": "Original immutable hourly PVGIS solar irradiance and reference 15 kWp PV output for Settat"
+    },
+    {
+      "filename": "pvgis_settat_2020_2023_raw.xlsx",
+      "phase": "Phase 2",
+      "format": "XLSX",
+      "href": "/downloads/pvgis_settat_2020_2023_raw.xlsx",
+      "size_bytes": 1283025,
+      "sha256_short": "0131efeaeb935b14",
+      "description": "Typed Excel workbook for pvgis_settat_2020_2023_raw.csv"
+    },
+    {
+      "filename": "open_meteo_settat_2020_2023_raw.csv",
+      "phase": "Phase 2",
+      "format": "CSV",
+      "href": "/downloads/open_meteo_settat_2020_2023_raw.csv",
+      "size_bytes": 1078826,
+      "sha256_short": "6286fcbfb5d89839",
+      "description": "Original immutable hourly ERA5 ambient temp, RH, and wind speed for Settat"
+    },
+    {
+      "filename": "open_meteo_settat_2020_2023_raw.xlsx",
+      "phase": "Phase 2",
+      "format": "XLSX",
+      "href": "/downloads/open_meteo_settat_2020_2023_raw.xlsx",
+      "size_bytes": 818913,
+      "sha256_short": "8afab256622a3c38",
+      "description": "Typed Excel workbook for open_meteo_settat_2020_2023_raw.csv"
+    },
+    {
+      "filename": "solar_weather_merged_clean.csv",
+      "phase": "Phase 2",
+      "format": "CSV",
+      "href": "/downloads/solar_weather_merged_clean.csv",
+      "size_bytes": 3881259,
+      "sha256_short": "62ea228a537fbb6d",
+      "description": "Cleaned merged UTC hourly solar & meteorological dataset (2020-2023)"
+    },
+    {
+      "filename": "solar_weather_merged_clean.xlsx",
+      "phase": "Phase 2",
+      "format": "XLSX",
+      "href": "/downloads/solar_weather_merged_clean.xlsx",
+      "size_bytes": 2597241,
+      "sha256_short": "c8161ba0f95d4fd3",
+      "description": "Typed Excel workbook for solar_weather_merged_clean.csv"
+    },
+    {
+      "filename": "train_2020_2021.csv",
+      "phase": "Phase 2",
+      "format": "CSV",
+      "href": "/downloads/train_2020_2021.csv",
+      "size_bytes": 1941639,
+      "sha256_short": "c822be9401010ee9",
+      "description": "Chronological training split (2020-2021) for PV & weather models"
+    },
+    {
+      "filename": "train_2020_2021.xlsx",
+      "phase": "Phase 2",
+      "format": "XLSX",
+      "href": "/downloads/train_2020_2021.xlsx",
+      "size_bytes": 1301259,
+      "sha256_short": "0b3fae1a2b960112",
+      "description": "Typed Excel workbook for train_2020_2021.csv"
+    },
+    {
+      "filename": "val_2022.csv",
+      "phase": "Phase 2",
+      "format": "CSV",
+      "href": "/downloads/val_2022.csv",
+      "size_bytes": 969610,
+      "sha256_short": "8e85d6e2b95e0ced",
+      "description": "Chronological validation split (2022) used for hyperparameter & model selection"
+    },
+    {
+      "filename": "val_2022.xlsx",
+      "phase": "Phase 2",
+      "format": "XLSX",
+      "href": "/downloads/val_2022.xlsx",
+      "size_bytes": 652575,
+      "sha256_short": "abee525588d1c6fc",
+      "description": "Typed Excel workbook for val_2022.csv"
+    },
+    {
+      "filename": "test_2023.csv",
+      "phase": "Phase 2",
+      "format": "CSV",
+      "href": "/downloads/test_2023.csv",
+      "size_bytes": 970528,
+      "sha256_short": "1db0f88576f8ed79",
+      "description": "Untouched chronological test split (2023) held out until final evaluation"
+    },
+    {
+      "filename": "test_2023.xlsx",
+      "phase": "Phase 2",
+      "format": "XLSX",
+      "href": "/downloads/test_2023.xlsx",
+      "size_bytes": 652420,
+      "sha256_short": "d0b049de14824c4b",
+      "description": "Typed Excel workbook for test_2023.csv"
+    },
+    {
+      "filename": "phase2_data_quality_summary.csv",
+      "phase": "Phase 2",
+      "format": "CSV",
+      "href": "/downloads/phase2_data_quality_summary.csv",
+      "size_bytes": 455,
+      "sha256_short": "f7f636971fa757cb",
+      "description": "Tabular Phase 2 data quality & cross-source temperature audit summary (numeric flags)"
+    },
+    {
+      "filename": "phase2_data_quality_summary.xlsx",
+      "phase": "Phase 2",
+      "format": "XLSX",
+      "href": "/downloads/phase2_data_quality_summary.xlsx",
+      "size_bytes": 2706,
+      "sha256_short": "58e318ea2be87026",
+      "description": "Typed Excel workbook for phase2_data_quality_summary.csv"
+    },
+    {
+      "filename": "biomass_dryer_simulated.csv",
+      "phase": "Phase 3",
+      "format": "CSV",
+      "href": "/downloads/biomass_dryer_simulated.csv",
+      "size_bytes": 2695724,
+      "sha256_short": "1c3c92110c75b3e8",
+      "description": "Simulated hourly biomass dryer water evaporation & thermal demand (Medium)"
+    },
+    {
+      "filename": "biomass_dryer_simulated.xlsx",
+      "phase": "Phase 3",
+      "format": "XLSX",
+      "href": "/downloads/biomass_dryer_simulated.xlsx",
+      "size_bytes": 1349326,
+      "sha256_short": "27a46dede6b3aa18",
+      "description": "Typed Excel workbook for biomass_dryer_simulated.csv"
+    },
+    {
+      "filename": "sand_storage_simulated.csv",
+      "phase": "Phase 3",
+      "format": "CSV",
+      "href": "/downloads/sand_storage_simulated.csv",
+      "size_bytes": 3691884,
+      "sha256_short": "6427f3ac718ee85b",
+      "description": "Simulated hourly silica sand bed temp, stored kWh_th, HTF temps & losses"
+    },
+    {
+      "filename": "sand_storage_simulated.xlsx",
+      "phase": "Phase 3",
+      "format": "XLSX",
+      "href": "/downloads/sand_storage_simulated.xlsx",
+      "size_bytes": 2348731,
+      "sha256_short": "4376eda5ac692e20",
+      "description": "Typed Excel workbook for sand_storage_simulated.csv"
+    },
+    {
+      "filename": "ncg_heat_recovery_simulated.csv",
+      "phase": "Phase 3",
+      "format": "CSV",
+      "href": "/downloads/ncg_heat_recovery_simulated.csv",
+      "size_bytes": 2143387,
+      "sha256_short": "6f17259d6931cfc7",
+      "description": "Simulated hourly pyrolysis NCG burner schedule & recovered thermal power"
+    },
+    {
+      "filename": "ncg_heat_recovery_simulated.xlsx",
+      "phase": "Phase 3",
+      "format": "XLSX",
+      "href": "/downloads/ncg_heat_recovery_simulated.xlsx",
+      "size_bytes": 859168,
+      "sha256_short": "d0fce3df6654cc0d",
+      "description": "Typed Excel workbook for ncg_heat_recovery_simulated.csv"
+    },
+    {
+      "filename": "thermal_sim_medium.csv",
+      "phase": "Phase 3",
+      "format": "CSV",
+      "href": "/downloads/thermal_sim_medium.csv",
+      "size_bytes": 5056505,
+      "sha256_short": "0a23054233fdfe2b",
+      "description": "Integrated 4-year coupled thermal & electrical hourly simulation (Medium)"
+    },
+    {
+      "filename": "thermal_sim_medium.xlsx",
+      "phase": "Phase 3",
+      "format": "XLSX",
+      "href": "/downloads/thermal_sim_medium.xlsx",
+      "size_bytes": 3487357,
+      "sha256_short": "c00ed84cbde120ae",
+      "description": "Typed Excel workbook for thermal_sim_medium.csv"
+    },
+    {
+      "filename": "thermal_sim_low.csv",
+      "phase": "Phase 3",
+      "format": "CSV",
+      "href": "/downloads/thermal_sim_low.csv",
+      "size_bytes": 4920641,
+      "sha256_short": "3e6df33bba642d88",
+      "description": "Integrated 4-year conservative simulation (Low solar/NCG, high demand)"
+    },
+    {
+      "filename": "thermal_sim_low.xlsx",
+      "phase": "Phase 3",
+      "format": "XLSX",
+      "href": "/downloads/thermal_sim_low.xlsx",
+      "size_bytes": 3487437,
+      "sha256_short": "7623b6f9095fad54",
+      "description": "Typed Excel workbook for thermal_sim_low.csv"
+    },
+    {
+      "filename": "thermal_sim_high.csv",
+      "phase": "Phase 3",
+      "format": "CSV",
+      "href": "/downloads/thermal_sim_high.csv",
+      "size_bytes": 5037107,
+      "sha256_short": "c7dfa7eba41a43f1",
+      "description": "Integrated 4-year favorable simulation (High solar/NCG, lower demand)"
+    },
+    {
+      "filename": "thermal_sim_high.xlsx",
+      "phase": "Phase 3",
+      "format": "XLSX",
+      "href": "/downloads/thermal_sim_high.xlsx",
+      "size_bytes": 3529089,
+      "sha256_short": "3db0ab4ea9788ba7",
+      "description": "Typed Excel workbook for thermal_sim_high.csv"
+    },
+    {
+      "filename": "phase3_scenario_summary.csv",
+      "phase": "Phase 3",
+      "format": "CSV",
+      "href": "/downloads/phase3_scenario_summary.csv",
+      "size_bytes": 463,
+      "sha256_short": "e17db62a8acc6820",
+      "description": "4-year summary totals (MWh_e, MWh_th, coverage %) & energy closure residuals"
+    },
+    {
+      "filename": "phase3_scenario_summary.xlsx",
+      "phase": "Phase 3",
+      "format": "XLSX",
+      "href": "/downloads/phase3_scenario_summary.xlsx",
+      "size_bytes": 2792,
+      "sha256_short": "8d5b29e1fa14c1a7",
+      "description": "Typed Excel workbook for phase3_scenario_summary.csv"
+    },
+    {
+      "filename": "phase1_design_assumptions.csv",
+      "phase": "Phase 1",
+      "format": "CSV",
+      "href": "/downloads/phase1_design_assumptions.csv",
+      "size_bytes": 2939,
+      "sha256_short": "796d96d5ceb3c696",
+      "description": "Baseline pilot-plant parameters & configurable PLC safety limits"
+    },
+    {
+      "filename": "phase1_design_assumptions.xlsx",
+      "phase": "Phase 1",
+      "format": "XLSX",
+      "href": "/downloads/phase1_design_assumptions.xlsx",
+      "size_bytes": 3801,
+      "sha256_short": "25c2f1a1ec03f645",
+      "description": "Typed Excel workbook for phase1_design_assumptions.csv"
+    },
+    {
+      "filename": "phase1_variable_schema.csv",
+      "phase": "Phase 1",
+      "format": "CSV",
+      "href": "/downloads/phase1_variable_schema.csv",
+      "size_bytes": 4421,
+      "sha256_short": "140417a58677a3e3",
+      "description": "Formal 20-variable system data dictionary with provenance, numeric bounds & flags"
+    },
+    {
+      "filename": "phase1_variable_schema.xlsx",
+      "phase": "Phase 1",
+      "format": "XLSX",
+      "href": "/downloads/phase1_variable_schema.xlsx",
+      "size_bytes": 4916,
+      "sha256_short": "ac55079dd90907bd",
+      "description": "Typed Excel workbook for phase1_variable_schema.csv"
+    },
+    {
+      "filename": "phase1_plc_interlocks.csv",
+      "phase": "Phase 1",
+      "format": "CSV",
+      "href": "/downloads/phase1_plc_interlocks.csv",
+      "size_bytes": 767,
+      "sha256_short": "c9a5c8014c2dce5b",
+      "description": "Hardwired PLC safety interlock register (PLC-01 through PLC-04)"
+    },
+    {
+      "filename": "phase1_plc_interlocks.xlsx",
+      "phase": "Phase 1",
+      "format": "XLSX",
+      "href": "/downloads/phase1_plc_interlocks.xlsx",
+      "size_bytes": 2896,
+      "sha256_short": "1aa24f9f19d0e5cc",
+      "description": "Typed Excel workbook for phase1_plc_interlocks.csv"
+    },
+    {
+      "filename": "eda_hourly_dataset.csv",
+      "phase": "Phase 4",
+      "format": "CSV",
+      "href": "/downloads/eda_hourly_dataset.csv",
+      "size_bytes": 3966898,
+      "sha256_short": "5600666dcb2d2d15",
+      "description": "EDA-ready hourly merged dataset with numeric season_code (1-4), daylight & SoC"
+    },
+    {
+      "filename": "eda_hourly_dataset.xlsx",
+      "phase": "Phase 4",
+      "format": "XLSX",
+      "href": "/downloads/eda_hourly_dataset.xlsx",
+      "size_bytes": 2986662,
+      "sha256_short": "d087dc5aa8f45b8a",
+      "description": "Typed Excel workbook for eda_hourly_dataset.csv"
+    },
+    {
+      "filename": "eda_monthly_summary.csv",
+      "phase": "Phase 4",
+      "format": "CSV",
+      "href": "/downloads/eda_monthly_summary.csv",
+      "size_bytes": 705,
+      "sha256_short": "a052ca82cd6fd723",
+      "description": "Monthly aggregated real weather & simulated thermal metrics (2020-2023)"
+    },
+    {
+      "filename": "eda_monthly_summary.xlsx",
+      "phase": "Phase 4",
+      "format": "XLSX",
+      "href": "/downloads/eda_monthly_summary.xlsx",
+      "size_bytes": 3086,
+      "sha256_short": "a562abf304af8dde",
+      "description": "Typed Excel workbook for eda_monthly_summary.csv"
+    },
+    {
+      "filename": "eda_correlation_matrix.csv",
+      "phase": "Phase 4",
+      "format": "CSV",
+      "href": "/downloads/eda_correlation_matrix.csv",
+      "size_bytes": 10517,
+      "sha256_short": "9f75b4c95e317d9e",
+      "description": "Pearson & Spearman correlation coefficients across key real & simulated pairs"
+    },
+    {
+      "filename": "eda_correlation_matrix.xlsx",
+      "phase": "Phase 4",
+      "format": "XLSX",
+      "href": "/downloads/eda_correlation_matrix.xlsx",
+      "size_bytes": 6836,
+      "sha256_short": "bd7aa521eb583761",
+      "description": "Typed Excel workbook for eda_correlation_matrix.csv"
+    },
+    {
+      "filename": "solar_ml_training_2020_2021.csv",
+      "phase": "Phase 5",
+      "format": "CSV",
+      "href": "/downloads/solar_ml_training_2020_2021.csv",
+      "size_bytes": 2263261,
+      "sha256_short": "488187bf15ace34d",
+      "description": "Model 1 PV chronological training features & target (2020-2021)"
+    },
+    {
+      "filename": "solar_ml_training_2020_2021.xlsx",
+      "phase": "Phase 5",
+      "format": "XLSX",
+      "href": "/downloads/solar_ml_training_2020_2021.xlsx",
+      "size_bytes": 1063682,
+      "sha256_short": "d16df79057729a76",
+      "description": "Typed Excel workbook for solar_ml_training_2020_2021.csv"
+    },
+    {
+      "filename": "solar_ml_validation_2022.csv",
+      "phase": "Phase 5",
+      "format": "CSV",
+      "href": "/downloads/solar_ml_validation_2022.csv",
+      "size_bytes": 1129922,
+      "sha256_short": "6174aeff9885c98a",
+      "description": "Model 1 PV chronological validation features & target (2022)"
+    },
+    {
+      "filename": "solar_ml_validation_2022.xlsx",
+      "phase": "Phase 5",
+      "format": "XLSX",
+      "href": "/downloads/solar_ml_validation_2022.xlsx",
+      "size_bytes": 533804,
+      "sha256_short": "ab4148e59353029e",
+      "description": "Typed Excel workbook for solar_ml_validation_2022.csv"
+    },
+    {
+      "filename": "solar_ml_test_2023.csv",
+      "phase": "Phase 5",
+      "format": "CSV",
+      "href": "/downloads/solar_ml_test_2023.csv",
+      "size_bytes": 1131099,
+      "sha256_short": "307da9dafc24f603",
+      "description": "Model 1 PV untouched chronological test features & target (2023)"
+    },
+    {
+      "filename": "solar_ml_test_2023.xlsx",
+      "phase": "Phase 5",
+      "format": "XLSX",
+      "href": "/downloads/solar_ml_test_2023.xlsx",
+      "size_bytes": 534279,
+      "sha256_short": "b06f800dd4451c17",
+      "description": "Typed Excel workbook for solar_ml_test_2023.csv"
+    },
+    {
+      "filename": "solar_predictions_2023.csv",
+      "phase": "Phase 5",
+      "format": "CSV",
+      "href": "/downloads/solar_predictions_2023.csv",
+      "size_bytes": 589088,
+      "sha256_short": "14ba7eb88a8771d9",
+      "description": "Model 1 (Gradient Boosting) 2023 test actual vs predicted kW_e & residuals"
+    },
+    {
+      "filename": "solar_predictions_2023.xlsx",
+      "phase": "Phase 5",
+      "format": "XLSX",
+      "href": "/downloads/solar_predictions_2023.xlsx",
+      "size_bytes": 248791,
+      "sha256_short": "d6f42083fa7b5772",
+      "description": "Typed Excel workbook for solar_predictions_2023.csv"
+    },
+    {
+      "filename": "dryer_ml_training_2020_2021.csv",
+      "phase": "Phase 5",
+      "format": "CSV",
+      "href": "/downloads/dryer_ml_training_2020_2021.csv",
+      "size_bytes": 791009,
+      "sha256_short": "0e7f15c988d7d0fb",
+      "description": "Model 2 multi-feedstock training set with numeric feedstock_code (1-3) & one-hot"
+    },
+    {
+      "filename": "dryer_ml_training_2020_2021.xlsx",
+      "phase": "Phase 5",
+      "format": "XLSX",
+      "href": "/downloads/dryer_ml_training_2020_2021.xlsx",
+      "size_bytes": 581958,
+      "sha256_short": "51e57e5b65fbbfbf",
+      "description": "Typed Excel workbook for dryer_ml_training_2020_2021.csv"
+    },
+    {
+      "filename": "dryer_ml_validation_2022.csv",
+      "phase": "Phase 5",
+      "format": "CSV",
+      "href": "/downloads/dryer_ml_validation_2022.csv",
+      "size_bytes": 296763,
+      "sha256_short": "f5ff4350a2d93b70",
+      "description": "Model 2 multi-feedstock dryer validation set coupled to 2022 weather"
+    },
+    {
+      "filename": "dryer_ml_validation_2022.xlsx",
+      "phase": "Phase 5",
+      "format": "XLSX",
+      "href": "/downloads/dryer_ml_validation_2022.xlsx",
+      "size_bytes": 220391,
+      "sha256_short": "82bd8e4c47df3d20",
+      "description": "Typed Excel workbook for dryer_ml_validation_2022.csv"
+    },
+    {
+      "filename": "dryer_ml_test_2023.csv",
+      "phase": "Phase 5",
+      "format": "CSV",
+      "href": "/downloads/dryer_ml_test_2023.csv",
+      "size_bytes": 296830,
+      "sha256_short": "49f81ab929536fd0",
+      "description": "Model 2 multi-feedstock dryer untouched test set coupled to 2023 weather"
+    },
+    {
+      "filename": "dryer_ml_test_2023.xlsx",
+      "phase": "Phase 5",
+      "format": "XLSX",
+      "href": "/downloads/dryer_ml_test_2023.xlsx",
+      "size_bytes": 220383,
+      "sha256_short": "c3e2dc9d476e869b",
+      "description": "Typed Excel workbook for dryer_ml_test_2023.csv"
+    },
+    {
+      "filename": "dryer_predictions_2023.csv",
+      "phase": "Phase 5",
+      "format": "CSV",
+      "href": "/downloads/dryer_predictions_2023.csv",
+      "size_bytes": 140473,
+      "sha256_short": "9c939e6d879e4cd7",
+      "description": "Model 2 (Gradient Boosting) 2023 test actual vs predicted kW_th & feedstock_code"
+    },
+    {
+      "filename": "dryer_predictions_2023.xlsx",
+      "phase": "Phase 5",
+      "format": "XLSX",
+      "href": "/downloads/dryer_predictions_2023.xlsx",
+      "size_bytes": 91385,
+      "sha256_short": "aeaea69f515b3cc7",
+      "description": "Typed Excel workbook for dryer_predictions_2023.csv"
+    },
+    {
+      "filename": "ml_model_comparison_metrics.csv",
+      "phase": "Phase 5",
+      "format": "CSV",
+      "href": "/downloads/ml_model_comparison_metrics.csv",
+      "size_bytes": 1763,
+      "sha256_short": "2d4d42b80572014c",
+      "description": "Train/Val/Test RMSE, MAE, R2 with numeric task_code, model_type_code & 1/0 selected"
+    },
+    {
+      "filename": "ml_model_comparison_metrics.xlsx",
+      "phase": "Phase 5",
+      "format": "XLSX",
+      "href": "/downloads/ml_model_comparison_metrics.xlsx",
+      "size_bytes": 3597,
+      "sha256_short": "a21f886ce6ab3544",
+      "description": "Typed Excel workbook for ml_model_comparison_metrics.csv"
+    },
+    {
+      "filename": "ml_residuals_summary.csv",
+      "phase": "Phase 5",
+      "format": "CSV",
+      "href": "/downloads/ml_residuals_summary.csv",
+      "size_bytes": 282,
+      "sha256_short": "4a61adf8a45c07ba",
+      "description": "Test 2023 residual summary quantiles (mean, std, min, p05, p25, median, p75, p95, max)"
+    },
+    {
+      "filename": "ml_residuals_summary.xlsx",
+      "phase": "Phase 5",
+      "format": "XLSX",
+      "href": "/downloads/ml_residuals_summary.xlsx",
+      "size_bytes": 2663,
+      "sha256_short": "4274e5586a609411",
+      "description": "Typed Excel workbook for ml_residuals_summary.csv"
+    },
+    {
+      "filename": "ml_feature_importance.csv",
+      "phase": "Phase 5",
+      "format": "CSV",
+      "href": "/downloads/ml_feature_importance.csv",
+      "size_bytes": 2364,
+      "sha256_short": "e0b4aef0519eefbd",
+      "description": "Permutation feature importance (2023 test MAE increase) with numeric task_code & rank"
+    },
+    {
+      "filename": "ml_feature_importance.xlsx",
+      "phase": "Phase 5",
+      "format": "XLSX",
+      "href": "/downloads/ml_feature_importance.xlsx",
+      "size_bytes": 3966,
+      "sha256_short": "77fb40bb6d48df6a",
+      "description": "Typed Excel workbook for ml_feature_importance.csv"
+    },
+    {
+      "filename": "energy_management_rule_based.csv",
+      "phase": "Phase 6",
+      "format": "CSV",
+      "href": "/downloads/energy_management_rule_based.csv",
+      "size_bytes": 137713,
+      "sha256_short": "8b207bf78ce76ff2",
+      "description": "Hourly Strategy A dispatch trace with scenario_code (1-7), strategy_code=1, mode_code (0-5)"
+    },
+    {
+      "filename": "energy_management_rule_based.xlsx",
+      "phase": "Phase 6",
+      "format": "XLSX",
+      "href": "/downloads/energy_management_rule_based.xlsx",
+      "size_bytes": 83857,
+      "sha256_short": "0fe33237fa09ef60",
+      "description": "Typed Excel workbook for energy_management_rule_based.csv"
+    },
+    {
+      "filename": "energy_management_ai_based.csv",
+      "phase": "Phase 6",
+      "format": "CSV",
+      "href": "/downloads/energy_management_ai_based.csv",
+      "size_bytes": 135080,
+      "sha256_short": "0ae35e0cd37925da",
+      "description": "Hourly Strategy B AI dispatch trace with scenario_code (1-7), strategy_code=2, mode_code (0-5)"
+    },
+    {
+      "filename": "energy_management_ai_based.xlsx",
+      "phase": "Phase 6",
+      "format": "XLSX",
+      "href": "/downloads/energy_management_ai_based.xlsx",
+      "size_bytes": 83432,
+      "sha256_short": "fa34455a4af6fafa",
+      "description": "Typed Excel workbook for energy_management_ai_based.csv"
+    },
+    {
+      "filename": "energy_management_storage_balance.csv",
+      "phase": "Phase 6",
+      "format": "CSV",
+      "href": "/downloads/energy_management_storage_balance.csv",
+      "size_bytes": 146651,
+      "sha256_short": "550db08a32427167",
+      "description": "Side-by-side hourly Strategy A vs B with scenario_code & mode_code integers"
+    },
+    {
+      "filename": "energy_management_storage_balance.xlsx",
+      "phase": "Phase 6",
+      "format": "XLSX",
+      "href": "/downloads/energy_management_storage_balance.xlsx",
+      "size_bytes": 87281,
+      "sha256_short": "085d5c77d16db0e3",
+      "description": "Typed Excel workbook for energy_management_storage_balance.csv"
+    },
+    {
+      "filename": "operating_mode_transition_logs.csv",
+      "phase": "Phase 6",
+      "format": "CSV",
+      "href": "/downloads/operating_mode_transition_logs.csv",
+      "size_bytes": 64516,
+      "sha256_short": "514318944250aa92",
+      "description": "Mode transition events with from_mode_code, to_mode_code (0-5) & plc_safe (1/0)"
+    },
+    {
+      "filename": "operating_mode_transition_logs.xlsx",
+      "phase": "Phase 6",
+      "format": "XLSX",
+      "href": "/downloads/operating_mode_transition_logs.xlsx",
+      "size_bytes": 23819,
+      "sha256_short": "40b57cc98c917bc1",
+      "description": "Typed Excel workbook for operating_mode_transition_logs.csv"
+    },
+    {
+      "filename": "strategy_comparison_metrics.csv",
+      "phase": "Phase 6",
+      "format": "CSV",
+      "href": "/downloads/strategy_comparison_metrics.csv",
+      "size_bytes": 1097,
+      "sha256_short": "2532a9dfd2578e07",
+      "description": "Summary KPIs per scenario with scenario_code (1-7)"
+    },
+    {
+      "filename": "strategy_comparison_metrics.xlsx",
+      "phase": "Phase 6",
+      "format": "XLSX",
+      "href": "/downloads/strategy_comparison_metrics.xlsx",
+      "size_bytes": 3295,
+      "sha256_short": "9705c1a31e425261",
+      "description": "Typed Excel workbook for strategy_comparison_metrics.csv"
+    },
+    {
+      "filename": "plc_fault_injection_results.csv",
+      "phase": "Phase 6",
+      "format": "CSV",
+      "href": "/downloads/plc_fault_injection_results.csv",
+      "size_bytes": 671,
+      "sha256_short": "af74dcb773a5cd8f",
+      "description": "PLC safety interlock verification with 1/0 boolean flags & resulting_mode_code (0-5)"
+    },
+    {
+      "filename": "plc_fault_injection_results.xlsx",
+      "phase": "Phase 6",
+      "format": "XLSX",
+      "href": "/downloads/plc_fault_injection_results.xlsx",
+      "size_bytes": 2918,
+      "sha256_short": "07aa8644d060eafb",
+      "description": "Typed Excel workbook for plc_fault_injection_results.csv"
+    },
+    {
+      "filename": "phase7_validation_results.csv",
+      "phase": "Phase 7",
+      "format": "CSV",
+      "href": "/downloads/phase7_validation_results.csv",
+      "size_bytes": 1653,
+      "sha256_short": "238e51450eb48cc9",
+      "description": "Phase 7 dashboard verification results (T01-T09) with passed (1/0) & test_num"
+    },
+    {
+      "filename": "phase7_validation_results.xlsx",
+      "phase": "Phase 7",
+      "format": "XLSX",
+      "href": "/downloads/phase7_validation_results.xlsx",
+      "size_bytes": 3560,
+      "sha256_short": "2785178c2b900312",
+      "description": "Typed Excel workbook for phase7_validation_results.csv"
+    },
+    {
+      "filename": "phase7_feedstock_benchmarks.csv",
+      "phase": "Phase 7",
+      "format": "CSV",
+      "href": "/downloads/phase7_feedstock_benchmarks.csv",
+      "size_bytes": 492,
+      "sha256_short": "ac5a1cee2cc7ba4d",
+      "description": "Dashboard simulation bridge vs Phase 5 .pkl check with feedstock_code (1-3)"
+    },
+    {
+      "filename": "phase7_feedstock_benchmarks.xlsx",
+      "phase": "Phase 7",
+      "format": "XLSX",
+      "href": "/downloads/phase7_feedstock_benchmarks.xlsx",
+      "size_bytes": 2850,
+      "sha256_short": "0654989e7936fb23",
+      "description": "Typed Excel workbook for phase7_feedstock_benchmarks.csv"
+    }
+  ]
+}

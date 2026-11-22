@@ -1,0 +1,582 @@
+{
+  "collectionMetadata": {
+    "phase": "Phase 2 \u2014 Real Solar & Weather Data Collection",
+    "collected_at_utc": "2026-11-20T18:08:58.799021+00:00",
+    "provisional_site": {
+      "name": "Settat, Casablanca-Settat, Morocco (Provisional)",
+      "latitude_deg": 33.001,
+      "longitude_deg": -7.6166,
+      "note": "Provisional coordinates; replaceable once pilot site GPS is confirmed."
+    },
+    "sources": {
+      "pvgis": {
+        "source_name": "European Commission JRC PVGIS v5.3 (seriescalc)",
+        "request_url": "https://re.jrc.ec.europa.eu/api/v5_3/seriescalc?lat=33.001&lon=-7.6166&startyear=2020&endyear=2023&pvcalculation=1&peakpower=15.0&loss=14.0&angle=31.0&aspect=0.0&usehorizon=1&outputformat=json",
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "elevation_m": 366.0,
+        "record_count": 35064,
+        "files": {
+          "json": "pvgis_settat_2020_2023_raw.json",
+          "json_sha256": "b9111105a309f6db08fd354fca29e8a1372df531090c191a48ba9c5af83d6aee",
+          "csv": "pvgis_settat_2020_2023_raw.csv",
+          "csv_sha256": "48cee33cba796ce8f0a821e6edf2c8f517cfc4146867e9e5030d534c108e504e"
+        }
+      },
+      "open_meteo": {
+        "source_name": "Open-Meteo Historical Weather Archive (ERA5 Reanalysis)",
+        "request_url": "https://archive-api.open-meteo.com/v1/archive?latitude=33.001&longitude=-7.6166&start_date=2020-01-01&end_date=2023-12-31&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m&wind_speed_unit=ms&timezone=UTC",
+        "elevation_m": 368.0,
+        "record_count": 35064,
+        "units": {
+          "time": "iso8601",
+          "temperature_2m": "\u00b0C",
+          "relative_humidity_2m": "%",
+          "wind_speed_10m": "m/s"
+        },
+        "files": {
+          "json": "open_meteo_settat_2020_2023_raw.json",
+          "json_sha256": "bef57ccf21ea0c9587f59515d8f585f3c84f9c65ad2afcd3359db1a781b30ab4",
+          "csv": "open_meteo_settat_2020_2023_raw.csv",
+          "csv_sha256": "6286fcbfb5d89839adb588eafaa79ad5500bce6c692137f66b3312a395470e15"
+        }
+      }
+    }
+  },
+  "qualityReport": {
+    "phase": "Phase 2 \u2014 Cleaned Solar & Weather Data Quality Report",
+    "site": "Settat, Casablanca-Settat, Morocco (Provisional)",
+    "coordinates": {
+      "lat": 33.001,
+      "lon": -7.6166
+    },
+    "timezone": "UTC",
+    "synthetic_imputation_used": false,
+    "pvgis_audit": {
+      "source": "European Commission PVGIS v5.3 (PVGIS-SARAH3 / ERA5)",
+      "rows_after_clean": 35064,
+      "unparseable_timestamps": 0,
+      "duplicate_timestamps_removed": 0,
+      "missing_expected_utc_hours": 0,
+      "missing_values_per_column": {},
+      "physical_bounds_violations_nulled": {
+        "pvgis_irradiance_wm2": 0,
+        "pvgis_ambient_temp_c": 0,
+        "pvgis_wind_speed_ms": 0,
+        "pvgis_pv_power_kw": 0
+      },
+      "nighttime_pv_anomalies": 0,
+      "reconstructed_solar_hours_count": 0
+    },
+    "open_meteo_audit": {
+      "source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+      "rows_after_clean": 35064,
+      "unparseable_timestamps": 0,
+      "duplicate_timestamps_removed": 0,
+      "missing_expected_utc_hours": 0,
+      "missing_values_per_column": {},
+      "physical_bounds_violations_nulled": {
+        "meteo_ambient_temp_c": 0,
+        "meteo_relative_humidity_pct": 0,
+        "meteo_wind_speed_ms": 0
+      }
+    },
+    "merged_summary": {
+      "total_rows": 35064,
+      "start_utc": "2020-01-01T00:00:00+00:00",
+      "end_utc": "2023-12-31T23:00:00+00:00",
+      "cross_source_temp_mae_c": 0.9678,
+      "chronological_splits": {
+        "train_2020_2021_rows": 17544,
+        "val_2022_rows": 8760,
+        "test_2023_rows": 8760
+      }
+    }
+  },
+  "monthlyProfile": [
+    {
+      "month": 1,
+      "meanIrradianceWm2": 229.5,
+      "meanPvPowerKw": 2.72,
+      "meanTempC": 12.0,
+      "meanRhPct": 72.6,
+      "meanWindMs": 2.59
+    },
+    {
+      "month": 2,
+      "meanIrradianceWm2": 240.1,
+      "meanPvPowerKw": 2.8,
+      "meanTempC": 14.3,
+      "meanRhPct": 68.3,
+      "meanWindMs": 2.65
+    },
+    {
+      "month": 3,
+      "meanIrradianceWm2": 257.8,
+      "meanPvPowerKw": 2.98,
+      "meanTempC": 14.5,
+      "meanRhPct": 71.7,
+      "meanWindMs": 2.78
+    },
+    {
+      "month": 4,
+      "meanIrradianceWm2": 277.4,
+      "meanPvPowerKw": 3.19,
+      "meanTempC": 16.8,
+      "meanRhPct": 68.9,
+      "meanWindMs": 3.17
+    },
+    {
+      "month": 5,
+      "meanIrradianceWm2": 286.2,
+      "meanPvPowerKw": 3.23,
+      "meanTempC": 20.0,
+      "meanRhPct": 63.2,
+      "meanWindMs": 3.27
+    },
+    {
+      "month": 6,
+      "meanIrradianceWm2": 285.8,
+      "meanPvPowerKw": 3.2,
+      "meanTempC": 21.9,
+      "meanRhPct": 65.4,
+      "meanWindMs": 3.2
+    },
+    {
+      "month": 7,
+      "meanIrradianceWm2": 305.8,
+      "meanPvPowerKw": 3.35,
+      "meanTempC": 25.8,
+      "meanRhPct": 58.3,
+      "meanWindMs": 3.31
+    },
+    {
+      "month": 8,
+      "meanIrradianceWm2": 305.9,
+      "meanPvPowerKw": 3.37,
+      "meanTempC": 25.2,
+      "meanRhPct": 60.3,
+      "meanWindMs": 3.35
+    },
+    {
+      "month": 9,
+      "meanIrradianceWm2": 279.9,
+      "meanPvPowerKw": 3.13,
+      "meanTempC": 22.7,
+      "meanRhPct": 66.3,
+      "meanWindMs": 2.87
+    },
+    {
+      "month": 10,
+      "meanIrradianceWm2": 260.3,
+      "meanPvPowerKw": 2.92,
+      "meanTempC": 21.1,
+      "meanRhPct": 59.2,
+      "meanWindMs": 2.59
+    },
+    {
+      "month": 11,
+      "meanIrradianceWm2": 232.0,
+      "meanPvPowerKw": 2.69,
+      "meanTempC": 16.4,
+      "meanRhPct": 67.4,
+      "meanWindMs": 2.5
+    },
+    {
+      "month": 12,
+      "meanIrradianceWm2": 207.4,
+      "meanPvPowerKw": 2.44,
+      "meanTempC": 13.9,
+      "meanRhPct": 73.2,
+      "meanWindMs": 2.74
+    }
+  ],
+  "diurnalProfile": [
+    {
+      "hourUtc": 0,
+      "meanIrradianceWm2": 0.0,
+      "meanPvPowerKw": 0.0,
+      "meanTempC": 15.2,
+      "meanRhPct": 83.8
+    },
+    {
+      "hourUtc": 1,
+      "meanIrradianceWm2": 0.0,
+      "meanPvPowerKw": 0.0,
+      "meanTempC": 15.0,
+      "meanRhPct": 83.8
+    },
+    {
+      "hourUtc": 2,
+      "meanIrradianceWm2": 0.0,
+      "meanPvPowerKw": 0.0,
+      "meanTempC": 14.8,
+      "meanRhPct": 83.8
+    },
+    {
+      "hourUtc": 3,
+      "meanIrradianceWm2": 0.0,
+      "meanPvPowerKw": 0.0,
+      "meanTempC": 14.5,
+      "meanRhPct": 83.8
+    },
+    {
+      "hourUtc": 4,
+      "meanIrradianceWm2": 0.0,
+      "meanPvPowerKw": 0.0,
+      "meanTempC": 14.3,
+      "meanRhPct": 83.8
+    },
+    {
+      "hourUtc": 5,
+      "meanIrradianceWm2": 0.0,
+      "meanPvPowerKw": 0.0,
+      "meanTempC": 14.1,
+      "meanRhPct": 83.7
+    },
+    {
+      "hourUtc": 6,
+      "meanIrradianceWm2": 10.4,
+      "meanPvPowerKw": 0.08,
+      "meanTempC": 14.1,
+      "meanRhPct": 83.1
+    },
+    {
+      "hourUtc": 7,
+      "meanIrradianceWm2": 82.0,
+      "meanPvPowerKw": 0.77,
+      "meanTempC": 14.7,
+      "meanRhPct": 79.6
+    },
+    {
+      "hourUtc": 8,
+      "meanIrradianceWm2": 289.7,
+      "meanPvPowerKw": 3.33,
+      "meanTempC": 16.4,
+      "meanRhPct": 71.7
+    },
+    {
+      "hourUtc": 9,
+      "meanIrradianceWm2": 512.4,
+      "meanPvPowerKw": 6.08,
+      "meanTempC": 19.0,
+      "meanRhPct": 61.3
+    },
+    {
+      "hourUtc": 10,
+      "meanIrradianceWm2": 704.1,
+      "meanPvPowerKw": 8.19,
+      "meanTempC": 21.4,
+      "meanRhPct": 51.9
+    },
+    {
+      "hourUtc": 11,
+      "meanIrradianceWm2": 833.3,
+      "meanPvPowerKw": 9.48,
+      "meanTempC": 23.4,
+      "meanRhPct": 44.8
+    },
+    {
+      "hourUtc": 12,
+      "meanIrradianceWm2": 895.1,
+      "meanPvPowerKw": 10.07,
+      "meanTempC": 24.7,
+      "meanRhPct": 41.5
+    },
+    {
+      "hourUtc": 13,
+      "meanIrradianceWm2": 871.2,
+      "meanPvPowerKw": 9.82,
+      "meanTempC": 25.6,
+      "meanRhPct": 38.8
+    },
+    {
+      "hourUtc": 14,
+      "meanIrradianceWm2": 781.0,
+      "meanPvPowerKw": 8.91,
+      "meanTempC": 25.9,
+      "meanRhPct": 37.9
+    },
+    {
+      "hourUtc": 15,
+      "meanIrradianceWm2": 638.9,
+      "meanPvPowerKw": 7.4,
+      "meanTempC": 25.5,
+      "meanRhPct": 39.3
+    },
+    {
+      "hourUtc": 16,
+      "meanIrradianceWm2": 447.6,
+      "meanPvPowerKw": 5.2,
+      "meanTempC": 24.5,
+      "meanRhPct": 42.9
+    },
+    {
+      "hourUtc": 17,
+      "meanIrradianceWm2": 218.4,
+      "meanPvPowerKw": 2.35,
+      "meanTempC": 22.8,
+      "meanRhPct": 49.5
+    },
+    {
+      "hourUtc": 18,
+      "meanIrradianceWm2": 50.7,
+      "meanPvPowerKw": 0.4,
+      "meanTempC": 20.5,
+      "meanRhPct": 58.6
+    },
+    {
+      "hourUtc": 19,
+      "meanIrradianceWm2": 4.5,
+      "meanPvPowerKw": 0.03,
+      "meanTempC": 18.6,
+      "meanRhPct": 67.6
+    },
+    {
+      "hourUtc": 20,
+      "meanIrradianceWm2": 0.0,
+      "meanPvPowerKw": 0.0,
+      "meanTempC": 17.2,
+      "meanRhPct": 74.4
+    },
+    {
+      "hourUtc": 21,
+      "meanIrradianceWm2": 0.0,
+      "meanPvPowerKw": 0.0,
+      "meanTempC": 16.3,
+      "meanRhPct": 78.9
+    },
+    {
+      "hourUtc": 22,
+      "meanIrradianceWm2": 0.0,
+      "meanPvPowerKw": 0.0,
+      "meanTempC": 15.8,
+      "meanRhPct": 81.5
+    },
+    {
+      "hourUtc": 23,
+      "meanIrradianceWm2": 0.0,
+      "meanPvPowerKw": 0.0,
+      "meanTempC": 15.3,
+      "meanRhPct": 82.9
+    }
+  ],
+  "sample24h": [
+    {
+      "timestamp": "2020-07-01T12:00:00+00:00",
+      "pvgis_raw_time": "20200701:1209",
+      "pvgis_irradiance_wm2": 994.3,
+      "pvgis_pv_power_kw": 10.58,
+      "meteo_ambient_temp_c": 33.9,
+      "meteo_relative_humidity_pct": 30.0,
+      "meteo_wind_speed_ms": 2.6
+    },
+    {
+      "timestamp": "2020-07-01T13:00:00+00:00",
+      "pvgis_raw_time": "20200701:1309",
+      "pvgis_irradiance_wm2": 981.8,
+      "pvgis_pv_power_kw": 10.51,
+      "meteo_ambient_temp_c": 35.9,
+      "meteo_relative_humidity_pct": 27.0,
+      "meteo_wind_speed_ms": 2.75
+    },
+    {
+      "timestamp": "2020-07-01T14:00:00+00:00",
+      "pvgis_raw_time": "20200701:1409",
+      "pvgis_irradiance_wm2": 897.7,
+      "pvgis_pv_power_kw": 9.75,
+      "meteo_ambient_temp_c": 36.7,
+      "meteo_relative_humidity_pct": 26.0,
+      "meteo_wind_speed_ms": 3.49
+    },
+    {
+      "timestamp": "2020-07-01T15:00:00+00:00",
+      "pvgis_raw_time": "20200701:1509",
+      "pvgis_irradiance_wm2": 743.0,
+      "pvgis_pv_power_kw": 8.24,
+      "meteo_ambient_temp_c": 35.2,
+      "meteo_relative_humidity_pct": 30.0,
+      "meteo_wind_speed_ms": 4.33
+    },
+    {
+      "timestamp": "2020-07-01T16:00:00+00:00",
+      "pvgis_raw_time": "20200701:1609",
+      "pvgis_irradiance_wm2": 547.9,
+      "pvgis_pv_power_kw": 6.14,
+      "meteo_ambient_temp_c": 33.1,
+      "meteo_relative_humidity_pct": 34.0,
+      "meteo_wind_speed_ms": 4.6
+    },
+    {
+      "timestamp": "2020-07-01T17:00:00+00:00",
+      "pvgis_raw_time": "20200701:1709",
+      "pvgis_irradiance_wm2": 328.8,
+      "pvgis_pv_power_kw": 3.53,
+      "meteo_ambient_temp_c": 30.2,
+      "meteo_relative_humidity_pct": 40.0,
+      "meteo_wind_speed_ms": 4.9
+    },
+    {
+      "timestamp": "2020-07-01T18:00:00+00:00",
+      "pvgis_raw_time": "20200701:1809",
+      "pvgis_irradiance_wm2": 134.3,
+      "pvgis_pv_power_kw": 1.19,
+      "meteo_ambient_temp_c": 27.5,
+      "meteo_relative_humidity_pct": 47.0,
+      "meteo_wind_speed_ms": 4.41
+    },
+    {
+      "timestamp": "2020-07-01T19:00:00+00:00",
+      "pvgis_raw_time": "20200701:1909",
+      "pvgis_irradiance_wm2": 29.7,
+      "pvgis_pv_power_kw": 0.2,
+      "meteo_ambient_temp_c": 25.4,
+      "meteo_relative_humidity_pct": 53.0,
+      "meteo_wind_speed_ms": 3.71
+    },
+    {
+      "timestamp": "2020-07-01T20:00:00+00:00",
+      "pvgis_raw_time": "20200701:2009",
+      "pvgis_irradiance_wm2": 0.0,
+      "pvgis_pv_power_kw": 0.0,
+      "meteo_ambient_temp_c": 23.8,
+      "meteo_relative_humidity_pct": 59.0,
+      "meteo_wind_speed_ms": 3.1
+    },
+    {
+      "timestamp": "2020-07-01T21:00:00+00:00",
+      "pvgis_raw_time": "20200701:2109",
+      "pvgis_irradiance_wm2": 0.0,
+      "pvgis_pv_power_kw": 0.0,
+      "meteo_ambient_temp_c": 22.6,
+      "meteo_relative_humidity_pct": 65.0,
+      "meteo_wind_speed_ms": 2.75
+    },
+    {
+      "timestamp": "2020-07-01T22:00:00+00:00",
+      "pvgis_raw_time": "20200701:2209",
+      "pvgis_irradiance_wm2": 0.0,
+      "pvgis_pv_power_kw": 0.0,
+      "meteo_ambient_temp_c": 21.4,
+      "meteo_relative_humidity_pct": 71.0,
+      "meteo_wind_speed_ms": 2.38
+    },
+    {
+      "timestamp": "2020-07-01T23:00:00+00:00",
+      "pvgis_raw_time": "20200701:2309",
+      "pvgis_irradiance_wm2": 0.0,
+      "pvgis_pv_power_kw": 0.0,
+      "meteo_ambient_temp_c": 20.2,
+      "meteo_relative_humidity_pct": 78.0,
+      "meteo_wind_speed_ms": 2.69
+    },
+    {
+      "timestamp": "2020-07-02T00:00:00+00:00",
+      "pvgis_raw_time": "20200702:0009",
+      "pvgis_irradiance_wm2": 0.0,
+      "pvgis_pv_power_kw": 0.0,
+      "meteo_ambient_temp_c": 18.8,
+      "meteo_relative_humidity_pct": 89.0,
+      "meteo_wind_speed_ms": 2.51
+    },
+    {
+      "timestamp": "2020-07-02T01:00:00+00:00",
+      "pvgis_raw_time": "20200702:0109",
+      "pvgis_irradiance_wm2": 0.0,
+      "pvgis_pv_power_kw": 0.0,
+      "meteo_ambient_temp_c": 17.7,
+      "meteo_relative_humidity_pct": 97.0,
+      "meteo_wind_speed_ms": 1.53
+    },
+    {
+      "timestamp": "2020-07-02T02:00:00+00:00",
+      "pvgis_raw_time": "20200702:0209",
+      "pvgis_irradiance_wm2": 0.0,
+      "pvgis_pv_power_kw": 0.0,
+      "meteo_ambient_temp_c": 17.3,
+      "meteo_relative_humidity_pct": 100.0,
+      "meteo_wind_speed_ms": 2.1
+    },
+    {
+      "timestamp": "2020-07-02T03:00:00+00:00",
+      "pvgis_raw_time": "20200702:0309",
+      "pvgis_irradiance_wm2": 0.0,
+      "pvgis_pv_power_kw": 0.0,
+      "meteo_ambient_temp_c": 17.5,
+      "meteo_relative_humidity_pct": 98.0,
+      "meteo_wind_speed_ms": 2.6
+    },
+    {
+      "timestamp": "2020-07-02T04:00:00+00:00",
+      "pvgis_raw_time": "20200702:0409",
+      "pvgis_irradiance_wm2": 0.0,
+      "pvgis_pv_power_kw": 0.0,
+      "meteo_ambient_temp_c": 17.5,
+      "meteo_relative_humidity_pct": 98.0,
+      "meteo_wind_speed_ms": 3.28
+    },
+    {
+      "timestamp": "2020-07-02T05:00:00+00:00",
+      "pvgis_raw_time": "20200702:0509",
+      "pvgis_irradiance_wm2": 0.0,
+      "pvgis_pv_power_kw": 0.0,
+      "meteo_ambient_temp_c": 17.4,
+      "meteo_relative_humidity_pct": 99.0,
+      "meteo_wind_speed_ms": 3.76
+    },
+    {
+      "timestamp": "2020-07-02T06:00:00+00:00",
+      "pvgis_raw_time": "20200702:0609",
+      "pvgis_irradiance_wm2": 31.5,
+      "pvgis_pv_power_kw": 0.23,
+      "meteo_ambient_temp_c": 17.8,
+      "meteo_relative_humidity_pct": 97.0,
+      "meteo_wind_speed_ms": 2.69
+    },
+    {
+      "timestamp": "2020-07-02T07:00:00+00:00",
+      "pvgis_raw_time": "20200702:0709",
+      "pvgis_irradiance_wm2": 92.8,
+      "pvgis_pv_power_kw": 0.93,
+      "meteo_ambient_temp_c": 18.7,
+      "meteo_relative_humidity_pct": 92.0,
+      "meteo_wind_speed_ms": 2.91
+    },
+    {
+      "timestamp": "2020-07-02T08:00:00+00:00",
+      "pvgis_raw_time": "20200702:0809",
+      "pvgis_irradiance_wm2": 305.3,
+      "pvgis_pv_power_kw": 3.47,
+      "meteo_ambient_temp_c": 20.1,
+      "meteo_relative_humidity_pct": 82.0,
+      "meteo_wind_speed_ms": 2.55
+    },
+    {
+      "timestamp": "2020-07-02T09:00:00+00:00",
+      "pvgis_raw_time": "20200702:0909",
+      "pvgis_irradiance_wm2": 183.8,
+      "pvgis_pv_power_kw": 2.02,
+      "meteo_ambient_temp_c": 23.0,
+      "meteo_relative_humidity_pct": 65.0,
+      "meteo_wind_speed_ms": 2.94
+    },
+    {
+      "timestamp": "2020-07-02T10:00:00+00:00",
+      "pvgis_raw_time": "20200702:1009",
+      "pvgis_irradiance_wm2": 629.6,
+      "pvgis_pv_power_kw": 7.22,
+      "meteo_ambient_temp_c": 25.7,
+      "meteo_relative_humidity_pct": 52.0,
+      "meteo_wind_speed_ms": 3.42
+    },
+    {
+      "timestamp": "2020-07-02T11:00:00+00:00",
+      "pvgis_raw_time": "20200702:1109",
+      "pvgis_irradiance_wm2": 867.8,
+      "pvgis_pv_power_kw": 9.75,
+      "meteo_ambient_temp_c": 24.3,
+      "meteo_relative_humidity_pct": 56.0,
+      "meteo_wind_speed_ms": 3.49
+    }
+  ]
+}

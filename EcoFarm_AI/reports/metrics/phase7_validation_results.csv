@@ -1,0 +1,10 @@
+test_id,test_num,name,passed,status,detail
+T01,1,Dashboard Python Syntax & AST Check,1,PASS,Compiled & AST-parsed 11 modules cleanly
+T02,2,Missing Datasets & Artifacts Handling,1,PASS,All 12 artifacts reported 'PENDING / UNAVAILABLE' cleanly (Dataset unavailable / pending: nonexistent.csv; Unavailable / Pending: nonexistent.json not found.)
+T03,3,Missing ML Model (.pkl) Graceful Fallback,1,PASS,"Dryer ML status='PENDING / MODEL MISSING', scenario blocked cleanly without fabricated ML values."
+T04,4,"Invalid User Inputs (NaN, Inf, Unsupported Feedstock)",1,PASS,"Blocked NaN (Invalid non-finite numeric input for 'batch_mass_kg'.), Inf (Invalid non-finite numeric input for 'ambient_temp_c'.), and invalid feedstock (Unsupported feedstock 'plastic_waste'. Must be one of ('olive_pomace', 'wheat_straw', 'wood_chips').)."
+T05,5,Out-of-Range & PLC Ceiling Input Rejection,1,PASS,"Rejected inverted moisture (10%->20%), negative mass (-50 kg), sand_temp > 550 °C ceiling (580 °C), and negative collector area (-5 m²)."
+T06,6,Bridge-to-src Physics & 168h Scenario Consistency,1,PASS,Dryer diff vs. src.thermal_model = 0.0e+00 kW_th; 168h Strategy B satisfied 100.0% demand with 0 PLC violations.
+T07,7,Hardwired PLC Perimeter & Fault-Injection Lock,1,PASS,Nominal SAFE (MODE_3_RECOVERED_HEAT_PRIORITY); 605 °C & E-Stop forced SAFE_STATE_SHUTDOWN; 6 fault checks passed.
+T08,8,CSV Serialization & Export Round-Trip,1,PASS,"Serialized 2,049 bytes and parsed back 24 hourly rows cleanly."
+T09,9,Complete Phase 7 ZIP Archive & CRC Verification,1,PASS,"Archived 81 verified files into EcoFarm_Phase7_Package.zip (8,039,938 bytes, CRC clean)."

@@ -1,0 +1,203 @@
+{
+  "phase": "Phase 3 \u2014 Thermal Simulation Dataset & Validation Report",
+  "provenance_tag": "simulated_physics",
+  "real_weather_input": "solar_weather_merged_clean.csv",
+  "real_weather_rows": 35064,
+  "scenarios": {
+    "low": {
+      "scenario": "low",
+      "description": "Low throughput & drier feedstock (gentle seasonal baseline)",
+      "rows": 35064,
+      "output_file": "thermal_sim_low.csv",
+      "summary_4yr": {
+        "dryer_demand_mwh_th": 143.87,
+        "solar_thermal_mwh_th": 65.6,
+        "ncg_recovered_mwh_th": 119.48,
+        "pv_electrical_mwh_e": 105.34,
+        "pv_surplus_heater_mwh_e": 75.06,
+        "auxiliary_heating_mwh_th": 5.54,
+        "storage_standby_loss_mwh_th": 106.11,
+        "renewable_recovered_coverage_pct": 96.15,
+        "sand_temp_min_c": 48.64,
+        "sand_temp_max_c": 324.81
+      },
+      "validation": {
+        "max_mass_balance_residual_kg_s": 0.0,
+        "max_energy_closure_residual_kwh": 7.105427357601002e-14,
+        "plc_safety_margin_violations": 0
+      }
+    },
+    "medium": {
+      "scenario": "medium",
+      "description": "Nominal pilot-plant design schedule (45% -> 12% moisture)",
+      "rows": 35064,
+      "output_file": "thermal_sim_medium.csv",
+      "summary_4yr": {
+        "dryer_demand_mwh_th": 433.33,
+        "solar_thermal_mwh_th": 91.84,
+        "ncg_recovered_mwh_th": 302.97,
+        "pv_electrical_mwh_e": 105.34,
+        "pv_surplus_heater_mwh_e": 75.06,
+        "auxiliary_heating_mwh_th": 55.86,
+        "storage_standby_loss_mwh_th": 71.91,
+        "renewable_recovered_coverage_pct": 87.11,
+        "sand_temp_min_c": 35.56,
+        "sand_temp_max_c": 271.53
+      },
+      "validation": {
+        "max_mass_balance_residual_kg_s": 0.0,
+        "max_energy_closure_residual_kwh": 3.552713678800501e-14,
+        "plc_safety_margin_violations": 0
+      }
+    },
+    "high": {
+      "scenario": "high",
+      "description": "High moisture feedstock & intensive 16h throughput",
+      "rows": 35064,
+      "output_file": "thermal_sim_high.csv",
+      "summary_4yr": {
+        "dryer_demand_mwh_th": 1035.67,
+        "solar_thermal_mwh_th": 118.08,
+        "ncg_recovered_mwh_th": 664.18,
+        "pv_electrical_mwh_e": 105.34,
+        "pv_surplus_heater_mwh_e": 75.06,
+        "auxiliary_heating_mwh_th": 261.93,
+        "storage_standby_loss_mwh_th": 64.13,
+        "renewable_recovered_coverage_pct": 74.71,
+        "sand_temp_min_c": 34.73,
+        "sand_temp_max_c": 274.74
+      },
+      "validation": {
+        "max_mass_balance_residual_kg_s": 0.0,
+        "max_energy_closure_residual_kwh": 3.730349362740526e-14,
+        "plc_safety_margin_violations": 0
+      }
+    }
+  },
+  "sensitivity": {
+    "moisture_sensitivity": [
+      {
+        "initial_moisture_pct": 25,
+        "water_evap_kg_h": 9.23,
+        "dryer_demand_kw": 11.82
+      },
+      {
+        "initial_moisture_pct": 35,
+        "water_evap_kg_h": 16.34,
+        "dryer_demand_kw": 18.29
+      },
+      {
+        "initial_moisture_pct": 45,
+        "water_evap_kg_h": 23.44,
+        "dryer_demand_kw": 24.76
+      },
+      {
+        "initial_moisture_pct": 55,
+        "water_evap_kg_h": 30.54,
+        "dryer_demand_kw": 31.22
+      },
+      {
+        "initial_moisture_pct": 65,
+        "water_evap_kg_h": 37.64,
+        "dryer_demand_kw": 37.69
+      }
+    ],
+    "humidity_sensitivity": [
+      {
+        "ambient_rh_pct": 20,
+        "airflow_kg_dry_air_s": 0.055,
+        "dryer_demand_kw": 24.59
+      },
+      {
+        "ambient_rh_pct": 40,
+        "airflow_kg_dry_air_s": 0.056,
+        "dryer_demand_kw": 24.68
+      },
+      {
+        "ambient_rh_pct": 60,
+        "airflow_kg_dry_air_s": 0.058,
+        "dryer_demand_kw": 24.78
+      },
+      {
+        "ambient_rh_pct": 80,
+        "airflow_kg_dry_air_s": 0.06,
+        "dryer_demand_kw": 24.89
+      },
+      {
+        "ambient_rh_pct": 95,
+        "airflow_kg_dry_air_s": 0.062,
+        "dryer_demand_kw": 24.97
+      }
+    ],
+    "insulation_ua_sensitivity": [
+      {
+        "standby_ua_w_k": 10,
+        "temp_after_24h_standby_c": 351.0,
+        "temp_drop_24h_c": 99.0
+      },
+      {
+        "standby_ua_w_k": 18,
+        "temp_after_24h_standby_c": 287.93,
+        "temp_drop_24h_c": 162.07
+      },
+      {
+        "standby_ua_w_k": 26,
+        "temp_after_24h_standby_c": 236.47,
+        "temp_drop_24h_c": 213.53
+      },
+      {
+        "standby_ua_w_k": 35,
+        "temp_after_24h_standby_c": 189.9,
+        "temp_drop_24h_c": 260.1
+      }
+    ]
+  },
+  "configurable_parameters_baseline": {
+    "dryer_medium": {
+      "batch_mass_kg": 250.0,
+      "batch_duration_hours": 4.0,
+      "initial_moisture_frac": 0.45,
+      "target_moisture_frac": 0.12,
+      "biomass_inlet_temp_c": 22.0,
+      "biomass_outlet_temp_c": 65.0,
+      "dryer_chamber_temp_c": 85.0,
+      "exhaust_air_temp_c": 60.0,
+      "exhaust_max_rh_pct": 80.0,
+      "min_delta_omega": 0.004,
+      "dryer_shell_ua_w_per_k": 25.0,
+      "hx_duct_efficiency": 0.85,
+      "cp_dry_biomass_kj_kg_k": 1.45,
+      "cp_liquid_water_kj_kg_k": 4.186,
+      "cp_dry_air_kj_kg_k": 1.006,
+      "cp_water_vapor_kj_kg_k": 1.86
+    },
+    "solar_thermal_medium": {
+      "collector_area_m2": 35.0,
+      "optical_efficiency_eta0": 0.74,
+      "heat_loss_a1_w_m2_k": 3.5,
+      "heat_loss_a2_w_m2_k2": 0.015,
+      "collector_mean_fluid_temp_c": 95.0
+    },
+    "ncg_medium": {
+      "dry_biomass_feed_rate_kg_h": 55.0,
+      "ncg_mass_yield_frac": 0.22,
+      "ncg_lhv_kj_per_kg": 9500.0,
+      "burner_combustion_eff": 0.88,
+      "heat_exchanger_eff": 0.82
+    },
+    "storage_medium": {
+      "sand_mass_kg": 4000.0,
+      "sand_cp_kj_per_kg_k": 0.83,
+      "temp_min_operating_c": 120.0,
+      "plc_trip_temp_c": 600.0,
+      "safety_margin_c": 50.0,
+      "standby_ua_w_per_k": 18.0,
+      "charging_efficiency": 0.92,
+      "discharging_efficiency": 0.9,
+      "resistance_heater_eff": 0.98,
+      "pv_base_load_kw": 2.0,
+      "pv_surplus_min_kw": 1.0,
+      "initial_sand_temp_c": 240.0
+    }
+  }
+}

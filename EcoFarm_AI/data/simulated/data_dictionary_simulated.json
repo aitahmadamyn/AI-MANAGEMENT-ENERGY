@@ -1,0 +1,93 @@
+[
+  {
+    "name": "timestamp",
+    "unit": "ISO-8601 (UTC)",
+    "provenance": "measured_external",
+    "source": "Phase 2 solar_weather_merged_clean.csv",
+    "equation_or_note": "Canonical UTC hour"
+  },
+  {
+    "name": "pvgis_irradiance_wm2",
+    "unit": "W/m^2",
+    "provenance": "measured_external",
+    "source": "PVGIS-SARAH3",
+    "equation_or_note": "Plane-of-array irradiance"
+  },
+  {
+    "name": "pvgis_pv_power_kw",
+    "unit": "kW_e",
+    "provenance": "calculated",
+    "source": "PVGIS PVcalc",
+    "equation_or_note": "Electrical AC PV output (never merged with thermal)"
+  },
+  {
+    "name": "meteo_ambient_temp_c",
+    "unit": "\u00b0C",
+    "provenance": "measured_external",
+    "source": "Open-Meteo ERA5",
+    "equation_or_note": "Ambient air dry-bulb temperature"
+  },
+  {
+    "name": "meteo_relative_humidity_pct",
+    "unit": "%",
+    "provenance": "measured_external",
+    "source": "Open-Meteo ERA5",
+    "equation_or_note": "Governs ambient humidity ratio omega_amb"
+  },
+  {
+    "name": "water_evaporated_kg_h",
+    "unit": "kg/h",
+    "provenance": "simulated_physics",
+    "source": "thermal_model.py",
+    "equation_or_note": "3600 * m_wet * (X_i - X_f) / (1 - X_f)"
+  },
+  {
+    "name": "dryer_thermal_demand_kw",
+    "unit": "kW_th",
+    "provenance": "simulated_physics",
+    "source": "thermal_model.py",
+    "equation_or_note": "(Q_evap + Q_bio + Q_w_rem + Q_air + Q_loss) / eta_hx"
+  },
+  {
+    "name": "solar_thermal_power_kw",
+    "unit": "kW_th",
+    "provenance": "simulated_physics",
+    "source": "thermal_model.py",
+    "equation_or_note": "ISO 9806 collector curve (A_coll * (eta0*G - a1*dT - a2*dT^2))"
+  },
+  {
+    "name": "recovered_thermal_power_kw",
+    "unit": "kW_th",
+    "provenance": "simulated_physics",
+    "source": "thermal_model.py",
+    "equation_or_note": "m_ncg * LHV_ncg * eta_comb * eta_hx_ncg"
+  },
+  {
+    "name": "pv_surplus_heater_elec_kw",
+    "unit": "kW_e",
+    "provenance": "simulated_physics",
+    "source": "storage_model.py",
+    "equation_or_note": "Surplus PV above base load when T_sand < T_max"
+  },
+  {
+    "name": "sand_temp_c",
+    "unit": "\u00b0C",
+    "provenance": "simulated_physics",
+    "source": "storage_model.py",
+    "equation_or_note": "Lumped thermal capacitance balance clamped <= T_plc_trip - margin"
+  },
+  {
+    "name": "stored_thermal_energy_kwh",
+    "unit": "kWh_th",
+    "provenance": "simulated_physics",
+    "source": "storage_model.py",
+    "equation_or_note": "m_sand * Cp_sand * (T_sand - T_min) / 3600"
+  },
+  {
+    "name": "auxiliary_heating_needed_kw",
+    "unit": "kW_th",
+    "provenance": "simulated_physics",
+    "source": "storage_model.py",
+    "equation_or_note": "Unmet dryer thermal load when storage is depleted"
+  }
+]

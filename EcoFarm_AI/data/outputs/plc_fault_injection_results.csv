@@ -1,0 +1,7 @@
+test_case_num,test_case,safe_to_operate,forced_safe_state,resulting_mode,resulting_mode_code,active_interlocks
+1,Nominal Operating Window,1,0,MODE_3_RECOVERED_HEAT_PRIORITY,3,
+2,Sensor NaN / Disconnected Thermocouple,0,1,SAFE_STATE_SHUTDOWN,0,SIG-INVALID:sand_temp_c
+3,Sand Over-Temperature (>= 600 °C PLC Trip),0,1,SAFE_STATE_SHUTDOWN,0,PLC-01:SandOverTemp(603.5>=600.0C)
+4,HTF Minimum Flow Switch Loss (< 0.35 kg/s),0,1,SAFE_STATE_SHUTDOWN,0,PLC-03:HTFLowFlow(0.12<0.35kg/s)
+5,Pyrolysis Reactor High O2 (> 2.0%),0,1,SAFE_STATE_SHUTDOWN,0,PLC-02:ReactorO2High(3.10%>2.00%)
+6,Operator Emergency Stop Active,0,1,SAFE_STATE_SHUTDOWN,0,PLC-ESTOP:EmergencyStopActive

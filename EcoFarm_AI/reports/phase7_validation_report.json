@@ -1,0 +1,209 @@
+{
+  "phase": "Phase 7 \u2014 Interactive Decision-Support Dashboard (Streamlit)",
+  "generated_at_utc": "2026-11-21T11:09:56+00:00",
+  "compiled_modules": [
+    "dashboard/__init__.py",
+    "dashboard/app.py",
+    "dashboard/components/__init__.py",
+    "dashboard/components/charts.py",
+    "dashboard/components/layout.py",
+    "dashboard/components/pages_management.py",
+    "dashboard/components/pages_monitoring.py",
+    "dashboard/utils/__init__.py",
+    "dashboard/utils/data_loader.py",
+    "dashboard/utils/simulation_bridge.py",
+    "dashboard/utils/validation.py"
+  ],
+  "artifact_inventory": [
+    {
+      "key": "merged_weather",
+      "label": "Phase 2 Merged Real Weather (2020\u20132023)",
+      "relative_path": "data/processed/solar_weather_merged_clean.csv",
+      "exists": true,
+      "size_bytes": 3881259,
+      "status": "READY"
+    },
+    {
+      "key": "test_2023",
+      "label": "Phase 2 Untouched 2023 Test Split",
+      "relative_path": "data/processed/test_2023.csv",
+      "exists": true,
+      "size_bytes": 970528,
+      "status": "READY"
+    },
+    {
+      "key": "quality_report",
+      "label": "Phase 2 Data Quality Report",
+      "relative_path": "data/processed/data_quality_report.json",
+      "exists": true,
+      "size_bytes": 1516,
+      "status": "READY"
+    },
+    {
+      "key": "sim_medium",
+      "label": "Phase 3 Thermal Simulation (Medium)",
+      "relative_path": "data/simulated/thermal_sim_medium.csv",
+      "exists": true,
+      "size_bytes": 5056505,
+      "status": "READY"
+    },
+    {
+      "key": "sim_low",
+      "label": "Phase 3 Thermal Simulation (Low)",
+      "relative_path": "data/simulated/thermal_sim_low.csv",
+      "exists": true,
+      "size_bytes": 4920641,
+      "status": "READY"
+    },
+    {
+      "key": "sim_high",
+      "label": "Phase 3 Thermal Simulation (High)",
+      "relative_path": "data/simulated/thermal_sim_high.csv",
+      "exists": true,
+      "size_bytes": 5037107,
+      "status": "READY"
+    },
+    {
+      "key": "phase3_report",
+      "label": "Phase 3 Thermal Validation Report",
+      "relative_path": "data/simulated/phase3_validation_report.json",
+      "exists": true,
+      "size_bytes": 6018,
+      "status": "READY"
+    },
+    {
+      "key": "eda_summary",
+      "label": "Phase 4 EDA Metrics Summary",
+      "relative_path": "reports/eda_metrics_summary.json",
+      "exists": true,
+      "size_bytes": 216667,
+      "status": "READY"
+    },
+    {
+      "key": "solar_model",
+      "label": "Phase 5 Solar PV Best Model (.pkl)",
+      "relative_path": "models/solar_best_model.pkl",
+      "exists": true,
+      "size_bytes": 80203,
+      "status": "READY"
+    },
+    {
+      "key": "dryer_model",
+      "label": "Phase 5 Biomass Dryer Best Model (.pkl)",
+      "relative_path": "models/dryer_best_unified_model.pkl",
+      "exists": true,
+      "size_bytes": 93948,
+      "status": "READY"
+    },
+    {
+      "key": "phase5_report",
+      "label": "Phase 5 ML Evaluation Report",
+      "relative_path": "reports/phase5_ml_evaluation.json",
+      "exists": true,
+      "size_bytes": 179750,
+      "status": "READY"
+    },
+    {
+      "key": "phase6_report",
+      "label": "Phase 6 Energy Management Report",
+      "relative_path": "reports/phase6_energy_management.json",
+      "exists": true,
+      "size_bytes": 523131,
+      "status": "READY"
+    }
+  ],
+  "tests_passed": 9,
+  "tests_total": 9,
+  "tests": [
+    {
+      "test_id": "T01",
+      "name": "Dashboard Python Syntax & AST Check",
+      "passed": true,
+      "status": "PASS",
+      "detail": "Compiled & AST-parsed 11 modules cleanly"
+    },
+    {
+      "test_id": "T02",
+      "name": "Missing Datasets & Artifacts Handling",
+      "passed": true,
+      "status": "PASS",
+      "detail": "All 12 artifacts reported 'PENDING / UNAVAILABLE' cleanly (Dataset unavailable / pending: nonexistent.csv; Unavailable / Pending: nonexistent.json not found.)"
+    },
+    {
+      "test_id": "T03",
+      "name": "Missing ML Model (.pkl) Graceful Fallback",
+      "passed": true,
+      "status": "PASS",
+      "detail": "Dryer ML status='PENDING / MODEL MISSING', scenario blocked cleanly without fabricated ML values."
+    },
+    {
+      "test_id": "T04",
+      "name": "Invalid User Inputs (NaN, Inf, Unsupported Feedstock)",
+      "passed": true,
+      "status": "PASS",
+      "detail": "Blocked NaN (Invalid non-finite numeric input for 'batch_mass_kg'.), Inf (Invalid non-finite numeric input for 'ambient_temp_c'.), and invalid feedstock (Unsupported feedstock 'plastic_waste'. Must be one of ('olive_pomace', 'wheat_straw', 'wood_chips').)."
+    },
+    {
+      "test_id": "T05",
+      "name": "Out-of-Range & PLC Ceiling Input Rejection",
+      "passed": true,
+      "status": "PASS",
+      "detail": "Rejected inverted moisture (10%->20%), negative mass (-50 kg), sand_temp > 550 \u00b0C ceiling (580 \u00b0C), and negative collector area (-5 m\u00b2)."
+    },
+    {
+      "test_id": "T06",
+      "name": "Bridge-to-src Physics & 168h Scenario Consistency",
+      "passed": true,
+      "status": "PASS",
+      "detail": "Dryer diff vs. src.thermal_model = 0.0e+00 kW_th; 168h Strategy B satisfied 100.0% demand with 0 PLC violations."
+    },
+    {
+      "test_id": "T07",
+      "name": "Hardwired PLC Perimeter & Fault-Injection Lock",
+      "passed": true,
+      "status": "PASS",
+      "detail": "Nominal SAFE (MODE_3_RECOVERED_HEAT_PRIORITY); 605 \u00b0C & E-Stop forced SAFE_STATE_SHUTDOWN; 6 fault checks passed."
+    },
+    {
+      "test_id": "T08",
+      "name": "CSV Serialization & Export Round-Trip",
+      "passed": true,
+      "status": "PASS",
+      "detail": "Serialized 2,049 bytes and parsed back 24 hourly rows cleanly."
+    },
+    {
+      "test_id": "T09",
+      "name": "Complete Phase 7 ZIP Archive & CRC Verification",
+      "passed": true,
+      "status": "PASS",
+      "detail": "Archived 81 verified files into EcoFarm_Phase7_Package.zip (8,039,938 bytes, CRC clean)."
+    }
+  ],
+  "bridge_consistency_sample": {
+    "valid": true,
+    "errors": [],
+    "feedstock_name": "Olive Pomace (Grignons d'olive)",
+    "physics_provenance": "simulated_physics",
+    "physics_demand_kw_th": 25.2686,
+    "water_evaporated_kg_h": 23.438,
+    "dry_airflow_kg_s": 0.053,
+    "mass_balance_residual_kg_s": 0.0,
+    "breakdown_kw_th": {
+      "evap_vapor_kw": 16.518,
+      "bio_sensible_kw": 0.667,
+      "water_rem_sensible_kw": 0.263,
+      "air_exhaust_kw": 2.355,
+      "shell_loss_kw": 1.675
+    },
+    "ml_provenance": "predicted_ml",
+    "ml_status": "READY",
+    "ml_predicted_demand_kw_th": 25.3743
+  },
+  "zip_archive": {
+    "filename": "EcoFarm_Phase7_Package.zip",
+    "relative_path": "exports/EcoFarm_Phase7_Package.zip",
+    "zip_size_bytes": 8039934,
+    "sha256": "4e9c1af7d61666afa23317c98aaa65a98d0b4f9192d03e4bae28dd04f3ef110b",
+    "file_count": 81
+  }
+}

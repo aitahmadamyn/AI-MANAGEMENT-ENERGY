@@ -1,0 +1,4 @@
+feedstock_id,feedstock_code,display_name,typical_batch_kg,typical_duration_h,chamber_temp_c,typical_moisture_pct,target_moisture_pct,cp_dry_kj_kg_k,physics_kw_th,ml_pred_kw_th,water_evap_kg_h
+olive_pomace,1,Olive Pomace (Grignons d'olive),280.0,4.5,90.0,50.0,11.0,1.45,28.6367,28.2525,27.266
+wheat_straw,2,Wheat Straw (Paille de blé),165.0,3.8,82.5,27.0,10.5,1.38,10.435,10.1917,8.005
+wood_chips,3,Orchard Wood Chips (Bois d'élagage),250.0,4.5,95.0,42.5,11.5,1.62,21.4794,21.7617,19.46

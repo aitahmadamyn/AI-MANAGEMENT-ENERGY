@@ -1,0 +1,6 @@
+{
+  "name": "EcoFarm Circular — AI Energy Management (Phase 1)",
+  "description": "Phase 1 system boundaries, thermodynamic architecture, variable provenance schema, and physics sanity workbench for the EcoFarm Circular agricultural biomass valorization AI energy management system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

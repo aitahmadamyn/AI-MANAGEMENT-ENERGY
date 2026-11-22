@@ -1,0 +1,7545 @@
+{
+  "phase": 5,
+  "solar_model": {
+    "model_id": "Model 1 \u2014 Solar PV Power Prediction",
+    "target_variable": "pvgis_pv_power_kw",
+    "target_unit": "kW",
+    "target_provenance": "reference_system_pvgis",
+    "reference_system_note": "Target pvgis_pv_power_kw is simulated AC output estimated by EC PVGIS v5.3 (PVGIS-SARAH3 / ERA5) for a reference 15.0 kWp South-facing (31 deg tilt, 0 deg azimuth, 14% system loss) array at Settat. It is NOT metered output from the future EcoFarm plant.",
+    "splits": {
+      "train_2020_2021": {
+        "rows": 17544,
+        "sentinel_hours": 6
+      },
+      "val_2022": {
+        "rows": 8760,
+        "sentinel_hours": 5
+      },
+      "test_2023": {
+        "rows": 8760,
+        "sentinel_hours": 2
+      }
+    },
+    "features": [
+      "pvgis_irradiance_wm2",
+      "meteo_ambient_temp_c",
+      "meteo_relative_humidity_pct",
+      "meteo_wind_speed_ms",
+      "hour_sin",
+      "hour_cos",
+      "doy_sin",
+      "doy_cos",
+      "month_sin",
+      "month_cos"
+    ],
+    "excluded_features_reason": {
+      "pvgis_sun_elevation_deg": "Excluded to avoid redundant collinearity with irradiance and cyclical solar time.",
+      "pvgis_ambient_temp_c": "Excluded because ERA5 meteo_ambient_temp_c represents the authoritative meteorological channel.",
+      "pv_surplus_heater_elec_kw": "Excluded to prevent downstream operational target leakage."
+    },
+    "selected_model_key": "gradient_boosting",
+    "selected_model_name": "Gradient Boosting Regressor",
+    "selection_criterion": "Lowest RMSE on 2022 chronological validation split (2023 Test kept untouched until final evaluation).",
+    "models": [
+      {
+        "name": "Baseline: Training Mean",
+        "short_label": "Mean\nBaseline",
+        "key": "baseline_mean",
+        "kind": "baseline",
+        "train": {
+          "n": 17544.0,
+          "mae": 3.57496,
+          "rmse": 4.08507,
+          "r2": 0.0,
+          "bias": 0.0,
+          "max_abs_err": 10.25544
+        },
+        "val": {
+          "n": 8760.0,
+          "mae": 3.53887,
+          "rmse": 4.03312,
+          "r2": -0.00015,
+          "bias": 0.04962,
+          "max_abs_err": 10.10574
+        },
+        "test": {
+          "n": 8760.0,
+          "mae": 3.57927,
+          "rmse": 4.08413,
+          "r2": -4e-05,
+          "bias": -0.02566,
+          "max_abs_err": 9.83019
+        },
+        "val_daytime": {
+          "n": 4329.0,
+          "mae": 4.08008,
+          "rmse": 4.86221,
+          "r2": -0.60203,
+          "bias": -2.98063,
+          "max_abs_err": 10.10574
+        },
+        "test_daytime": {
+          "n": 4332.0,
+          "mae": 4.16105,
+          "rmse": 4.94655,
+          "r2": -0.66683,
+          "bias": -3.1287,
+          "max_abs_err": 9.83019
+        },
+        "overfit_status": "Baseline Reference",
+        "selected": false
+      },
+      {
+        "name": "Baseline: Linear Nominal Rule (P_nom\u00b7(1-L)\u00b7G/1000)",
+        "short_label": "Physics\nLinear Rule",
+        "key": "baseline_physics",
+        "kind": "baseline",
+        "train": {
+          "n": 17544.0,
+          "mae": 0.39671,
+          "rmse": 0.68632,
+          "r2": 0.97177,
+          "bias": 0.39671,
+          "max_abs_err": 2.95139
+        },
+        "val": {
+          "n": 8760.0,
+          "mae": 0.4005,
+          "rmse": 0.69109,
+          "r2": 0.97063,
+          "bias": 0.4005,
+          "max_abs_err": 2.66189
+        },
+        "test": {
+          "n": 8760.0,
+          "mae": 0.41903,
+          "rmse": 0.72285,
+          "r2": 0.96867,
+          "bias": 0.41903,
+          "max_abs_err": 3.07265
+        },
+        "val_daytime": {
+          "n": 4329.0,
+          "mae": 0.81044,
+          "rmse": 0.98309,
+          "r2": 0.93451,
+          "bias": 0.81044,
+          "max_abs_err": 2.66189
+        },
+        "test_daytime": {
+          "n": 4332.0,
+          "mae": 0.84735,
+          "rmse": 1.02791,
+          "r2": 0.92802,
+          "bias": 0.84735,
+          "max_abs_err": 3.07265
+        },
+        "overfit_status": "Fixed Analytical Formula",
+        "selected": false
+      },
+      {
+        "key": "linear_regression",
+        "name": "Linear Regression (OLS + StandardScaler)",
+        "short_label": "Linear\nRegression",
+        "kind": "ml_model",
+        "hyperparameters": {
+          "scale_features": true,
+          "l2_reg": 1e-08
+        },
+        "train": {
+          "n": 17544.0,
+          "mae": 0.10433,
+          "rmse": 0.15938,
+          "r2": 0.99848,
+          "bias": 0.02051,
+          "max_abs_err": 1.03472
+        },
+        "val": {
+          "n": 8760.0,
+          "mae": 0.09754,
+          "rmse": 0.1533,
+          "r2": 0.99855,
+          "bias": 0.01226,
+          "max_abs_err": 0.84579
+        },
+        "test": {
+          "n": 8760.0,
+          "mae": 0.10378,
+          "rmse": 0.16469,
+          "r2": 0.99837,
+          "bias": 0.01987,
+          "max_abs_err": 1.1534
+        },
+        "val_daytime": {
+          "n": 4329.0,
+          "mae": 0.17053,
+          "rmse": 0.21196,
+          "r2": 0.99696,
+          "bias": -0.00203,
+          "max_abs_err": 0.84579
+        },
+        "test_daytime": {
+          "n": 4332.0,
+          "mae": 0.17878,
+          "rmse": 0.22606,
+          "r2": 0.99652,
+          "bias": 0.0091,
+          "max_abs_err": 1.1534
+        },
+        "overfit_status": "Well-Generalized",
+        "selected": false
+      },
+      {
+        "key": "decision_tree",
+        "name": "Decision Tree Regressor",
+        "short_label": "Decision\nTree",
+        "kind": "ml_model",
+        "hyperparameters": {
+          "max_depth": 10,
+          "min_samples_leaf": 5,
+          "max_bins": 64
+        },
+        "train": {
+          "n": 17544.0,
+          "mae": 0.03424,
+          "rmse": 0.06671,
+          "r2": 0.99973,
+          "bias": 7e-05,
+          "max_abs_err": 0.55975
+        },
+        "val": {
+          "n": 8760.0,
+          "mae": 0.04651,
+          "rmse": 0.09122,
+          "r2": 0.99949,
+          "bias": 3e-05,
+          "max_abs_err": 0.95814
+        },
+        "test": {
+          "n": 8760.0,
+          "mae": 0.04731,
+          "rmse": 0.09318,
+          "r2": 0.99948,
+          "bias": -0.00194,
+          "max_abs_err": 0.93144
+        },
+        "val_daytime": {
+          "n": 4329.0,
+          "mae": 0.09388,
+          "rmse": 0.12973,
+          "r2": 0.99886,
+          "bias": -0.00017,
+          "max_abs_err": 0.95814
+        },
+        "test_daytime": {
+          "n": 4332.0,
+          "mae": 0.0955,
+          "rmse": 0.13248,
+          "r2": 0.9988,
+          "bias": -0.00409,
+          "max_abs_err": 0.93144
+        },
+        "overfit_status": "Well-Generalized",
+        "selected": false
+      },
+      {
+        "key": "random_forest",
+        "name": "Random Forest Regressor",
+        "short_label": "Random\nForest",
+        "kind": "ml_model",
+        "hyperparameters": {
+          "n_estimators": 22,
+          "max_depth": 11,
+          "min_samples_leaf": 4
+        },
+        "train": {
+          "n": 17544.0,
+          "mae": 0.02703,
+          "rmse": 0.05207,
+          "r2": 0.99984,
+          "bias": 0.00063,
+          "max_abs_err": 0.44672
+        },
+        "val": {
+          "n": 8760.0,
+          "mae": 0.03713,
+          "rmse": 0.07155,
+          "r2": 0.99969,
+          "bias": 0.00069,
+          "max_abs_err": 0.63611
+        },
+        "test": {
+          "n": 8760.0,
+          "mae": 0.03769,
+          "rmse": 0.07379,
+          "r2": 0.99967,
+          "bias": 3e-05,
+          "max_abs_err": 0.68865
+        },
+        "val_daytime": {
+          "n": 4329.0,
+          "mae": 0.07478,
+          "rmse": 0.10162,
+          "r2": 0.9993,
+          "bias": 0.00102,
+          "max_abs_err": 0.63611
+        },
+        "test_daytime": {
+          "n": 4332.0,
+          "mae": 0.07597,
+          "rmse": 0.10488,
+          "r2": 0.99925,
+          "bias": -0.00019,
+          "max_abs_err": 0.68865
+        },
+        "overfit_status": "Well-Generalized",
+        "selected": false
+      },
+      {
+        "key": "gradient_boosting",
+        "name": "Gradient Boosting Regressor",
+        "short_label": "Gradient\nBoosting",
+        "kind": "ml_model",
+        "hyperparameters": {
+          "n_estimators": 55,
+          "learning_rate": 0.12,
+          "max_depth": 4
+        },
+        "train": {
+          "n": 17544.0,
+          "mae": 0.03605,
+          "rmse": 0.06304,
+          "r2": 0.99976,
+          "bias": 7e-05,
+          "max_abs_err": 0.57591
+        },
+        "val": {
+          "n": 8760.0,
+          "mae": 0.03882,
+          "rmse": 0.06986,
+          "r2": 0.9997,
+          "bias": -0.00086,
+          "max_abs_err": 0.63871
+        },
+        "test": {
+          "n": 8760.0,
+          "mae": 0.03924,
+          "rmse": 0.06991,
+          "r2": 0.99971,
+          "bias": -0.00139,
+          "max_abs_err": 0.6248
+        },
+        "val_daytime": {
+          "n": 4329.0,
+          "mae": 0.07471,
+          "rmse": 0.09927,
+          "r2": 0.99933,
+          "bias": -0.00559,
+          "max_abs_err": 0.63871
+        },
+        "test_daytime": {
+          "n": 4332.0,
+          "mae": 0.07555,
+          "rmse": 0.09932,
+          "r2": 0.99933,
+          "bias": -0.00661,
+          "max_abs_err": 0.6248
+        },
+        "overfit_status": "Well-Generalized",
+        "selected": true
+      }
+    ],
+    "test_residual_summary": {
+      "count": 8760,
+      "mean": 0.00139,
+      "std": 0.0699,
+      "min": -0.42601,
+      "p05": -0.11174,
+      "p25": -0.0067,
+      "median": -0.00289,
+      "p75": 0.00609,
+      "p95": 0.12328,
+      "max": 0.6248,
+      "histogram": [
+        {
+          "bin_start": -0.426,
+          "bin_end": -0.3822,
+          "bin_center": -0.4041,
+          "count": 1
+        },
+        {
+          "bin_start": -0.3822,
+          "bin_end": -0.3384,
+          "bin_center": -0.3603,
+          "count": 8
+        },
+        {
+          "bin_start": -0.3384,
+          "bin_end": -0.2947,
+          "bin_center": -0.3166,
+          "count": 8
+        },
+        {
+          "bin_start": -0.2947,
+          "bin_end": -0.2509,
+          "bin_center": -0.2728,
+          "count": 26
+        },
+        {
+          "bin_start": -0.2509,
+          "bin_end": -0.2071,
+          "bin_center": -0.229,
+          "count": 54
+        },
+        {
+          "bin_start": -0.2071,
+          "bin_end": -0.1633,
+          "bin_center": -0.1852,
+          "count": 89
+        },
+        {
+          "bin_start": -0.1633,
+          "bin_end": -0.1195,
+          "bin_center": -0.1414,
+          "count": 188
+        },
+        {
+          "bin_start": -0.1195,
+          "bin_end": -0.0757,
+          "bin_center": -0.0976,
+          "count": 413
+        },
+        {
+          "bin_start": -0.0757,
+          "bin_end": -0.032,
+          "bin_center": -0.0539,
+          "count": 629
+        },
+        {
+          "bin_start": -0.032,
+          "bin_end": 0.0118,
+          "bin_center": -0.0101,
+          "count": 5259
+        },
+        {
+          "bin_start": 0.0118,
+          "bin_end": 0.0556,
+          "bin_center": 0.0337,
+          "count": 818
+        },
+        {
+          "bin_start": 0.0556,
+          "bin_end": 0.0994,
+          "bin_center": 0.0775,
+          "count": 611
+        },
+        {
+          "bin_start": 0.0994,
+          "bin_end": 0.1432,
+          "bin_center": 0.1213,
+          "count": 333
+        },
+        {
+          "bin_start": 0.1432,
+          "bin_end": 0.187,
+          "bin_center": 0.1651,
+          "count": 196
+        },
+        {
+          "bin_start": 0.187,
+          "bin_end": 0.2307,
+          "bin_center": 0.2089,
+          "count": 71
+        },
+        {
+          "bin_start": 0.2307,
+          "bin_end": 0.2745,
+          "bin_center": 0.2526,
+          "count": 27
+        },
+        {
+          "bin_start": 0.2745,
+          "bin_end": 0.3183,
+          "bin_center": 0.2964,
+          "count": 10
+        },
+        {
+          "bin_start": 0.3183,
+          "bin_end": 0.3621,
+          "bin_center": 0.3402,
+          "count": 7
+        },
+        {
+          "bin_start": 0.3621,
+          "bin_end": 0.4059,
+          "bin_center": 0.384,
+          "count": 5
+        },
+        {
+          "bin_start": 0.4059,
+          "bin_end": 0.4497,
+          "bin_center": 0.4278,
+          "count": 2
+        },
+        {
+          "bin_start": 0.4497,
+          "bin_end": 0.4934,
+          "bin_center": 0.4716,
+          "count": 2
+        },
+        {
+          "bin_start": 0.4934,
+          "bin_end": 0.5372,
+          "bin_center": 0.5153,
+          "count": 0
+        },
+        {
+          "bin_start": 0.5372,
+          "bin_end": 0.581,
+          "bin_center": 0.5591,
+          "count": 1
+        },
+        {
+          "bin_start": 0.581,
+          "bin_end": 0.6248,
+          "bin_center": 0.6029,
+          "count": 2
+        }
+      ]
+    },
+    "permutation_importance": [
+      {
+        "feature": "pvgis_irradiance_wm2",
+        "mae_increase": 4.16179,
+        "mae_increase_std": 0.02805,
+        "r2_drop": 2.05846,
+        "relative_pct": 96.92,
+        "label": "Tilted Solar Irradiance (W/m\u00b2)"
+      },
+      {
+        "feature": "meteo_ambient_temp_c",
+        "mae_increase": 0.08959,
+        "mae_increase_std": 0.00078,
+        "r2_drop": 0.00384,
+        "relative_pct": 2.09,
+        "label": "Ambient Temp (\u00b0C)"
+      },
+      {
+        "feature": "hour_cos",
+        "mae_increase": 0.02229,
+        "mae_increase_std": 0.00029,
+        "r2_drop": 0.0002,
+        "relative_pct": 0.52,
+        "label": "Hour of Day (cos)"
+      },
+      {
+        "feature": "meteo_wind_speed_ms",
+        "mae_increase": 0.01533,
+        "mae_increase_std": 0.00031,
+        "r2_drop": 0.00035,
+        "relative_pct": 0.36,
+        "label": "Wind Speed 10m (m/s)"
+      },
+      {
+        "feature": "hour_sin",
+        "mae_increase": 0.00297,
+        "mae_increase_std": 0.00012,
+        "r2_drop": 4e-05,
+        "relative_pct": 0.07,
+        "label": "Hour of Day (sin)"
+      },
+      {
+        "feature": "doy_cos",
+        "mae_increase": 0.00118,
+        "mae_increase_std": 8e-05,
+        "r2_drop": 2e-05,
+        "relative_pct": 0.03,
+        "label": "Day of Year (cos)"
+      },
+      {
+        "feature": "doy_sin",
+        "mae_increase": 0.00058,
+        "mae_increase_std": 6e-05,
+        "r2_drop": 2e-05,
+        "relative_pct": 0.01,
+        "label": "Day of Year (sin)"
+      },
+      {
+        "feature": "month_sin",
+        "mae_increase": 0.00017,
+        "mae_increase_std": 5e-05,
+        "r2_drop": 1e-05,
+        "relative_pct": 0.0,
+        "label": "Month of Year (sin)"
+      },
+      {
+        "feature": "month_cos",
+        "mae_increase": 5e-05,
+        "mae_increase_std": 1e-05,
+        "r2_drop": 0.0,
+        "relative_pct": 0.0,
+        "label": "Month of Year (cos)"
+      },
+      {
+        "feature": "meteo_relative_humidity_pct",
+        "mae_increase": 1e-05,
+        "mae_increase_std": 2e-05,
+        "r2_drop": 1e-05,
+        "relative_pct": 0.0,
+        "label": "Relative Humidity (%)"
+      }
+    ],
+    "scatter_sample": [
+      {
+        "timestamp": "2023-01-01T00",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-01T19",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-02T14",
+        "actual": 9.5091,
+        "predicted": 9.5318,
+        "residual": -0.0227,
+        "irradiance_wm2": 832.7
+      },
+      {
+        "timestamp": "2023-01-03T09",
+        "actual": 5.3206,
+        "predicted": 5.4431,
+        "residual": -0.1224,
+        "irradiance_wm2": 430.7
+      },
+      {
+        "timestamp": "2023-01-04T04",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-04T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-05T18",
+        "actual": 0.0,
+        "predicted": 0.0039,
+        "residual": -0.0039,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-06T13",
+        "actual": 10.8936,
+        "predicted": 10.9648,
+        "residual": -0.0712,
+        "irradiance_wm2": 947.6
+      },
+      {
+        "timestamp": "2023-01-07T08",
+        "actual": 2.2043,
+        "predicted": 2.3595,
+        "residual": -0.1552,
+        "irradiance_wm2": 195.9
+      },
+      {
+        "timestamp": "2023-01-08T03",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-08T22",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-09T17",
+        "actual": 1.2951,
+        "predicted": 1.2519,
+        "residual": 0.0432,
+        "irradiance_wm2": 128.1
+      },
+      {
+        "timestamp": "2023-01-10T12",
+        "actual": 10.8159,
+        "predicted": 10.7836,
+        "residual": 0.0323,
+        "irradiance_wm2": 930.9
+      },
+      {
+        "timestamp": "2023-01-11T07",
+        "actual": 0.0,
+        "predicted": 0.0115,
+        "residual": -0.0115,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-12T02",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-12T21",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-13T16",
+        "actual": 5.7393,
+        "predicted": 5.7885,
+        "residual": -0.0492,
+        "irradiance_wm2": 476.2
+      },
+      {
+        "timestamp": "2023-01-14T11",
+        "actual": 10.2276,
+        "predicted": 10.255,
+        "residual": -0.0274,
+        "irradiance_wm2": 871.9
+      },
+      {
+        "timestamp": "2023-01-15T06",
+        "actual": 0.0,
+        "predicted": 0.0071,
+        "residual": -0.0071,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-16T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-16T20",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-17T15",
+        "actual": 4.0727,
+        "predicted": 4.0134,
+        "residual": 0.0592,
+        "irradiance_wm2": 333.2
+      },
+      {
+        "timestamp": "2023-01-18T10",
+        "actual": 3.7818,
+        "predicted": 3.6655,
+        "residual": 0.1163,
+        "irradiance_wm2": 307.7
+      },
+      {
+        "timestamp": "2023-01-19T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-20T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-20T19",
+        "actual": 0.0,
+        "predicted": 0.0033,
+        "residual": -0.0033,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-21T14",
+        "actual": 4.4616,
+        "predicted": 4.3268,
+        "residual": 0.1348,
+        "irradiance_wm2": 368.0
+      },
+      {
+        "timestamp": "2023-01-22T09",
+        "actual": 5.9772,
+        "predicted": 5.9662,
+        "residual": 0.011,
+        "irradiance_wm2": 485.4
+      },
+      {
+        "timestamp": "2023-01-23T04",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-23T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-24T18",
+        "actual": 0.0,
+        "predicted": 0.0035,
+        "residual": -0.0035,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-25T13",
+        "actual": 11.359,
+        "predicted": 11.2282,
+        "residual": 0.1309,
+        "irradiance_wm2": 940.6
+      },
+      {
+        "timestamp": "2023-01-26T08",
+        "actual": 2.6157,
+        "predicted": 2.5633,
+        "residual": 0.0524,
+        "irradiance_wm2": 225.3
+      },
+      {
+        "timestamp": "2023-01-27T03",
+        "actual": 0.0,
+        "predicted": 0.0032,
+        "residual": -0.0032,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-27T22",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-28T17",
+        "actual": 2.2191,
+        "predicted": 2.2345,
+        "residual": -0.0154,
+        "irradiance_wm2": 194.8
+      },
+      {
+        "timestamp": "2023-01-29T12",
+        "actual": 12.1035,
+        "predicted": 12.2281,
+        "residual": -0.1246,
+        "irradiance_wm2": 1050.0
+      },
+      {
+        "timestamp": "2023-01-30T07",
+        "actual": 0.0,
+        "predicted": 0.0115,
+        "residual": -0.0115,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-31T02",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-01-31T21",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-01T16",
+        "actual": 6.3764,
+        "predicted": 6.436,
+        "residual": -0.0596,
+        "irradiance_wm2": 518.9
+      },
+      {
+        "timestamp": "2023-02-02T11",
+        "actual": 10.6891,
+        "predicted": 10.6545,
+        "residual": 0.0347,
+        "irradiance_wm2": 908.5
+      },
+      {
+        "timestamp": "2023-02-03T06",
+        "actual": 0.0,
+        "predicted": 0.0067,
+        "residual": -0.0067,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-04T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-04T20",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-05T15",
+        "actual": 9.1291,
+        "predicted": 9.0657,
+        "residual": 0.0634,
+        "irradiance_wm2": 766.5
+      },
+      {
+        "timestamp": "2023-02-06T10",
+        "actual": 8.9166,
+        "predicted": 8.8548,
+        "residual": 0.0618,
+        "irradiance_wm2": 739.9
+      },
+      {
+        "timestamp": "2023-02-07T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-08T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-08T19",
+        "actual": 0.0,
+        "predicted": 0.0033,
+        "residual": -0.0033,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-09T14",
+        "actual": 10.8516,
+        "predicted": 10.6648,
+        "residual": 0.1868,
+        "irradiance_wm2": 928.1
+      },
+      {
+        "timestamp": "2023-02-10T09",
+        "actual": 1.3658,
+        "predicted": 1.3776,
+        "residual": -0.0118,
+        "irradiance_wm2": 123.4
+      },
+      {
+        "timestamp": "2023-02-11T04",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-11T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-12T18",
+        "actual": 0.0,
+        "predicted": 0.0035,
+        "residual": -0.0035,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-13T13",
+        "actual": 7.5216,
+        "predicted": 7.5657,
+        "residual": -0.0441,
+        "irradiance_wm2": 650.6
+      },
+      {
+        "timestamp": "2023-02-14T08",
+        "actual": 2.3927,
+        "predicted": 2.5633,
+        "residual": -0.1707,
+        "irradiance_wm2": 213.9
+      },
+      {
+        "timestamp": "2023-02-15T03",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-15T22",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-16T17",
+        "actual": 2.1672,
+        "predicted": 2.2345,
+        "residual": -0.0673,
+        "irradiance_wm2": 193.6
+      },
+      {
+        "timestamp": "2023-02-17T12",
+        "actual": 1.1874,
+        "predicted": 1.2432,
+        "residual": -0.0558,
+        "irradiance_wm2": 113.1
+      },
+      {
+        "timestamp": "2023-02-18T07",
+        "actual": 0.0,
+        "predicted": 0.0138,
+        "residual": -0.0138,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-19T02",
+        "actual": 0.0,
+        "predicted": 0.0027,
+        "residual": -0.0027,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-19T21",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-20T16",
+        "actual": 6.0206,
+        "predicted": 6.2516,
+        "residual": -0.231,
+        "irradiance_wm2": 515.5
+      },
+      {
+        "timestamp": "2023-02-21T11",
+        "actual": 10.58,
+        "predicted": 10.5062,
+        "residual": 0.0738,
+        "irradiance_wm2": 921.0
+      },
+      {
+        "timestamp": "2023-02-22T06",
+        "actual": 0.0,
+        "predicted": 0.0071,
+        "residual": -0.0071,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-23T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-23T20",
+        "actual": 0.0,
+        "predicted": 0.0032,
+        "residual": -0.0032,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-24T15",
+        "actual": 3.0673,
+        "predicted": 2.9358,
+        "residual": 0.1316,
+        "irradiance_wm2": 254.9
+      },
+      {
+        "timestamp": "2023-02-25T10",
+        "actual": 9.0537,
+        "predicted": 8.8319,
+        "residual": 0.2218,
+        "irradiance_wm2": 718.9
+      },
+      {
+        "timestamp": "2023-02-26T05",
+        "actual": 0.0,
+        "predicted": 0.0042,
+        "residual": -0.0042,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-27T00",
+        "actual": 0.0,
+        "predicted": 0.0032,
+        "residual": -0.0032,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-27T19",
+        "actual": 0.0,
+        "predicted": 0.0033,
+        "residual": -0.0033,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-02-28T14",
+        "actual": 8.3078,
+        "predicted": 8.2265,
+        "residual": 0.0813,
+        "irradiance_wm2": 676.2
+      },
+      {
+        "timestamp": "2023-03-01T09",
+        "actual": 6.8289,
+        "predicted": 6.8719,
+        "residual": -0.043,
+        "irradiance_wm2": 557.1
+      },
+      {
+        "timestamp": "2023-03-02T04",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-02T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-03T18",
+        "actual": 0.0579,
+        "predicted": 0.0039,
+        "residual": 0.054,
+        "irradiance_wm2": 14.8
+      },
+      {
+        "timestamp": "2023-03-04T13",
+        "actual": 11.9543,
+        "predicted": 12.1703,
+        "residual": -0.216,
+        "irradiance_wm2": 1067.0
+      },
+      {
+        "timestamp": "2023-03-05T08",
+        "actual": 3.5511,
+        "predicted": 3.551,
+        "residual": 0.0001,
+        "irradiance_wm2": 301.8
+      },
+      {
+        "timestamp": "2023-03-06T03",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-06T22",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-07T17",
+        "actual": 3.6324,
+        "predicted": 3.544,
+        "residual": 0.0884,
+        "irradiance_wm2": 321.4
+      },
+      {
+        "timestamp": "2023-03-08T12",
+        "actual": 11.4325,
+        "predicted": 11.7058,
+        "residual": -0.2733,
+        "irradiance_wm2": 1037.9
+      },
+      {
+        "timestamp": "2023-03-09T07",
+        "actual": 0.0457,
+        "predicted": 0.0115,
+        "residual": 0.0343,
+        "irradiance_wm2": 12.2
+      },
+      {
+        "timestamp": "2023-03-10T02",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-10T21",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-11T16",
+        "actual": 6.9245,
+        "predicted": 6.922,
+        "residual": 0.0025,
+        "irradiance_wm2": 588.4
+      },
+      {
+        "timestamp": "2023-03-12T11",
+        "actual": 10.9074,
+        "predicted": 11.1792,
+        "residual": -0.2718,
+        "irradiance_wm2": 995.9
+      },
+      {
+        "timestamp": "2023-03-13T06",
+        "actual": 0.0,
+        "predicted": 0.0071,
+        "residual": -0.0071,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-14T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-14T20",
+        "actual": 0.0,
+        "predicted": 0.0032,
+        "residual": -0.0032,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-15T15",
+        "actual": 9.5106,
+        "predicted": 9.4732,
+        "residual": 0.0374,
+        "irradiance_wm2": 839.8
+      },
+      {
+        "timestamp": "2023-03-16T10",
+        "actual": 9.519,
+        "predicted": 9.4585,
+        "residual": 0.0605,
+        "irradiance_wm2": 813.5
+      },
+      {
+        "timestamp": "2023-03-17T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-18T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-18T19",
+        "actual": 0.0,
+        "predicted": 0.0036,
+        "residual": -0.0036,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-19T14",
+        "actual": 11.8302,
+        "predicted": 11.7254,
+        "residual": 0.1048,
+        "irradiance_wm2": 1001.6
+      },
+      {
+        "timestamp": "2023-03-20T09",
+        "actual": 7.3074,
+        "predicted": 7.3723,
+        "residual": -0.0649,
+        "irradiance_wm2": 604.8
+      },
+      {
+        "timestamp": "2023-03-21T04",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-21T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-22T18",
+        "actual": 0.5272,
+        "predicted": 0.579,
+        "residual": -0.0518,
+        "irradiance_wm2": 75.4
+      },
+      {
+        "timestamp": "2023-03-23T13",
+        "actual": 11.62,
+        "predicted": 11.6305,
+        "residual": -0.0105,
+        "irradiance_wm2": 1057.1
+      },
+      {
+        "timestamp": "2023-03-24T08",
+        "actual": 4.1174,
+        "predicted": 4.1187,
+        "residual": -0.0013,
+        "irradiance_wm2": 348.8
+      },
+      {
+        "timestamp": "2023-03-25T03",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-25T22",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-26T17",
+        "actual": 3.7462,
+        "predicted": 3.6369,
+        "residual": 0.1094,
+        "irradiance_wm2": 333.8
+      },
+      {
+        "timestamp": "2023-03-27T12",
+        "actual": 12.2776,
+        "predicted": 11.9117,
+        "residual": 0.366,
+        "irradiance_wm2": 1106.6
+      },
+      {
+        "timestamp": "2023-03-28T07",
+        "actual": 0.8847,
+        "predicted": 0.9255,
+        "residual": -0.0408,
+        "irradiance_wm2": 108.1
+      },
+      {
+        "timestamp": "2023-03-29T02",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-29T21",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-03-30T16",
+        "actual": 6.7749,
+        "predicted": 6.656,
+        "residual": 0.1189,
+        "irradiance_wm2": 582.7
+      },
+      {
+        "timestamp": "2023-03-31T11",
+        "actual": 11.5034,
+        "predicted": 11.3554,
+        "residual": 0.148,
+        "irradiance_wm2": 998.9
+      },
+      {
+        "timestamp": "2023-04-01T06",
+        "actual": 0.0,
+        "predicted": 0.0071,
+        "residual": -0.0071,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-02T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-02T20",
+        "actual": 0.0,
+        "predicted": 0.0032,
+        "residual": -0.0032,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-03T15",
+        "actual": 9.6085,
+        "predicted": 9.5818,
+        "residual": 0.0267,
+        "irradiance_wm2": 816.0
+      },
+      {
+        "timestamp": "2023-04-04T10",
+        "actual": 7.3626,
+        "predicted": 7.3437,
+        "residual": 0.0189,
+        "irradiance_wm2": 614.1
+      },
+      {
+        "timestamp": "2023-04-05T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-06T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-06T19",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-07T14",
+        "actual": 10.3733,
+        "predicted": 10.4434,
+        "residual": -0.0702,
+        "irradiance_wm2": 936.4
+      },
+      {
+        "timestamp": "2023-04-08T09",
+        "actual": 6.41,
+        "predicted": 6.4547,
+        "residual": -0.0447,
+        "irradiance_wm2": 543.7
+      },
+      {
+        "timestamp": "2023-04-09T04",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-09T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-10T18",
+        "actual": 0.6204,
+        "predicted": 0.6819,
+        "residual": -0.0615,
+        "irradiance_wm2": 83.3
+      },
+      {
+        "timestamp": "2023-04-11T13",
+        "actual": 11.83,
+        "predicted": 11.8143,
+        "residual": 0.0158,
+        "irradiance_wm2": 1066.3
+      },
+      {
+        "timestamp": "2023-04-12T08",
+        "actual": 2.4484,
+        "predicted": 2.3498,
+        "residual": 0.0987,
+        "irradiance_wm2": 210.1
+      },
+      {
+        "timestamp": "2023-04-13T03",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-13T22",
+        "actual": 0.0,
+        "predicted": 0.0032,
+        "residual": -0.0032,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-14T17",
+        "actual": 3.7363,
+        "predicted": 3.6896,
+        "residual": 0.0468,
+        "irradiance_wm2": 334.3
+      },
+      {
+        "timestamp": "2023-04-15T12",
+        "actual": 12.4454,
+        "predicted": 11.9858,
+        "residual": 0.4595,
+        "irradiance_wm2": 1089.2
+      },
+      {
+        "timestamp": "2023-04-16T07",
+        "actual": 1.4484,
+        "predicted": 1.6098,
+        "residual": -0.1614,
+        "irradiance_wm2": 161.4
+      },
+      {
+        "timestamp": "2023-04-17T02",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-17T21",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-18T16",
+        "actual": 6.3989,
+        "predicted": 6.3323,
+        "residual": 0.0666,
+        "irradiance_wm2": 552.2
+      },
+      {
+        "timestamp": "2023-04-19T11",
+        "actual": 5.8883,
+        "predicted": 6.007,
+        "residual": -0.1187,
+        "irradiance_wm2": 495.9
+      },
+      {
+        "timestamp": "2023-04-20T06",
+        "actual": 0.0,
+        "predicted": 0.0071,
+        "residual": -0.0071,
+        "irradiance_wm2": 2.7
+      },
+      {
+        "timestamp": "2023-04-21T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-21T20",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-22T15",
+        "actual": 8.7866,
+        "predicted": 8.7035,
+        "residual": 0.0831,
+        "irradiance_wm2": 754.8
+      },
+      {
+        "timestamp": "2023-04-23T10",
+        "actual": 9.967,
+        "predicted": 9.9738,
+        "residual": -0.0067,
+        "irradiance_wm2": 849.0
+      },
+      {
+        "timestamp": "2023-04-24T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-25T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-25T19",
+        "actual": 0.0,
+        "predicted": 0.0011,
+        "residual": -0.0011,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-26T14",
+        "actual": 9.5124,
+        "predicted": 9.4122,
+        "residual": 0.1002,
+        "irradiance_wm2": 899.0
+      },
+      {
+        "timestamp": "2023-04-27T09",
+        "actual": 7.1757,
+        "predicted": 7.2813,
+        "residual": -0.1056,
+        "irradiance_wm2": 643.8
+      },
+      {
+        "timestamp": "2023-04-28T04",
+        "actual": 0.0,
+        "predicted": 0.0024,
+        "residual": -0.0024,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-28T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-04-29T18",
+        "actual": 0.7083,
+        "predicted": 0.6912,
+        "residual": 0.0171,
+        "irradiance_wm2": 90.3
+      },
+      {
+        "timestamp": "2023-04-30T13",
+        "actual": 11.6658,
+        "predicted": 11.5377,
+        "residual": 0.1281,
+        "irradiance_wm2": 1034.4
+      },
+      {
+        "timestamp": "2023-05-01T08",
+        "actual": 4.9032,
+        "predicted": 5.1323,
+        "residual": -0.2291,
+        "irradiance_wm2": 420.9
+      },
+      {
+        "timestamp": "2023-05-02T03",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-02T22",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-03T17",
+        "actual": 3.2637,
+        "predicted": 3.2799,
+        "residual": -0.0162,
+        "irradiance_wm2": 301.0
+      },
+      {
+        "timestamp": "2023-05-04T12",
+        "actual": 10.6017,
+        "predicted": 10.6085,
+        "residual": -0.0068,
+        "irradiance_wm2": 924.4
+      },
+      {
+        "timestamp": "2023-05-05T07",
+        "actual": 1.649,
+        "predicted": 1.6102,
+        "residual": 0.0387,
+        "irradiance_wm2": 158.5
+      },
+      {
+        "timestamp": "2023-05-06T02",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-06T21",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-07T16",
+        "actual": 6.7263,
+        "predicted": 6.7575,
+        "residual": -0.0312,
+        "irradiance_wm2": 570.4
+      },
+      {
+        "timestamp": "2023-05-08T11",
+        "actual": 11.28,
+        "predicted": 11.3083,
+        "residual": -0.0283,
+        "irradiance_wm2": 992.7
+      },
+      {
+        "timestamp": "2023-05-09T06",
+        "actual": 0.2096,
+        "predicted": 0.1753,
+        "residual": 0.0342,
+        "irradiance_wm2": 29.7
+      },
+      {
+        "timestamp": "2023-05-10T01",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-10T20",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-11T15",
+        "actual": 8.888,
+        "predicted": 8.8812,
+        "residual": 0.0068,
+        "irradiance_wm2": 766.3
+      },
+      {
+        "timestamp": "2023-05-12T10",
+        "actual": 9.5245,
+        "predicted": 9.4878,
+        "residual": 0.0367,
+        "irradiance_wm2": 835.8
+      },
+      {
+        "timestamp": "2023-05-13T05",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-14T00",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-14T19",
+        "actual": 0.0,
+        "predicted": 0.0049,
+        "residual": -0.0049,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-15T14",
+        "actual": 10.7181,
+        "predicted": 10.6136,
+        "residual": 0.1045,
+        "irradiance_wm2": 945.2
+      },
+      {
+        "timestamp": "2023-05-16T09",
+        "actual": 7.694,
+        "predicted": 7.6763,
+        "residual": 0.0177,
+        "irradiance_wm2": 647.0
+      },
+      {
+        "timestamp": "2023-05-17T04",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-17T23",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-18T18",
+        "actual": 0.903,
+        "predicted": 0.8087,
+        "residual": 0.0943,
+        "irradiance_wm2": 103.3
+      },
+      {
+        "timestamp": "2023-05-19T13",
+        "actual": 5.3836,
+        "predicted": 5.6406,
+        "residual": -0.257,
+        "irradiance_wm2": 462.1
+      },
+      {
+        "timestamp": "2023-05-20T08",
+        "actual": 2.7894,
+        "predicted": 2.8402,
+        "residual": -0.0508,
+        "irradiance_wm2": 239.7
+      },
+      {
+        "timestamp": "2023-05-21T03",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-21T22",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-22T17",
+        "actual": 3.4817,
+        "predicted": 3.5681,
+        "residual": -0.0865,
+        "irradiance_wm2": 312.7
+      },
+      {
+        "timestamp": "2023-05-23T12",
+        "actual": 10.639,
+        "predicted": 10.834,
+        "residual": -0.195,
+        "irradiance_wm2": 911.5
+      },
+      {
+        "timestamp": "2023-05-24T07",
+        "actual": 1.7897,
+        "predicted": 1.8093,
+        "residual": -0.0197,
+        "irradiance_wm2": 188.6
+      },
+      {
+        "timestamp": "2023-05-25T02",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-25T21",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-26T16",
+        "actual": 3.5391,
+        "predicted": 3.5144,
+        "residual": 0.0247,
+        "irradiance_wm2": 303.9
+      },
+      {
+        "timestamp": "2023-05-27T11",
+        "actual": 1.9707,
+        "predicted": 2.0814,
+        "residual": -0.1107,
+        "irradiance_wm2": 176.2
+      },
+      {
+        "timestamp": "2023-05-28T06",
+        "actual": 0.4017,
+        "predicted": 0.3456,
+        "residual": 0.0561,
+        "irradiance_wm2": 46.8
+      },
+      {
+        "timestamp": "2023-05-29T01",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-29T20",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-05-30T15",
+        "actual": 8.3534,
+        "predicted": 8.3043,
+        "residual": 0.0491,
+        "irradiance_wm2": 709.6
+      },
+      {
+        "timestamp": "2023-05-31T10",
+        "actual": 9.7607,
+        "predicted": 9.8105,
+        "residual": -0.0499,
+        "irradiance_wm2": 839.6
+      },
+      {
+        "timestamp": "2023-06-01T05",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-02T00",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-02T19",
+        "actual": 0.1082,
+        "predicted": 0.1714,
+        "residual": -0.0632,
+        "irradiance_wm2": 19.8
+      },
+      {
+        "timestamp": "2023-06-03T14",
+        "actual": 10.1551,
+        "predicted": 10.2916,
+        "residual": -0.1365,
+        "irradiance_wm2": 889.8
+      },
+      {
+        "timestamp": "2023-06-04T09",
+        "actual": 6.0358,
+        "predicted": 5.9808,
+        "residual": 0.0551,
+        "irradiance_wm2": 512.1
+      },
+      {
+        "timestamp": "2023-06-05T04",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-05T23",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-06T18",
+        "actual": 0.1575,
+        "predicted": 0.1693,
+        "residual": -0.0118,
+        "irradiance_wm2": 25.4
+      },
+      {
+        "timestamp": "2023-06-07T13",
+        "actual": 5.8092,
+        "predicted": 5.806,
+        "residual": 0.0032,
+        "irradiance_wm2": 512.0
+      },
+      {
+        "timestamp": "2023-06-08T08",
+        "actual": 3.0112,
+        "predicted": 3.1561,
+        "residual": -0.1448,
+        "irradiance_wm2": 261.9
+      },
+      {
+        "timestamp": "2023-06-09T03",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-09T22",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-10T17",
+        "actual": 3.3487,
+        "predicted": 3.3155,
+        "residual": 0.0332,
+        "irradiance_wm2": 301.2
+      },
+      {
+        "timestamp": "2023-06-11T12",
+        "actual": 10.9812,
+        "predicted": 10.9547,
+        "residual": 0.0265,
+        "irradiance_wm2": 995.2
+      },
+      {
+        "timestamp": "2023-06-12T07",
+        "actual": 1.7303,
+        "predicted": 1.7834,
+        "residual": -0.0532,
+        "irradiance_wm2": 178.3
+      },
+      {
+        "timestamp": "2023-06-13T02",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-13T21",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-14T16",
+        "actual": 6.5714,
+        "predicted": 6.5097,
+        "residual": 0.0616,
+        "irradiance_wm2": 568.1
+      },
+      {
+        "timestamp": "2023-06-15T11",
+        "actual": 10.477,
+        "predicted": 10.5227,
+        "residual": -0.0457,
+        "irradiance_wm2": 934.2
+      },
+      {
+        "timestamp": "2023-06-16T06",
+        "actual": 0.4212,
+        "predicted": 0.463,
+        "residual": -0.0418,
+        "irradiance_wm2": 49.5
+      },
+      {
+        "timestamp": "2023-06-17T01",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-17T20",
+        "actual": 0.0,
+        "predicted": 0.0045,
+        "residual": -0.0045,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-18T15",
+        "actual": 8.4132,
+        "predicted": 8.512,
+        "residual": -0.0988,
+        "irradiance_wm2": 730.0
+      },
+      {
+        "timestamp": "2023-06-19T10",
+        "actual": 8.9984,
+        "predicted": 8.9418,
+        "residual": 0.0565,
+        "irradiance_wm2": 782.2
+      },
+      {
+        "timestamp": "2023-06-20T05",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-21T00",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-21T19",
+        "actual": 0.1928,
+        "predicted": 0.1717,
+        "residual": 0.021,
+        "irradiance_wm2": 28.8
+      },
+      {
+        "timestamp": "2023-06-22T14",
+        "actual": 10.0944,
+        "predicted": 10.0395,
+        "residual": 0.0549,
+        "irradiance_wm2": 888.6
+      },
+      {
+        "timestamp": "2023-06-23T09",
+        "actual": 6.9074,
+        "predicted": 6.7997,
+        "residual": 0.1076,
+        "irradiance_wm2": 601.9
+      },
+      {
+        "timestamp": "2023-06-24T04",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-24T23",
+        "actual": 0.0,
+        "predicted": 0.0045,
+        "residual": -0.0045,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-25T18",
+        "actual": 1.0458,
+        "predicted": 1.0417,
+        "residual": 0.0041,
+        "irradiance_wm2": 128.6
+      },
+      {
+        "timestamp": "2023-06-26T13",
+        "actual": 3.9553,
+        "predicted": 3.8415,
+        "residual": 0.1138,
+        "irradiance_wm2": 373.7
+      },
+      {
+        "timestamp": "2023-06-27T08",
+        "actual": 4.1464,
+        "predicted": 4.2903,
+        "residual": -0.1438,
+        "irradiance_wm2": 386.7
+      },
+      {
+        "timestamp": "2023-06-28T03",
+        "actual": 0.0,
+        "predicted": 0.0045,
+        "residual": -0.0045,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-28T22",
+        "actual": 0.0,
+        "predicted": 0.0045,
+        "residual": -0.0045,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-06-29T17",
+        "actual": 3.5042,
+        "predicted": 3.4925,
+        "residual": 0.0117,
+        "irradiance_wm2": 326.4
+      },
+      {
+        "timestamp": "2023-06-30T12",
+        "actual": 10.8201,
+        "predicted": 10.8318,
+        "residual": -0.0117,
+        "irradiance_wm2": 977.2
+      },
+      {
+        "timestamp": "2023-07-01T07",
+        "actual": 1.5485,
+        "predicted": 1.5843,
+        "residual": -0.0358,
+        "irradiance_wm2": 167.2
+      },
+      {
+        "timestamp": "2023-07-02T02",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-02T21",
+        "actual": 0.0,
+        "predicted": 0.0045,
+        "residual": -0.0045,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-03T16",
+        "actual": 6.3384,
+        "predicted": 6.3419,
+        "residual": -0.0035,
+        "irradiance_wm2": 564.3
+      },
+      {
+        "timestamp": "2023-07-04T11",
+        "actual": 10.0776,
+        "predicted": 10.1319,
+        "residual": -0.0543,
+        "irradiance_wm2": 918.5
+      },
+      {
+        "timestamp": "2023-07-05T06",
+        "actual": 0.3221,
+        "predicted": 0.3456,
+        "residual": -0.0236,
+        "irradiance_wm2": 40.5
+      },
+      {
+        "timestamp": "2023-07-06T01",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-06T20",
+        "actual": 0.0,
+        "predicted": 0.0045,
+        "residual": -0.0045,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-07T15",
+        "actual": 8.7081,
+        "predicted": 8.6384,
+        "residual": 0.0697,
+        "irradiance_wm2": 761.1
+      },
+      {
+        "timestamp": "2023-07-08T10",
+        "actual": 9.072,
+        "predicted": 9.0901,
+        "residual": -0.0181,
+        "irradiance_wm2": 779.4
+      },
+      {
+        "timestamp": "2023-07-09T05",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-10T00",
+        "actual": 0.0,
+        "predicted": 0.0045,
+        "residual": -0.0045,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-10T19",
+        "actual": 0.1852,
+        "predicted": 0.1687,
+        "residual": 0.0166,
+        "irradiance_wm2": 28.8
+      },
+      {
+        "timestamp": "2023-07-11T14",
+        "actual": 9.5661,
+        "predicted": 9.74,
+        "residual": -0.1739,
+        "irradiance_wm2": 881.0
+      },
+      {
+        "timestamp": "2023-07-12T09",
+        "actual": 6.5119,
+        "predicted": 6.5947,
+        "residual": -0.0827,
+        "irradiance_wm2": 573.4
+      },
+      {
+        "timestamp": "2023-07-13T04",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-13T23",
+        "actual": 0.0,
+        "predicted": 0.0045,
+        "residual": -0.0045,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-14T18",
+        "actual": 1.0657,
+        "predicted": 1.1557,
+        "residual": -0.0899,
+        "irradiance_wm2": 135.6
+      },
+      {
+        "timestamp": "2023-07-15T13",
+        "actual": 10.9977,
+        "predicted": 10.8941,
+        "residual": 0.1036,
+        "irradiance_wm2": 978.0
+      },
+      {
+        "timestamp": "2023-07-16T08",
+        "actual": 4.1067,
+        "predicted": 4.0952,
+        "residual": 0.0115,
+        "irradiance_wm2": 360.8
+      },
+      {
+        "timestamp": "2023-07-17T03",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-17T22",
+        "actual": 0.0,
+        "predicted": 0.0024,
+        "residual": -0.0024,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-18T17",
+        "actual": 2.9509,
+        "predicted": 2.9492,
+        "residual": 0.0017,
+        "irradiance_wm2": 276.5
+      },
+      {
+        "timestamp": "2023-07-19T12",
+        "actual": 10.3557,
+        "predicted": 10.1983,
+        "residual": 0.1574,
+        "irradiance_wm2": 954.2
+      },
+      {
+        "timestamp": "2023-07-20T07",
+        "actual": 1.4268,
+        "predicted": 1.3768,
+        "residual": 0.05,
+        "irradiance_wm2": 146.7
+      },
+      {
+        "timestamp": "2023-07-21T02",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-21T21",
+        "actual": 0.0,
+        "predicted": 0.0049,
+        "residual": -0.0049,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-22T16",
+        "actual": 6.4366,
+        "predicted": 6.4688,
+        "residual": -0.0321,
+        "irradiance_wm2": 559.3
+      },
+      {
+        "timestamp": "2023-07-23T11",
+        "actual": 10.0555,
+        "predicted": 10.0593,
+        "residual": -0.0038,
+        "irradiance_wm2": 893.3
+      },
+      {
+        "timestamp": "2023-07-24T06",
+        "actual": 0.1977,
+        "predicted": 0.1786,
+        "residual": 0.0191,
+        "irradiance_wm2": 28.8
+      },
+      {
+        "timestamp": "2023-07-25T01",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-25T20",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-26T15",
+        "actual": 8.9375,
+        "predicted": 9.007,
+        "residual": -0.0695,
+        "irradiance_wm2": 787.2
+      },
+      {
+        "timestamp": "2023-07-27T10",
+        "actual": 9.2403,
+        "predicted": 9.0746,
+        "residual": 0.1657,
+        "irradiance_wm2": 797.0
+      },
+      {
+        "timestamp": "2023-07-28T05",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-29T00",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-07-29T19",
+        "actual": 0.0727,
+        "predicted": 0.0028,
+        "residual": 0.07,
+        "irradiance_wm2": 16.2
+      },
+      {
+        "timestamp": "2023-07-30T14",
+        "actual": 9.9906,
+        "predicted": 10.0018,
+        "residual": -0.0112,
+        "irradiance_wm2": 912.0
+      },
+      {
+        "timestamp": "2023-07-31T09",
+        "actual": 6.7732,
+        "predicted": 6.7705,
+        "residual": 0.0027,
+        "irradiance_wm2": 588.7
+      },
+      {
+        "timestamp": "2023-08-01T04",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-01T23",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-02T18",
+        "actual": 1.02,
+        "predicted": 1.0364,
+        "residual": -0.0164,
+        "irradiance_wm2": 129.4
+      },
+      {
+        "timestamp": "2023-08-03T13",
+        "actual": 11.2911,
+        "predicted": 11.226,
+        "residual": 0.0651,
+        "irradiance_wm2": 1005.9
+      },
+      {
+        "timestamp": "2023-08-04T08",
+        "actual": 4.2524,
+        "predicted": 4.2151,
+        "residual": 0.0372,
+        "irradiance_wm2": 379.4
+      },
+      {
+        "timestamp": "2023-08-05T03",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-05T22",
+        "actual": 0.0,
+        "predicted": 0.0024,
+        "residual": -0.0024,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-06T17",
+        "actual": 3.4633,
+        "predicted": 3.4264,
+        "residual": 0.0369,
+        "irradiance_wm2": 328.6
+      },
+      {
+        "timestamp": "2023-08-07T12",
+        "actual": 10.3137,
+        "predicted": 10.6837,
+        "residual": -0.37,
+        "irradiance_wm2": 986.2
+      },
+      {
+        "timestamp": "2023-08-08T07",
+        "actual": 1.2323,
+        "predicted": 1.2849,
+        "residual": -0.0527,
+        "irradiance_wm2": 142.4
+      },
+      {
+        "timestamp": "2023-08-09T02",
+        "actual": 0.0,
+        "predicted": 0.0028,
+        "residual": -0.0028,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-09T21",
+        "actual": 0.0,
+        "predicted": 0.0028,
+        "residual": -0.0028,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-10T16",
+        "actual": 5.8266,
+        "predicted": 5.9455,
+        "residual": -0.1189,
+        "irradiance_wm2": 527.0
+      },
+      {
+        "timestamp": "2023-08-11T11",
+        "actual": 9.7904,
+        "predicted": 9.6385,
+        "residual": 0.1519,
+        "irradiance_wm2": 908.3
+      },
+      {
+        "timestamp": "2023-08-12T06",
+        "actual": 0.0438,
+        "predicted": 0.0066,
+        "residual": 0.0372,
+        "irradiance_wm2": 12.6
+      },
+      {
+        "timestamp": "2023-08-13T01",
+        "actual": 0.0,
+        "predicted": 0.0024,
+        "residual": -0.0024,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-13T20",
+        "actual": 0.0,
+        "predicted": 0.0024,
+        "residual": -0.0024,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-14T15",
+        "actual": 8.5705,
+        "predicted": 8.5594,
+        "residual": 0.0112,
+        "irradiance_wm2": 768.9
+      },
+      {
+        "timestamp": "2023-08-15T10",
+        "actual": 8.8887,
+        "predicted": 9.02,
+        "residual": -0.1313,
+        "irradiance_wm2": 801.3
+      },
+      {
+        "timestamp": "2023-08-16T05",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-17T00",
+        "actual": 0.0,
+        "predicted": 0.0046,
+        "residual": -0.0046,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-17T19",
+        "actual": 0.0,
+        "predicted": 0.0028,
+        "residual": -0.0028,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-18T14",
+        "actual": 10.0566,
+        "predicted": 10.1363,
+        "residual": -0.0797,
+        "irradiance_wm2": 918.7
+      },
+      {
+        "timestamp": "2023-08-19T09",
+        "actual": 6.7077,
+        "predicted": 6.7158,
+        "residual": -0.0081,
+        "irradiance_wm2": 590.2
+      },
+      {
+        "timestamp": "2023-08-20T04",
+        "actual": 0.0,
+        "predicted": 0.0041,
+        "residual": -0.0041,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-20T23",
+        "actual": 0.0,
+        "predicted": 0.0024,
+        "residual": -0.0024,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-21T18",
+        "actual": 0.7589,
+        "predicted": 0.7888,
+        "residual": -0.03,
+        "irradiance_wm2": 103.5
+      },
+      {
+        "timestamp": "2023-08-22T13",
+        "actual": 10.3479,
+        "predicted": 10.4609,
+        "residual": -0.113,
+        "irradiance_wm2": 1006.7
+      },
+      {
+        "timestamp": "2023-08-23T08",
+        "actual": 3.9806,
+        "predicted": 4.1411,
+        "residual": -0.1606,
+        "irradiance_wm2": 368.3
+      },
+      {
+        "timestamp": "2023-08-24T03",
+        "actual": 0.0,
+        "predicted": 0.0024,
+        "residual": -0.0024,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-24T22",
+        "actual": 0.0,
+        "predicted": 0.0024,
+        "residual": -0.0024,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-25T17",
+        "actual": 3.2781,
+        "predicted": 3.3096,
+        "residual": -0.0315,
+        "irradiance_wm2": 316.6
+      },
+      {
+        "timestamp": "2023-08-26T12",
+        "actual": 10.9681,
+        "predicted": 10.716,
+        "residual": 0.2521,
+        "irradiance_wm2": 1003.0
+      },
+      {
+        "timestamp": "2023-08-27T07",
+        "actual": 1.2279,
+        "predicted": 1.2798,
+        "residual": -0.0519,
+        "irradiance_wm2": 132.7
+      },
+      {
+        "timestamp": "2023-08-28T02",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-28T21",
+        "actual": 0.0,
+        "predicted": 0.0027,
+        "residual": -0.0027,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-08-29T16",
+        "actual": 6.5746,
+        "predicted": 6.5784,
+        "residual": -0.0038,
+        "irradiance_wm2": 574.2
+      },
+      {
+        "timestamp": "2023-08-30T11",
+        "actual": 10.5045,
+        "predicted": 10.4978,
+        "residual": 0.0067,
+        "irradiance_wm2": 947.4
+      },
+      {
+        "timestamp": "2023-08-31T06",
+        "actual": 0.0,
+        "predicted": 0.0071,
+        "residual": -0.0071,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-01T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-01T20",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-02T15",
+        "actual": 4.0061,
+        "predicted": 3.9377,
+        "residual": 0.0683,
+        "irradiance_wm2": 346.1
+      },
+      {
+        "timestamp": "2023-09-03T10",
+        "actual": 6.8007,
+        "predicted": 6.8426,
+        "residual": -0.0419,
+        "irradiance_wm2": 578.6
+      },
+      {
+        "timestamp": "2023-09-04T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-05T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-05T19",
+        "actual": 0.0,
+        "predicted": 0.0032,
+        "residual": -0.0032,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-06T14",
+        "actual": 10.0375,
+        "predicted": 10.0645,
+        "residual": -0.027,
+        "irradiance_wm2": 916.4
+      },
+      {
+        "timestamp": "2023-09-07T09",
+        "actual": 7.1712,
+        "predicted": 7.0504,
+        "residual": 0.1208,
+        "irradiance_wm2": 622.2
+      },
+      {
+        "timestamp": "2023-09-08T04",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-08T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-09T18",
+        "actual": 0.3942,
+        "predicted": 0.4477,
+        "residual": -0.0535,
+        "irradiance_wm2": 59.5
+      },
+      {
+        "timestamp": "2023-09-10T13",
+        "actual": 11.139,
+        "predicted": 11.1206,
+        "residual": 0.0184,
+        "irradiance_wm2": 1011.2
+      },
+      {
+        "timestamp": "2023-09-11T08",
+        "actual": 3.0313,
+        "predicted": 3.1272,
+        "residual": -0.0958,
+        "irradiance_wm2": 264.8
+      },
+      {
+        "timestamp": "2023-09-12T03",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-12T22",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-13T17",
+        "actual": 2.9816,
+        "predicted": 2.9715,
+        "residual": 0.0101,
+        "irradiance_wm2": 277.3
+      },
+      {
+        "timestamp": "2023-09-14T12",
+        "actual": 10.7435,
+        "predicted": 10.7826,
+        "residual": -0.0391,
+        "irradiance_wm2": 962.9
+      },
+      {
+        "timestamp": "2023-09-15T07",
+        "actual": 1.1302,
+        "predicted": 1.1912,
+        "residual": -0.0609,
+        "irradiance_wm2": 121.1
+      },
+      {
+        "timestamp": "2023-09-16T02",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-16T21",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-17T16",
+        "actual": 5.4242,
+        "predicted": 5.6525,
+        "residual": -0.2283,
+        "irradiance_wm2": 462.7
+      },
+      {
+        "timestamp": "2023-09-18T11",
+        "actual": 10.598,
+        "predicted": 10.5796,
+        "residual": 0.0183,
+        "irradiance_wm2": 935.5
+      },
+      {
+        "timestamp": "2023-09-19T06",
+        "actual": 0.0,
+        "predicted": 0.0071,
+        "residual": -0.0071,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-20T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-20T20",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-21T15",
+        "actual": 8.655,
+        "predicted": 8.657,
+        "residual": -0.002,
+        "irradiance_wm2": 749.7
+      },
+      {
+        "timestamp": "2023-09-22T10",
+        "actual": 8.0307,
+        "predicted": 8.2152,
+        "residual": -0.1845,
+        "irradiance_wm2": 697.0
+      },
+      {
+        "timestamp": "2023-09-23T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-24T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-24T19",
+        "actual": 0.0,
+        "predicted": 0.0032,
+        "residual": -0.0032,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-25T14",
+        "actual": 9.9762,
+        "predicted": 10.0877,
+        "residual": -0.1115,
+        "irradiance_wm2": 907.0
+      },
+      {
+        "timestamp": "2023-09-26T09",
+        "actual": 7.3971,
+        "predicted": 7.3111,
+        "residual": 0.086,
+        "irradiance_wm2": 633.0
+      },
+      {
+        "timestamp": "2023-09-27T04",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-27T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-09-28T18",
+        "actual": 0.0,
+        "predicted": 0.0017,
+        "residual": -0.0017,
+        "irradiance_wm2": 2.7
+      },
+      {
+        "timestamp": "2023-09-29T13",
+        "actual": 10.5921,
+        "predicted": 10.6302,
+        "residual": -0.0381,
+        "irradiance_wm2": 1011.6
+      },
+      {
+        "timestamp": "2023-09-30T08",
+        "actual": 4.5708,
+        "predicted": 4.4609,
+        "residual": 0.1099,
+        "irradiance_wm2": 397.0
+      },
+      {
+        "timestamp": "2023-10-01T03",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-01T22",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-02T17",
+        "actual": 1.4724,
+        "predicted": 1.4214,
+        "residual": 0.051,
+        "irradiance_wm2": 148.7
+      },
+      {
+        "timestamp": "2023-10-03T12",
+        "actual": 10.8645,
+        "predicted": 10.9807,
+        "residual": -0.1162,
+        "irradiance_wm2": 1032.4
+      },
+      {
+        "timestamp": "2023-10-04T07",
+        "actual": 1.1935,
+        "predicted": 1.1589,
+        "residual": 0.0346,
+        "irradiance_wm2": 129.7
+      },
+      {
+        "timestamp": "2023-10-05T02",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-05T21",
+        "actual": 0.0,
+        "predicted": 0.0028,
+        "residual": -0.0028,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-06T16",
+        "actual": 4.4791,
+        "predicted": 4.3208,
+        "residual": 0.1583,
+        "irradiance_wm2": 399.1
+      },
+      {
+        "timestamp": "2023-10-07T11",
+        "actual": 10.1358,
+        "predicted": 10.3977,
+        "residual": -0.2619,
+        "irradiance_wm2": 980.9
+      },
+      {
+        "timestamp": "2023-10-08T06",
+        "actual": 0.0,
+        "predicted": 0.0067,
+        "residual": -0.0067,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-09T01",
+        "actual": 0.0,
+        "predicted": 0.0024,
+        "residual": -0.0024,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-09T20",
+        "actual": 0.0,
+        "predicted": 0.0024,
+        "residual": -0.0024,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-10T15",
+        "actual": 6.8224,
+        "predicted": 6.9704,
+        "residual": -0.148,
+        "irradiance_wm2": 604.9
+      },
+      {
+        "timestamp": "2023-10-11T10",
+        "actual": 9.3125,
+        "predicted": 9.6158,
+        "residual": -0.3034,
+        "irradiance_wm2": 848.3
+      },
+      {
+        "timestamp": "2023-10-12T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-13T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-13T19",
+        "actual": 0.0,
+        "predicted": 0.0028,
+        "residual": -0.0028,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-14T14",
+        "actual": 7.9241,
+        "predicted": 8.0122,
+        "residual": -0.0881,
+        "irradiance_wm2": 701.1
+      },
+      {
+        "timestamp": "2023-10-15T09",
+        "actual": 4.3246,
+        "predicted": 4.2812,
+        "residual": 0.0435,
+        "irradiance_wm2": 368.7
+      },
+      {
+        "timestamp": "2023-10-16T04",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-16T23",
+        "actual": 0.0,
+        "predicted": 0.0028,
+        "residual": -0.0028,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-17T18",
+        "actual": 0.0,
+        "predicted": 0.0017,
+        "residual": -0.0017,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-18T13",
+        "actual": 10.8204,
+        "predicted": 10.7726,
+        "residual": 0.0478,
+        "irradiance_wm2": 960.6
+      },
+      {
+        "timestamp": "2023-10-19T08",
+        "actual": 4.4611,
+        "predicted": 4.3555,
+        "residual": 0.1057,
+        "irradiance_wm2": 376.3
+      },
+      {
+        "timestamp": "2023-10-20T03",
+        "actual": 0.0,
+        "predicted": 0.0032,
+        "residual": -0.0032,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-20T22",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-21T17",
+        "actual": 0.3974,
+        "predicted": 0.3468,
+        "residual": 0.0505,
+        "irradiance_wm2": 48.6
+      },
+      {
+        "timestamp": "2023-10-22T12",
+        "actual": 11.4608,
+        "predicted": 11.0084,
+        "residual": 0.4523,
+        "irradiance_wm2": 953.0
+      },
+      {
+        "timestamp": "2023-10-23T07",
+        "actual": 0.7365,
+        "predicted": 0.7969,
+        "residual": -0.0604,
+        "irradiance_wm2": 85.7
+      },
+      {
+        "timestamp": "2023-10-24T02",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-24T21",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-25T16",
+        "actual": 4.8033,
+        "predicted": 4.749,
+        "residual": 0.0543,
+        "irradiance_wm2": 414.2
+      },
+      {
+        "timestamp": "2023-10-26T11",
+        "actual": 10.6638,
+        "predicted": 10.7133,
+        "residual": -0.0495,
+        "irradiance_wm2": 961.7
+      },
+      {
+        "timestamp": "2023-10-27T06",
+        "actual": 0.0,
+        "predicted": 0.0071,
+        "residual": -0.0071,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-28T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-28T20",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-10-29T15",
+        "actual": 0.9564,
+        "predicted": 1.049,
+        "residual": -0.0926,
+        "irradiance_wm2": 96.1
+      },
+      {
+        "timestamp": "2023-10-30T10",
+        "actual": 2.3532,
+        "predicted": 2.3405,
+        "residual": 0.0127,
+        "irradiance_wm2": 205.4
+      },
+      {
+        "timestamp": "2023-10-31T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-01T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-01T19",
+        "actual": 0.0,
+        "predicted": 0.0033,
+        "residual": -0.0033,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-02T14",
+        "actual": 9.6931,
+        "predicted": 9.4956,
+        "residual": 0.1975,
+        "irradiance_wm2": 818.1
+      },
+      {
+        "timestamp": "2023-11-03T09",
+        "actual": 1.5414,
+        "predicted": 1.4624,
+        "residual": 0.079,
+        "irradiance_wm2": 140.2
+      },
+      {
+        "timestamp": "2023-11-04T04",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-04T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-05T18",
+        "actual": 0.0,
+        "predicted": 0.0039,
+        "residual": -0.0039,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-06T13",
+        "actual": 7.4904,
+        "predicted": 7.4239,
+        "residual": 0.0665,
+        "irradiance_wm2": 619.5
+      },
+      {
+        "timestamp": "2023-11-07T08",
+        "actual": 4.3122,
+        "predicted": 4.3145,
+        "residual": -0.0023,
+        "irradiance_wm2": 354.6
+      },
+      {
+        "timestamp": "2023-11-08T03",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-08T22",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-09T17",
+        "actual": 0.4714,
+        "predicted": 0.4953,
+        "residual": -0.0238,
+        "irradiance_wm2": 59.3
+      },
+      {
+        "timestamp": "2023-11-10T12",
+        "actual": 11.2226,
+        "predicted": 11.0772,
+        "residual": 0.1454,
+        "irradiance_wm2": 972.6
+      },
+      {
+        "timestamp": "2023-11-11T07",
+        "actual": 0.0,
+        "predicted": 0.0115,
+        "residual": -0.0115,
+        "irradiance_wm2": 4.5
+      },
+      {
+        "timestamp": "2023-11-12T02",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-12T21",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-13T16",
+        "actual": 4.3194,
+        "predicted": 4.4681,
+        "residual": -0.1487,
+        "irradiance_wm2": 385.4
+      },
+      {
+        "timestamp": "2023-11-14T11",
+        "actual": 10.1602,
+        "predicted": 10.2764,
+        "residual": -0.1162,
+        "irradiance_wm2": 926.8
+      },
+      {
+        "timestamp": "2023-11-15T06",
+        "actual": 0.0,
+        "predicted": 0.0067,
+        "residual": -0.0067,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-16T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-16T20",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-17T15",
+        "actual": 7.3184,
+        "predicted": 7.2524,
+        "residual": 0.066,
+        "irradiance_wm2": 635.0
+      },
+      {
+        "timestamp": "2023-11-18T10",
+        "actual": 8.7134,
+        "predicted": 8.8268,
+        "residual": -0.1135,
+        "irradiance_wm2": 772.0
+      },
+      {
+        "timestamp": "2023-11-19T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-20T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-20T19",
+        "actual": 0.0,
+        "predicted": 0.0033,
+        "residual": -0.0033,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-21T14",
+        "actual": 8.7425,
+        "predicted": 8.8179,
+        "residual": -0.0754,
+        "irradiance_wm2": 754.8
+      },
+      {
+        "timestamp": "2023-11-22T09",
+        "actual": 5.6967,
+        "predicted": 5.901,
+        "residual": -0.2043,
+        "irradiance_wm2": 469.6
+      },
+      {
+        "timestamp": "2023-11-23T04",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-23T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-24T18",
+        "actual": 0.0,
+        "predicted": 0.0039,
+        "residual": -0.0039,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-25T13",
+        "actual": 9.4154,
+        "predicted": 9.3497,
+        "residual": 0.0656,
+        "irradiance_wm2": 796.7
+      },
+      {
+        "timestamp": "2023-11-26T08",
+        "actual": 3.3873,
+        "predicted": 3.2165,
+        "residual": 0.1708,
+        "irradiance_wm2": 283.6
+      },
+      {
+        "timestamp": "2023-11-27T03",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-27T22",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-11-28T17",
+        "actual": 0.0163,
+        "predicted": 0.0177,
+        "residual": -0.0014,
+        "irradiance_wm2": 8.5
+      },
+      {
+        "timestamp": "2023-11-29T12",
+        "actual": 10.3529,
+        "predicted": 10.2932,
+        "residual": 0.0596,
+        "irradiance_wm2": 908.9
+      },
+      {
+        "timestamp": "2023-11-30T07",
+        "actual": 0.0,
+        "predicted": 0.0115,
+        "residual": -0.0115,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-01T02",
+        "actual": 0.0,
+        "predicted": 0.0032,
+        "residual": -0.0032,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-01T21",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-02T16",
+        "actual": 4.9296,
+        "predicted": 4.9202,
+        "residual": 0.0094,
+        "irradiance_wm2": 411.7
+      },
+      {
+        "timestamp": "2023-12-03T11",
+        "actual": 10.6499,
+        "predicted": 10.4696,
+        "residual": 0.1803,
+        "irradiance_wm2": 904.4
+      },
+      {
+        "timestamp": "2023-12-04T06",
+        "actual": 0.0,
+        "predicted": 0.0071,
+        "residual": -0.0071,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-05T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-05T20",
+        "actual": 0.0,
+        "predicted": 0.0056,
+        "residual": -0.0056,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-06T15",
+        "actual": 7.8314,
+        "predicted": 7.7573,
+        "residual": 0.0741,
+        "irradiance_wm2": 651.1
+      },
+      {
+        "timestamp": "2023-12-07T10",
+        "actual": 8.4414,
+        "predicted": 8.5228,
+        "residual": -0.0814,
+        "irradiance_wm2": 699.7
+      },
+      {
+        "timestamp": "2023-12-08T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-09T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-09T19",
+        "actual": 0.0,
+        "predicted": 0.0033,
+        "residual": -0.0033,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-10T14",
+        "actual": 8.7857,
+        "predicted": 8.8771,
+        "residual": -0.0914,
+        "irradiance_wm2": 790.2
+      },
+      {
+        "timestamp": "2023-12-11T09",
+        "actual": 3.9495,
+        "predicted": 3.9299,
+        "residual": 0.0196,
+        "irradiance_wm2": 329.5
+      },
+      {
+        "timestamp": "2023-12-12T04",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-12T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-13T18",
+        "actual": 0.0,
+        "predicted": 0.0039,
+        "residual": -0.0039,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-14T13",
+        "actual": 10.861,
+        "predicted": 10.788,
+        "residual": 0.073,
+        "irradiance_wm2": 896.6
+      },
+      {
+        "timestamp": "2023-12-15T08",
+        "actual": 2.7378,
+        "predicted": 2.5637,
+        "residual": 0.1741,
+        "irradiance_wm2": 230.9
+      },
+      {
+        "timestamp": "2023-12-16T03",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-16T22",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-17T17",
+        "actual": 0.0295,
+        "predicted": 0.0177,
+        "residual": 0.0118,
+        "irradiance_wm2": 10.4
+      },
+      {
+        "timestamp": "2023-12-18T12",
+        "actual": 10.9683,
+        "predicted": 11.1099,
+        "residual": -0.1416,
+        "irradiance_wm2": 956.9
+      },
+      {
+        "timestamp": "2023-12-19T07",
+        "actual": 0.0,
+        "predicted": 0.0115,
+        "residual": -0.0115,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-20T02",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-20T21",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-21T16",
+        "actual": 4.8049,
+        "predicted": 4.7131,
+        "residual": 0.0919,
+        "irradiance_wm2": 397.3
+      },
+      {
+        "timestamp": "2023-12-22T11",
+        "actual": 10.1425,
+        "predicted": 10.2747,
+        "residual": -0.1321,
+        "irradiance_wm2": 874.8
+      },
+      {
+        "timestamp": "2023-12-23T06",
+        "actual": 0.0,
+        "predicted": 0.0071,
+        "residual": -0.0071,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-24T01",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-24T20",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-25T15",
+        "actual": 8.0544,
+        "predicted": 8.0356,
+        "residual": 0.0188,
+        "irradiance_wm2": 667.2
+      },
+      {
+        "timestamp": "2023-12-26T10",
+        "actual": 8.7785,
+        "predicted": 8.929,
+        "residual": -0.1506,
+        "irradiance_wm2": 727.0
+      },
+      {
+        "timestamp": "2023-12-27T05",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-28T00",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-28T19",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-29T14",
+        "actual": 8.9682,
+        "predicted": 8.8648,
+        "residual": 0.1034,
+        "irradiance_wm2": 761.4
+      },
+      {
+        "timestamp": "2023-12-30T09",
+        "actual": 6.1564,
+        "predicted": 6.2495,
+        "residual": -0.093,
+        "irradiance_wm2": 493.2
+      },
+      {
+        "timestamp": "2023-12-31T04",
+        "actual": 0.0,
+        "predicted": 0.0025,
+        "residual": -0.0025,
+        "irradiance_wm2": 0.0
+      },
+      {
+        "timestamp": "2023-12-31T23",
+        "actual": 0.0,
+        "predicted": 0.0029,
+        "residual": -0.0029,
+        "irradiance_wm2": 0.0
+      }
+    ],
+    "timeseries_sample_july_2023": [
+      {
+        "timestamp": "07-10 00:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-10 01:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-10 02:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-10 03:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-10 04:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-10 05:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-10 06:00",
+        "actual": 0.31,
+        "predicted": 0.346
+      },
+      {
+        "timestamp": "07-10 07:00",
+        "actual": 1.48,
+        "predicted": 1.551
+      },
+      {
+        "timestamp": "07-10 08:00",
+        "actual": 4.017,
+        "predicted": 4.016
+      },
+      {
+        "timestamp": "07-10 09:00",
+        "actual": 6.479,
+        "predicted": 6.554
+      },
+      {
+        "timestamp": "07-10 10:00",
+        "actual": 8.38,
+        "predicted": 8.389
+      },
+      {
+        "timestamp": "07-10 11:00",
+        "actual": 9.652,
+        "predicted": 9.773
+      },
+      {
+        "timestamp": "07-10 12:00",
+        "actual": 10.308,
+        "predicted": 10.356
+      },
+      {
+        "timestamp": "07-10 13:00",
+        "actual": 10.25,
+        "predicted": 10.257
+      },
+      {
+        "timestamp": "07-10 14:00",
+        "actual": 9.499,
+        "predicted": 9.612
+      },
+      {
+        "timestamp": "07-10 15:00",
+        "actual": 7.993,
+        "predicted": 8.189
+      },
+      {
+        "timestamp": "07-10 16:00",
+        "actual": 5.909,
+        "predicted": 5.93
+      },
+      {
+        "timestamp": "07-10 17:00",
+        "actual": 3.432,
+        "predicted": 3.433
+      },
+      {
+        "timestamp": "07-10 18:00",
+        "actual": 1.188,
+        "predicted": 1.148
+      },
+      {
+        "timestamp": "07-10 19:00",
+        "actual": 0.185,
+        "predicted": 0.169
+      },
+      {
+        "timestamp": "07-10 20:00",
+        "actual": 0.0,
+        "predicted": 0.002
+      },
+      {
+        "timestamp": "07-10 21:00",
+        "actual": 0.0,
+        "predicted": 0.003
+      },
+      {
+        "timestamp": "07-10 22:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-10 23:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-11 00:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-11 01:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-11 02:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-11 03:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-11 04:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-11 05:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-11 06:00",
+        "actual": 0.299,
+        "predicted": 0.346
+      },
+      {
+        "timestamp": "07-11 07:00",
+        "actual": 1.454,
+        "predicted": 1.553
+      },
+      {
+        "timestamp": "07-11 08:00",
+        "actual": 3.999,
+        "predicted": 4.007
+      },
+      {
+        "timestamp": "07-11 09:00",
+        "actual": 6.475,
+        "predicted": 6.556
+      },
+      {
+        "timestamp": "07-11 10:00",
+        "actual": 8.434,
+        "predicted": 8.423
+      },
+      {
+        "timestamp": "07-11 11:00",
+        "actual": 9.756,
+        "predicted": 9.773
+      },
+      {
+        "timestamp": "07-11 12:00",
+        "actual": 10.379,
+        "predicted": 10.469
+      },
+      {
+        "timestamp": "07-11 13:00",
+        "actual": 10.245,
+        "predicted": 10.385
+      },
+      {
+        "timestamp": "07-11 14:00",
+        "actual": 9.566,
+        "predicted": 9.74
+      },
+      {
+        "timestamp": "07-11 15:00",
+        "actual": 8.132,
+        "predicted": 8.281
+      },
+      {
+        "timestamp": "07-11 16:00",
+        "actual": 5.948,
+        "predicted": 5.93
+      },
+      {
+        "timestamp": "07-11 17:00",
+        "actual": 3.462,
+        "predicted": 3.466
+      },
+      {
+        "timestamp": "07-11 18:00",
+        "actual": 1.209,
+        "predicted": 1.15
+      },
+      {
+        "timestamp": "07-11 19:00",
+        "actual": 0.186,
+        "predicted": 0.169
+      },
+      {
+        "timestamp": "07-11 20:00",
+        "actual": 0.0,
+        "predicted": 0.003
+      },
+      {
+        "timestamp": "07-11 21:00",
+        "actual": 0.0,
+        "predicted": 0.003
+      },
+      {
+        "timestamp": "07-11 22:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-11 23:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-12 00:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-12 01:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-12 02:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-12 03:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-12 04:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-12 05:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-12 06:00",
+        "actual": 0.29,
+        "predicted": 0.346
+      },
+      {
+        "timestamp": "07-12 07:00",
+        "actual": 1.453,
+        "predicted": 1.551
+      },
+      {
+        "timestamp": "07-12 08:00",
+        "actual": 4.012,
+        "predicted": 4.035
+      },
+      {
+        "timestamp": "07-12 09:00",
+        "actual": 6.512,
+        "predicted": 6.595
+      },
+      {
+        "timestamp": "07-12 10:00",
+        "actual": 8.471,
+        "predicted": 8.423
+      },
+      {
+        "timestamp": "07-12 11:00",
+        "actual": 9.767,
+        "predicted": 9.792
+      },
+      {
+        "timestamp": "07-12 12:00",
+        "actual": 10.36,
+        "predicted": 10.434
+      },
+      {
+        "timestamp": "07-12 13:00",
+        "actual": 10.398,
+        "predicted": 10.413
+      },
+      {
+        "timestamp": "07-12 14:00",
+        "actual": 9.671,
+        "predicted": 9.721
+      },
+      {
+        "timestamp": "07-12 15:00",
+        "actual": 8.202,
+        "predicted": 8.191
+      },
+      {
+        "timestamp": "07-12 16:00",
+        "actual": 6.021,
+        "predicted": 5.945
+      },
+      {
+        "timestamp": "07-12 17:00",
+        "actual": 3.494,
+        "predicted": 3.466
+      },
+      {
+        "timestamp": "07-12 18:00",
+        "actual": 1.182,
+        "predicted": 1.152
+      },
+      {
+        "timestamp": "07-12 19:00",
+        "actual": 0.186,
+        "predicted": 0.17
+      },
+      {
+        "timestamp": "07-12 20:00",
+        "actual": 0.0,
+        "predicted": 0.002
+      },
+      {
+        "timestamp": "07-12 21:00",
+        "actual": 0.0,
+        "predicted": 0.003
+      },
+      {
+        "timestamp": "07-12 22:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      },
+      {
+        "timestamp": "07-12 23:00",
+        "actual": 0.0,
+        "predicted": 0.005
+      }
+    ],
+    "saved_artifacts": [
+      "models/solar_pv_linear_regression.pkl",
+      "models/solar_pv_decision_tree.pkl",
+      "models/solar_pv_random_forest.pkl",
+      "models/solar_pv_gradient_boosting.pkl",
+      "models/solar_best_model.pkl"
+    ]
+  },
+  "dryer_model": {
+    "model_id": "Model 2 \u2014 Biomass Dryer Thermal Demand Prediction",
+    "target_variable": "dryer_thermal_demand_kw",
+    "target_unit": "kW_th",
+    "target_provenance": "simulated_physics",
+    "simulated_label_disclaimer": "All Model 2 targets are deterministic outputs of the Phase 3 thermodynamic balance (compute_dryer_hourly_demand) coupled to real Settat 2020\u20132023 weather. They are explicitly labeled simulated_physics rather than experimental pilot-plant calorimeter measurements.",
+    "splits": {
+      "train_2020_2021": {
+        "rows": 6000,
+        "per_feedstock": 2000
+      },
+      "val_2022": {
+        "rows": 2250,
+        "per_feedstock": 750
+      },
+      "test_2023": {
+        "rows": 2250,
+        "per_feedstock": 750
+      }
+    },
+    "feedstocks": [
+      {
+        "id": "olive_pomace",
+        "name": "Olive Pomace (Grignons d'olive)",
+        "cp_kj_kg_k": 1.45,
+        "bulk_density_kg_m3": 580.0,
+        "batch_mass_range_kg": [
+          160.0,
+          400.0
+        ],
+        "init_moisture_range_pct": [
+          38.0,
+          62.0
+        ],
+        "target_moisture_range_pct": [
+          8.0,
+          14.0
+        ]
+      },
+      {
+        "id": "wheat_straw",
+        "name": "Wheat Straw (Paille de bl\u00e9)",
+        "cp_kj_kg_k": 1.38,
+        "bulk_density_kg_m3": 135.0,
+        "batch_mass_range_kg": [
+          90.0,
+          240.0
+        ],
+        "init_moisture_range_pct": [
+          18.0,
+          36.0
+        ],
+        "target_moisture_range_pct": [
+          8.0,
+          13.0
+        ]
+      },
+      {
+        "id": "wood_chips",
+        "name": "Orchard Wood Chips (Bois d'\u00e9lagage)",
+        "cp_kj_kg_k": 1.62,
+        "bulk_density_kg_m3": 290.0,
+        "batch_mass_range_kg": [
+          140.0,
+          360.0
+        ],
+        "init_moisture_range_pct": [
+          30.0,
+          55.0
+        ],
+        "target_moisture_range_pct": [
+          8.0,
+          15.0
+        ]
+      }
+    ],
+    "features": [
+      "is_olive_pomace",
+      "is_wheat_straw",
+      "is_wood_chips",
+      "cp_dry_biomass_kj_kg_k",
+      "bulk_density_kg_m3",
+      "batch_mass_kg",
+      "batch_duration_hours",
+      "initial_moisture_pct",
+      "target_moisture_pct",
+      "ambient_temp_c",
+      "ambient_rh_pct",
+      "dryer_chamber_temp_c",
+      "hx_duct_efficiency"
+    ],
+    "selected_model_key": "gradient_boosting",
+    "selected_model_name": "Gradient Boosting Regressor",
+    "models": [
+      {
+        "key": "baseline_mean",
+        "name": "Baseline: Training Mean",
+        "short_label": "Mean\nBaseline",
+        "kind": "baseline",
+        "train": {
+          "n": 6000.0,
+          "mae": 8.3964,
+          "rmse": 10.27333,
+          "r2": 0.0,
+          "bias": 0.0,
+          "max_abs_err": 44.53666
+        },
+        "val": {
+          "n": 2250.0,
+          "mae": 8.36031,
+          "rmse": 10.27727,
+          "r2": -1e-05,
+          "bias": 0.02455,
+          "max_abs_err": 38.60893
+        },
+        "test": {
+          "n": 2250.0,
+          "mae": 8.44435,
+          "rmse": 10.36809,
+          "r2": -4e-05,
+          "bias": 0.06912,
+          "max_abs_err": 37.94535
+        },
+        "overfit_status": "Baseline Reference",
+        "selected": false
+      },
+      {
+        "key": "baseline_latent_only",
+        "name": "Baseline: Latent Evap Only (m_evap\u00b7h_fg / \u03b7)",
+        "short_label": "Latent\nOnly",
+        "kind": "baseline",
+        "train": {
+          "n": 6000.0,
+          "mae": 6.26929,
+          "rmse": 6.64406,
+          "r2": 0.58174,
+          "bias": -6.26929,
+          "max_abs_err": 16.67352
+        },
+        "val": {
+          "n": 2250.0,
+          "mae": 6.21699,
+          "rmse": 6.5942,
+          "r2": 0.58831,
+          "bias": -6.21699,
+          "max_abs_err": 15.21691
+        },
+        "test": {
+          "n": 2250.0,
+          "mae": 6.19811,
+          "rmse": 6.57287,
+          "r2": 0.59809,
+          "bias": -6.19811,
+          "max_abs_err": 14.68074
+        },
+        "overfit_status": "Systematic Negative Bias (Omits Air Heating)",
+        "selected": false
+      },
+      {
+        "key": "linear_regression",
+        "name": "Linear Regression (OLS + StandardScaler)",
+        "short_label": "Linear\nRegression",
+        "kind": "ml_model",
+        "hyperparameters": {
+          "scale_features": true,
+          "l2_reg": 1e-08
+        },
+        "train": {
+          "n": 6000.0,
+          "mae": 1.34597,
+          "rmse": 1.86369,
+          "r2": 0.96709,
+          "bias": 0.00802,
+          "max_abs_err": 15.90137
+        },
+        "val": {
+          "n": 2250.0,
+          "mae": 1.36279,
+          "rmse": 1.87405,
+          "r2": 0.96675,
+          "bias": 0.02188,
+          "max_abs_err": 11.29188
+        },
+        "test": {
+          "n": 2250.0,
+          "mae": 1.37525,
+          "rmse": 1.85964,
+          "r2": 0.96783,
+          "bias": -0.05016,
+          "max_abs_err": 12.13184
+        },
+        "overfit_status": "Well-Generalized",
+        "selected": false
+      },
+      {
+        "key": "decision_tree",
+        "name": "Decision Tree Regressor",
+        "short_label": "Decision\nTree",
+        "kind": "ml_model",
+        "hyperparameters": {
+          "max_depth": 10,
+          "min_samples_leaf": 4,
+          "max_bins": 64
+        },
+        "train": {
+          "n": 6000.0,
+          "mae": 0.81573,
+          "rmse": 1.09897,
+          "r2": 0.98856,
+          "bias": 0.0,
+          "max_abs_err": 7.08767
+        },
+        "val": {
+          "n": 2250.0,
+          "mae": 1.54409,
+          "rmse": 2.07432,
+          "r2": 0.95926,
+          "bias": 0.06063,
+          "max_abs_err": 10.96616
+        },
+        "test": {
+          "n": 2250.0,
+          "mae": 1.43095,
+          "rmse": 1.93789,
+          "r2": 0.96506,
+          "bias": 0.01228,
+          "max_abs_err": 11.19509
+        },
+        "overfit_status": "Mild Overfit (Monitor)",
+        "selected": false
+      },
+      {
+        "key": "random_forest",
+        "name": "Random Forest Regressor",
+        "short_label": "Random\nForest",
+        "kind": "ml_model",
+        "hyperparameters": {
+          "n_estimators": 22,
+          "max_depth": 11,
+          "min_samples_leaf": 3
+        },
+        "train": {
+          "n": 6000.0,
+          "mae": 0.522,
+          "rmse": 0.71999,
+          "r2": 0.99509,
+          "bias": -0.02275,
+          "max_abs_err": 7.17178
+        },
+        "val": {
+          "n": 2250.0,
+          "mae": 0.91207,
+          "rmse": 1.22893,
+          "r2": 0.9857,
+          "bias": -0.00929,
+          "max_abs_err": 6.1532
+        },
+        "test": {
+          "n": 2250.0,
+          "mae": 0.88661,
+          "rmse": 1.21553,
+          "r2": 0.98625,
+          "bias": -0.04099,
+          "max_abs_err": 6.84046
+        },
+        "overfit_status": "Mild Overfit (Monitor)",
+        "selected": false
+      },
+      {
+        "key": "gradient_boosting",
+        "name": "Gradient Boosting Regressor",
+        "short_label": "Gradient\nBoosting",
+        "kind": "ml_model",
+        "hyperparameters": {
+          "n_estimators": 65,
+          "learning_rate": 0.12,
+          "max_depth": 4
+        },
+        "train": {
+          "n": 6000.0,
+          "mae": 0.51943,
+          "rmse": 0.68257,
+          "r2": 0.99559,
+          "bias": -0.00014,
+          "max_abs_err": 3.71599
+        },
+        "val": {
+          "n": 2250.0,
+          "mae": 0.64063,
+          "rmse": 0.86575,
+          "r2": 0.9929,
+          "bias": 0.02035,
+          "max_abs_err": 4.03296
+        },
+        "test": {
+          "n": 2250.0,
+          "mae": 0.64915,
+          "rmse": 0.87987,
+          "r2": 0.9928,
+          "bias": 0.00809,
+          "max_abs_err": 4.82425
+        },
+        "overfit_status": "Well-Generalized",
+        "selected": true
+      }
+    ],
+    "unified_vs_per_feedstock": [
+      {
+        "feedstock_id": "olive_pomace",
+        "display_name": "Olive Pomace (Grignons d'olive)",
+        "short_name": "Olive Pomace",
+        "cp_kj_kg_k": 1.45,
+        "bulk_density_kg_m3": 580.0,
+        "n_train": 2000,
+        "n_val": 750,
+        "n_test": 750,
+        "unified_val_rmse": 1.0597,
+        "unified_test_rmse": 1.10037,
+        "unified_test_mae": 0.82066,
+        "unified_test_r2": 0.9855,
+        "separate_val_rmse": 1.03457,
+        "separate_test_rmse": 1.04746,
+        "separate_test_mae": 0.78909,
+        "separate_test_r2": 0.98686,
+        "delta_rmse_unified_minus_sep": 0.05291
+      },
+      {
+        "feedstock_id": "wheat_straw",
+        "display_name": "Wheat Straw (Paille de bl\u00e9)",
+        "short_name": "Wheat Straw",
+        "cp_kj_kg_k": 1.38,
+        "bulk_density_kg_m3": 135.0,
+        "n_train": 2000,
+        "n_val": 750,
+        "n_test": 750,
+        "unified_val_rmse": 0.63596,
+        "unified_test_rmse": 0.62181,
+        "unified_test_mae": 0.47249,
+        "unified_test_r2": 0.97085,
+        "separate_val_rmse": 0.44544,
+        "separate_test_rmse": 0.42592,
+        "separate_test_mae": 0.32742,
+        "separate_test_r2": 0.98632,
+        "delta_rmse_unified_minus_sep": 0.19589
+      },
+      {
+        "feedstock_id": "wood_chips",
+        "display_name": "Orchard Wood Chips (Bois d'\u00e9lagage)",
+        "short_name": "Wood Chips",
+        "cp_kj_kg_k": 1.62,
+        "bulk_density_kg_m3": 290.0,
+        "n_train": 2000,
+        "n_val": 750,
+        "n_test": 750,
+        "unified_val_rmse": 0.8492,
+        "unified_test_rmse": 0.85149,
+        "unified_test_mae": 0.6543,
+        "unified_test_r2": 0.98649,
+        "separate_val_rmse": 0.78841,
+        "separate_test_rmse": 0.84006,
+        "separate_test_mae": 0.61282,
+        "separate_test_r2": 0.98685,
+        "delta_rmse_unified_minus_sep": 0.01143
+      }
+    ],
+    "multi_feedstock_verdict": "A single unified multi-feedstock Gradient Boosting Regressor is appropriate and recommended: across the 3 feedstocks, average 2023 Test RMSE is 0.858 kW_th vs. 0.771 kW_th for separate models, because physical drying demand shares common latent-evaporation and psychrometric laws captured cleanly via feedstock properties (Cp, bulk density) and one-hot identifiers.",
+    "test_residual_summary": {
+      "count": 2250,
+      "mean": -0.00809,
+      "std": 0.87983,
+      "min": -3.532,
+      "p05": -1.32973,
+      "p25": -0.53335,
+      "median": -0.05561,
+      "p75": 0.44449,
+      "p95": 1.49391,
+      "max": 4.82425,
+      "histogram": [
+        {
+          "bin_start": -3.532,
+          "bin_end": -3.1838,
+          "bin_center": -3.3579,
+          "count": 2
+        },
+        {
+          "bin_start": -3.1838,
+          "bin_end": -2.8356,
+          "bin_center": -3.0097,
+          "count": 2
+        },
+        {
+          "bin_start": -2.8356,
+          "bin_end": -2.4875,
+          "bin_center": -2.6616,
+          "count": 4
+        },
+        {
+          "bin_start": -2.4875,
+          "bin_end": -2.1393,
+          "bin_center": -2.3134,
+          "count": 12
+        },
+        {
+          "bin_start": -2.1393,
+          "bin_end": -1.7911,
+          "bin_center": -1.9652,
+          "count": 24
+        },
+        {
+          "bin_start": -1.7911,
+          "bin_end": -1.4429,
+          "bin_center": -1.617,
+          "count": 40
+        },
+        {
+          "bin_start": -1.4429,
+          "bin_end": -1.0948,
+          "bin_center": -1.2689,
+          "count": 97
+        },
+        {
+          "bin_start": -1.0948,
+          "bin_end": -0.7466,
+          "bin_center": -0.9207,
+          "count": 166
+        },
+        {
+          "bin_start": -0.7466,
+          "bin_end": -0.3984,
+          "bin_center": -0.5725,
+          "count": 381
+        },
+        {
+          "bin_start": -0.3984,
+          "bin_end": -0.0502,
+          "bin_center": -0.2243,
+          "count": 408
+        },
+        {
+          "bin_start": -0.0502,
+          "bin_end": 0.2979,
+          "bin_center": 0.1239,
+          "count": 429
+        },
+        {
+          "bin_start": 0.2979,
+          "bin_end": 0.6461,
+          "bin_center": 0.472,
+          "count": 280
+        },
+        {
+          "bin_start": 0.6461,
+          "bin_end": 0.9943,
+          "bin_center": 0.8202,
+          "count": 170
+        },
+        {
+          "bin_start": 0.9943,
+          "bin_end": 1.3425,
+          "bin_center": 1.1684,
+          "count": 89
+        },
+        {
+          "bin_start": 1.3425,
+          "bin_end": 1.6907,
+          "bin_center": 1.5166,
+          "count": 63
+        },
+        {
+          "bin_start": 1.6907,
+          "bin_end": 2.0388,
+          "bin_center": 1.8647,
+          "count": 29
+        },
+        {
+          "bin_start": 2.0388,
+          "bin_end": 2.387,
+          "bin_center": 2.2129,
+          "count": 20
+        },
+        {
+          "bin_start": 2.387,
+          "bin_end": 2.7352,
+          "bin_center": 2.5611,
+          "count": 12
+        },
+        {
+          "bin_start": 2.7352,
+          "bin_end": 3.0834,
+          "bin_center": 2.9093,
+          "count": 9
+        },
+        {
+          "bin_start": 3.0834,
+          "bin_end": 3.4315,
+          "bin_center": 3.2575,
+          "count": 5
+        },
+        {
+          "bin_start": 3.4315,
+          "bin_end": 3.7797,
+          "bin_center": 3.6056,
+          "count": 3
+        },
+        {
+          "bin_start": 3.7797,
+          "bin_end": 4.1279,
+          "bin_center": 3.9538,
+          "count": 4
+        },
+        {
+          "bin_start": 4.1279,
+          "bin_end": 4.4761,
+          "bin_center": 4.302,
+          "count": 0
+        },
+        {
+          "bin_start": 4.4761,
+          "bin_end": 4.8242,
+          "bin_center": 4.6502,
+          "count": 1
+        }
+      ]
+    },
+    "permutation_importance": [
+      {
+        "feature": "batch_mass_kg",
+        "mae_increase": 6.34941,
+        "mae_increase_std": 0.05538,
+        "r2_drop": 0.74405,
+        "relative_pct": 39.95,
+        "label": "Wet Batch Mass (kg)"
+      },
+      {
+        "feature": "initial_moisture_pct",
+        "mae_increase": 6.26513,
+        "mae_increase_std": 0.16952,
+        "r2_drop": 0.68963,
+        "relative_pct": 39.42,
+        "label": "Initial Moisture (% w.b.)"
+      },
+      {
+        "feature": "batch_duration_hours",
+        "mae_increase": 2.26269,
+        "mae_increase_std": 0.01463,
+        "r2_drop": 0.14529,
+        "relative_pct": 14.24,
+        "label": "Batch Duration (h)"
+      },
+      {
+        "feature": "ambient_temp_c",
+        "mae_increase": 0.38134,
+        "mae_increase_std": 0.00607,
+        "r2_drop": 0.01026,
+        "relative_pct": 2.4,
+        "label": "Ambient Temperature (\u00b0C)"
+      },
+      {
+        "feature": "hx_duct_efficiency",
+        "mae_increase": 0.3276,
+        "mae_increase_std": 0.00907,
+        "r2_drop": 0.00926,
+        "relative_pct": 2.06,
+        "label": "HX & Duct Efficiency (-)"
+      },
+      {
+        "feature": "target_moisture_pct",
+        "mae_increase": 0.27941,
+        "mae_increase_std": 0.00545,
+        "r2_drop": 0.00624,
+        "relative_pct": 1.76,
+        "label": "Target Moisture (% w.b.)"
+      },
+      {
+        "feature": "dryer_chamber_temp_c",
+        "mae_increase": 0.01164,
+        "mae_increase_std": 0.00227,
+        "r2_drop": 0.00029,
+        "relative_pct": 0.07,
+        "label": "Dryer Chamber Temp (\u00b0C)"
+      },
+      {
+        "feature": "is_olive_pomace",
+        "mae_increase": 0.01092,
+        "mae_increase_std": 0.00208,
+        "r2_drop": 0.00026,
+        "relative_pct": 0.07,
+        "label": "Feedstock: Olive Pomace (0/1)"
+      },
+      {
+        "feature": "ambient_rh_pct",
+        "mae_increase": 0.00561,
+        "mae_increase_std": 0.001,
+        "r2_drop": 0.00016,
+        "relative_pct": 0.04,
+        "label": "Ambient Relative Humidity (%)"
+      },
+      {
+        "feature": "is_wheat_straw",
+        "mae_increase": 0.0,
+        "mae_increase_std": 0.0,
+        "r2_drop": 0.0,
+        "relative_pct": 0.0,
+        "label": "Feedstock: Wheat Straw (0/1)"
+      },
+      {
+        "feature": "is_wood_chips",
+        "mae_increase": 0.0,
+        "mae_increase_std": 0.0,
+        "r2_drop": 0.0,
+        "relative_pct": 0.0,
+        "label": "Feedstock: Wood Chips (0/1)"
+      },
+      {
+        "feature": "cp_dry_biomass_kj_kg_k",
+        "mae_increase": 0.0,
+        "mae_increase_std": 0.0,
+        "r2_drop": 0.0,
+        "relative_pct": 0.0,
+        "label": "Dry Biomass Cp (kJ/kg\u00b7K)"
+      },
+      {
+        "feature": "bulk_density_kg_m3",
+        "mae_increase": 0.0,
+        "mae_increase_std": 0.0,
+        "r2_drop": 0.0,
+        "relative_pct": 0.0,
+        "label": "Bulk Density (kg/m\u00b3)"
+      }
+    ],
+    "scatter_sample": [
+      {
+        "feedstock": "olive_pomace",
+        "actual": 13.1462,
+        "predicted": 14.1391,
+        "residual": -0.9928
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 24.8312,
+        "predicted": 25.7318,
+        "residual": -0.9006
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 30.2379,
+        "predicted": 29.8804,
+        "residual": 0.3574
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 28.7102,
+        "predicted": 30.7105,
+        "residual": -2.0003
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 36.6488,
+        "predicted": 34.8971,
+        "residual": 1.7517
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 29.3074,
+        "predicted": 29.7026,
+        "residual": -0.3951
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 32.5781,
+        "predicted": 31.1524,
+        "residual": 1.4257
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 44.8363,
+        "predicted": 45.1365,
+        "residual": -0.3002
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 32.4537,
+        "predicted": 32.7864,
+        "residual": -0.3327
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 22.4843,
+        "predicted": 23.1302,
+        "residual": -0.6458
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 22.7675,
+        "predicted": 23.3716,
+        "residual": -0.6041
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 33.1714,
+        "predicted": 32.8896,
+        "residual": 0.2817
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 19.9027,
+        "predicted": 20.2939,
+        "residual": -0.3912
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 36.3399,
+        "predicted": 35.5558,
+        "residual": 0.7841
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 33.9881,
+        "predicted": 33.8276,
+        "residual": 0.1605
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 26.7869,
+        "predicted": 26.1204,
+        "residual": 0.6666
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 22.1504,
+        "predicted": 22.2821,
+        "residual": -0.1317
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 15.7902,
+        "predicted": 16.1987,
+        "residual": -0.4085
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 18.5551,
+        "predicted": 18.1994,
+        "residual": 0.3557
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 36.4987,
+        "predicted": 36.2329,
+        "residual": 0.2658
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 45.502,
+        "predicted": 42.5596,
+        "residual": 2.9424
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 32.1962,
+        "predicted": 32.9449,
+        "residual": -0.7487
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 32.7937,
+        "predicted": 32.5118,
+        "residual": 0.2819
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 24.3628,
+        "predicted": 24.1838,
+        "residual": 0.1789
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 29.6364,
+        "predicted": 30.57,
+        "residual": -0.9335
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 24.1936,
+        "predicted": 23.3357,
+        "residual": 0.8579
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 27.7438,
+        "predicted": 27.2303,
+        "residual": 0.5135
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 42.4569,
+        "predicted": 41.5623,
+        "residual": 0.8945
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 15.6872,
+        "predicted": 15.6782,
+        "residual": 0.009
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 19.2566,
+        "predicted": 19.7148,
+        "residual": -0.4582
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 18.9451,
+        "predicted": 18.3465,
+        "residual": 0.5986
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 40.1709,
+        "predicted": 38.4238,
+        "residual": 1.7471
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 29.3897,
+        "predicted": 28.4375,
+        "residual": 0.9522
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 28.4522,
+        "predicted": 28.5367,
+        "residual": -0.0845
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 31.4509,
+        "predicted": 30.1506,
+        "residual": 1.3002
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 39.3541,
+        "predicted": 37.5331,
+        "residual": 1.821
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 46.2481,
+        "predicted": 45.8244,
+        "residual": 0.4237
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 25.7429,
+        "predicted": 24.3311,
+        "residual": 1.4118
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 21.0695,
+        "predicted": 21.5276,
+        "residual": -0.4581
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 34.3318,
+        "predicted": 32.66,
+        "residual": 1.6718
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 19.492,
+        "predicted": 20.1774,
+        "residual": -0.6854
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 15.2404,
+        "predicted": 15.9433,
+        "residual": -0.7029
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 51.9426,
+        "predicted": 51.3953,
+        "residual": 0.5472
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 47.5669,
+        "predicted": 49.2462,
+        "residual": -1.6793
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 30.243,
+        "predicted": 29.7985,
+        "residual": 0.4444
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 16.9401,
+        "predicted": 17.4518,
+        "residual": -0.5117
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 18.8713,
+        "predicted": 20.1074,
+        "residual": -1.2361
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 25.7359,
+        "predicted": 26.2091,
+        "residual": -0.4731
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 26.1835,
+        "predicted": 26.9801,
+        "residual": -0.7966
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 23.6976,
+        "predicted": 23.1201,
+        "residual": 0.5775
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 28.5711,
+        "predicted": 28.3748,
+        "residual": 0.1963
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 17.1216,
+        "predicted": 17.7416,
+        "residual": -0.62
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 44.0445,
+        "predicted": 44.3193,
+        "residual": -0.2748
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 45.8022,
+        "predicted": 44.5805,
+        "residual": 1.2216
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 20.1048,
+        "predicted": 20.7338,
+        "residual": -0.629
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 36.1556,
+        "predicted": 35.1463,
+        "residual": 1.0093
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 39.567,
+        "predicted": 39.3641,
+        "residual": 0.2028
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 43.6446,
+        "predicted": 43.6126,
+        "residual": 0.032
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 34.5991,
+        "predicted": 33.2936,
+        "residual": 1.3055
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 44.2941,
+        "predicted": 43.2336,
+        "residual": 1.0604
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 24.878,
+        "predicted": 24.4235,
+        "residual": 0.4545
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 29.428,
+        "predicted": 28.0037,
+        "residual": 1.4243
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 25.4633,
+        "predicted": 24.9562,
+        "residual": 0.5071
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 45.7551,
+        "predicted": 43.6616,
+        "residual": 2.0936
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 22.5576,
+        "predicted": 22.5133,
+        "residual": 0.0443
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 21.6992,
+        "predicted": 21.1238,
+        "residual": 0.5754
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 33.7226,
+        "predicted": 33.4623,
+        "residual": 0.2603
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 13.9728,
+        "predicted": 13.2883,
+        "residual": 0.6846
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 22.4645,
+        "predicted": 23.1775,
+        "residual": -0.713
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 51.275,
+        "predicted": 51.8415,
+        "residual": -0.5665
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 32.5518,
+        "predicted": 32.0764,
+        "residual": 0.4754
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 32.3183,
+        "predicted": 32.8029,
+        "residual": -0.4846
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 21.4973,
+        "predicted": 21.5348,
+        "residual": -0.0375
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 20.6531,
+        "predicted": 21.3306,
+        "residual": -0.6774
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 31.6796,
+        "predicted": 32.7013,
+        "residual": -1.0218
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 15.7149,
+        "predicted": 16.095,
+        "residual": -0.3801
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 13.8354,
+        "predicted": 13.8733,
+        "residual": -0.0379
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 42.5334,
+        "predicted": 41.4105,
+        "residual": 1.1229
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 18.9046,
+        "predicted": 20.5768,
+        "residual": -1.6722
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 28.6873,
+        "predicted": 28.7847,
+        "residual": -0.0975
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 36.3361,
+        "predicted": 38.2122,
+        "residual": -1.8761
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 17.2405,
+        "predicted": 17.1842,
+        "residual": 0.0563
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 40.4543,
+        "predicted": 39.6037,
+        "residual": 0.8506
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 45.0403,
+        "predicted": 43.4496,
+        "residual": 1.5907
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 36.0035,
+        "predicted": 37.8055,
+        "residual": -1.8021
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 26.9041,
+        "predicted": 27.2601,
+        "residual": -0.356
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 36.9318,
+        "predicted": 35.7715,
+        "residual": 1.1603
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 52.7357,
+        "predicted": 47.9114,
+        "residual": 4.8242
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 35.876,
+        "predicted": 35.1422,
+        "residual": 0.7339
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 24.5829,
+        "predicted": 25.0931,
+        "residual": -0.5101
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 33.1065,
+        "predicted": 34.6025,
+        "residual": -1.496
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 18.3501,
+        "predicted": 18.6471,
+        "residual": -0.297
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 41.4778,
+        "predicted": 39.3114,
+        "residual": 2.1664
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 34.799,
+        "predicted": 35.353,
+        "residual": -0.5539
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 21.1285,
+        "predicted": 22.366,
+        "residual": -1.2375
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 46.4884,
+        "predicted": 48.373,
+        "residual": -1.8846
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 14.1561,
+        "predicted": 14.6016,
+        "residual": -0.4455
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 42.5225,
+        "predicted": 40.5785,
+        "residual": 1.944
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 41.2061,
+        "predicted": 40.5122,
+        "residual": 0.6939
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 22.0741,
+        "predicted": 22.5658,
+        "residual": -0.4917
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 24.6568,
+        "predicted": 25.0733,
+        "residual": -0.4164
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 29.0151,
+        "predicted": 28.5147,
+        "residual": 0.5004
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 28.6965,
+        "predicted": 28.3928,
+        "residual": 0.3037
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 23.3471,
+        "predicted": 22.429,
+        "residual": 0.9181
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 18.0054,
+        "predicted": 18.5838,
+        "residual": -0.5784
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 29.5098,
+        "predicted": 29.2425,
+        "residual": 0.2673
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 27.2136,
+        "predicted": 27.4769,
+        "residual": -0.2633
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 21.2751,
+        "predicted": 21.9409,
+        "residual": -0.6658
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 15.1512,
+        "predicted": 16.0287,
+        "residual": -0.8775
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 42.6615,
+        "predicted": 41.383,
+        "residual": 1.2785
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 32.5922,
+        "predicted": 32.3514,
+        "residual": 0.2408
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 21.487,
+        "predicted": 21.0965,
+        "residual": 0.3905
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 32.5503,
+        "predicted": 33.0818,
+        "residual": -0.5315
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 40.7807,
+        "predicted": 40.4056,
+        "residual": 0.3751
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 36.0372,
+        "predicted": 35.6198,
+        "residual": 0.4173
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 39.8805,
+        "predicted": 40.5658,
+        "residual": -0.6853
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 33.7053,
+        "predicted": 31.4811,
+        "residual": 2.2242
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 33.4838,
+        "predicted": 33.957,
+        "residual": -0.4732
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 14.6293,
+        "predicted": 14.9172,
+        "residual": -0.2879
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 32.4853,
+        "predicted": 34.2947,
+        "residual": -1.8095
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 39.563,
+        "predicted": 38.9115,
+        "residual": 0.6515
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 35.2785,
+        "predicted": 38.3864,
+        "residual": -3.1078
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 21.6245,
+        "predicted": 21.9573,
+        "residual": -0.3329
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 29.1816,
+        "predicted": 29.252,
+        "residual": -0.0703
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 28.8504,
+        "predicted": 28.3061,
+        "residual": 0.5443
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 47.2438,
+        "predicted": 44.1999,
+        "residual": 3.0439
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 27.4429,
+        "predicted": 28.4438,
+        "residual": -1.0009
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 20.7957,
+        "predicted": 19.1492,
+        "residual": 1.6465
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 36.9803,
+        "predicted": 35.4634,
+        "residual": 1.5169
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 21.859,
+        "predicted": 22.1298,
+        "residual": -0.2708
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 24.4695,
+        "predicted": 24.6742,
+        "residual": -0.2047
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 30.3997,
+        "predicted": 29.0784,
+        "residual": 1.3212
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 23.3501,
+        "predicted": 24.3069,
+        "residual": -0.9568
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 32.044,
+        "predicted": 31.2468,
+        "residual": 0.7972
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 34.903,
+        "predicted": 35.2651,
+        "residual": -0.362
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 22.6584,
+        "predicted": 22.6823,
+        "residual": -0.0239
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 32.156,
+        "predicted": 32.7309,
+        "residual": -0.5748
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 26.074,
+        "predicted": 27.8726,
+        "residual": -1.7987
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 22.7038,
+        "predicted": 24.0264,
+        "residual": -1.3227
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 36.7499,
+        "predicted": 35.4453,
+        "residual": 1.3046
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 14.7416,
+        "predicted": 14.6223,
+        "residual": 0.1193
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 17.1484,
+        "predicted": 17.307,
+        "residual": -0.1586
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 22.8991,
+        "predicted": 22.839,
+        "residual": 0.0602
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 23.6021,
+        "predicted": 25.2186,
+        "residual": -1.6165
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 23.439,
+        "predicted": 23.4942,
+        "residual": -0.0552
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 26.5063,
+        "predicted": 27.4092,
+        "residual": -0.9029
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 20.8208,
+        "predicted": 21.2186,
+        "residual": -0.3977
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 23.4484,
+        "predicted": 24.852,
+        "residual": -1.4035
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 22.8436,
+        "predicted": 22.5533,
+        "residual": 0.2903
+      },
+      {
+        "feedstock": "olive_pomace",
+        "actual": 31.5146,
+        "predicted": 31.01,
+        "residual": 0.5046
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.2378,
+        "predicted": 13.9735,
+        "residual": -0.7357
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.9172,
+        "predicted": 13.4065,
+        "residual": -0.4893
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 15.8879,
+        "predicted": 14.2934,
+        "residual": 1.5945
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.1627,
+        "predicted": 9.2216,
+        "residual": -0.0589
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 19.7814,
+        "predicted": 18.3983,
+        "residual": 1.3831
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.2379,
+        "predicted": 11.1467,
+        "residual": 1.0912
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.9442,
+        "predicted": 13.0277,
+        "residual": 0.9165
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.0406,
+        "predicted": 13.3815,
+        "residual": -0.3409
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.6624,
+        "predicted": 8.9684,
+        "residual": 0.694
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.6253,
+        "predicted": 11.4551,
+        "residual": 0.1702
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 16.2248,
+        "predicted": 15.8306,
+        "residual": 0.3942
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 16.5424,
+        "predicted": 15.4387,
+        "residual": 1.1037
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.6458,
+        "predicted": 7.9701,
+        "residual": -0.3243
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 10.8092,
+        "predicted": 10.6714,
+        "residual": 0.1378
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.0366,
+        "predicted": 10.9497,
+        "residual": 1.0868
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.5722,
+        "predicted": 13.0663,
+        "residual": -0.4941
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 5.8852,
+        "predicted": 5.86,
+        "residual": 0.0253
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 5.6794,
+        "predicted": 5.6383,
+        "residual": 0.0412
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.9327,
+        "predicted": 9.3705,
+        "residual": -0.4378
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.3006,
+        "predicted": 7.2914,
+        "residual": 0.0091
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 5.8513,
+        "predicted": 5.5554,
+        "residual": 0.2959
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.367,
+        "predicted": 13.3858,
+        "residual": -0.0188
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.8446,
+        "predicted": 9.952,
+        "residual": -1.1074
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 15.1775,
+        "predicted": 14.0285,
+        "residual": 1.149
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.3582,
+        "predicted": 11.7491,
+        "residual": 0.6091
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 22.5102,
+        "predicted": 19.2742,
+        "residual": 3.236
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 10.2802,
+        "predicted": 10.6337,
+        "residual": -0.3535
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.682,
+        "predicted": 11.4389,
+        "residual": -1.7569
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 10.1604,
+        "predicted": 9.9216,
+        "residual": 0.2388
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.0802,
+        "predicted": 10.9664,
+        "residual": 0.1138
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 5.8656,
+        "predicted": 5.6998,
+        "residual": 0.1658
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.3627,
+        "predicted": 9.3957,
+        "residual": -0.033
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.8957,
+        "predicted": 9.6081,
+        "residual": 0.2876
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.6451,
+        "predicted": 9.0044,
+        "residual": -0.3592
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.0671,
+        "predicted": 10.7746,
+        "residual": 0.2925
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.1723,
+        "predicted": 5.9803,
+        "residual": 0.192
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.9494,
+        "predicted": 13.7277,
+        "residual": 0.2217
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 19.4039,
+        "predicted": 18.015,
+        "residual": 1.3889
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.8927,
+        "predicted": 12.3817,
+        "residual": 0.511
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.5659,
+        "predicted": 6.6584,
+        "residual": -0.0926
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.57,
+        "predicted": 7.9757,
+        "residual": -0.4057
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.8761,
+        "predicted": 7.2674,
+        "residual": -0.3913
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 5.509,
+        "predicted": 5.7278,
+        "residual": -0.2188
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.5773,
+        "predicted": 9.9162,
+        "residual": -0.3389
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.2371,
+        "predicted": 7.5086,
+        "residual": -0.2715
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.4439,
+        "predicted": 8.9549,
+        "residual": -0.511
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 15.3164,
+        "predicted": 15.4156,
+        "residual": -0.0992
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 16.6764,
+        "predicted": 16.9355,
+        "residual": -0.2591
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.4991,
+        "predicted": 9.4989,
+        "residual": 0.0002
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 14.9233,
+        "predicted": 14.0056,
+        "residual": 0.9177
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.8539,
+        "predicted": 13.2749,
+        "residual": 0.579
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.3108,
+        "predicted": 10.8321,
+        "residual": 0.4787
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 14.599,
+        "predicted": 15.2654,
+        "residual": -0.6664
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.5927,
+        "predicted": 7.4491,
+        "residual": 0.1436
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.8501,
+        "predicted": 13.3399,
+        "residual": -0.4898
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.7155,
+        "predicted": 8.5267,
+        "residual": -0.8112
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.362,
+        "predicted": 6.1783,
+        "residual": 0.1837
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.9059,
+        "predicted": 6.8174,
+        "residual": 0.0884
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.7153,
+        "predicted": 7.3443,
+        "residual": 0.371
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.7001,
+        "predicted": 8.9104,
+        "residual": -0.2103
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 18.2436,
+        "predicted": 16.4697,
+        "residual": 1.7739
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 4.6873,
+        "predicted": 4.6448,
+        "residual": 0.0424
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.1967,
+        "predicted": 6.5515,
+        "residual": -0.3547
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 16.6707,
+        "predicted": 16.1644,
+        "residual": 0.5063
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.9771,
+        "predicted": 8.6668,
+        "residual": -0.6897
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.8686,
+        "predicted": 13.5278,
+        "residual": 0.3408
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.5036,
+        "predicted": 7.1257,
+        "residual": -0.6221
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.3765,
+        "predicted": 9.2314,
+        "residual": -0.8549
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.1762,
+        "predicted": 11.8535,
+        "residual": 0.3227
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 15.679,
+        "predicted": 15.9729,
+        "residual": -0.2939
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.4983,
+        "predicted": 8.4088,
+        "residual": 0.0895
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.894,
+        "predicted": 7.2012,
+        "residual": 0.6928
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.7405,
+        "predicted": 10.0996,
+        "residual": -0.3591
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 14.509,
+        "predicted": 13.7169,
+        "residual": 0.7921
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 14.69,
+        "predicted": 13.7047,
+        "residual": 0.9854
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.0188,
+        "predicted": 6.5984,
+        "residual": -0.5796
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.1079,
+        "predicted": 12.19,
+        "residual": 0.9178
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.5335,
+        "predicted": 13.147,
+        "residual": 0.3866
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 15.5023,
+        "predicted": 15.1638,
+        "residual": 0.3385
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.4957,
+        "predicted": 12.2013,
+        "residual": -0.7056
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.9533,
+        "predicted": 9.0976,
+        "residual": -0.1443
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.0915,
+        "predicted": 10.0526,
+        "residual": -0.9611
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.2884,
+        "predicted": 8.896,
+        "residual": 0.3924
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.6668,
+        "predicted": 11.4728,
+        "residual": 0.194
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.2758,
+        "predicted": 8.5182,
+        "residual": -0.2425
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 14.5017,
+        "predicted": 14.2369,
+        "residual": 0.2648
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.4663,
+        "predicted": 12.9855,
+        "residual": -0.5192
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.4083,
+        "predicted": 12.9378,
+        "residual": -0.5295
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.9188,
+        "predicted": 14.1888,
+        "residual": -0.27
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.1557,
+        "predicted": 7.4921,
+        "residual": -1.3364
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 16.4568,
+        "predicted": 16.3964,
+        "residual": 0.0603
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.7385,
+        "predicted": 6.8097,
+        "residual": -0.0712
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.6512,
+        "predicted": 7.1392,
+        "residual": -0.488
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 15.7483,
+        "predicted": 15.8942,
+        "residual": -0.1459
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.9767,
+        "predicted": 7.8576,
+        "residual": 0.1191
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.8306,
+        "predicted": 10.3548,
+        "residual": -1.5242
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.5541,
+        "predicted": 11.9706,
+        "residual": -0.4165
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.8809,
+        "predicted": 13.6011,
+        "residual": 0.2798
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 15.5539,
+        "predicted": 16.3304,
+        "residual": -0.7764
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.9954,
+        "predicted": 12.3454,
+        "residual": 0.65
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 10.4103,
+        "predicted": 10.1472,
+        "residual": 0.2631
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.7539,
+        "predicted": 11.9336,
+        "residual": -0.1797
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 17.0387,
+        "predicted": 17.0108,
+        "residual": 0.0279
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.7392,
+        "predicted": 7.6149,
+        "residual": -0.8757
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 15.2822,
+        "predicted": 15.5562,
+        "residual": -0.274
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.9883,
+        "predicted": 10.6121,
+        "residual": -1.6238
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.4578,
+        "predicted": 12.1356,
+        "residual": -0.6778
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.555,
+        "predicted": 7.5897,
+        "residual": -1.0347
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.0172,
+        "predicted": 7.6314,
+        "residual": 0.3857
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.9246,
+        "predicted": 11.9621,
+        "residual": -0.0374
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.4186,
+        "predicted": 9.384,
+        "residual": 0.0346
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 18.8252,
+        "predicted": 17.598,
+        "residual": 1.2272
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 10.5325,
+        "predicted": 10.383,
+        "residual": 0.1494
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.8736,
+        "predicted": 7.4666,
+        "residual": -0.593
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.5662,
+        "predicted": 13.1125,
+        "residual": -0.5463
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.3453,
+        "predicted": 11.8584,
+        "residual": -0.5131
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 10.6142,
+        "predicted": 10.5791,
+        "residual": 0.0351
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 10.1362,
+        "predicted": 10.1449,
+        "residual": -0.0087
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.7909,
+        "predicted": 8.6742,
+        "residual": -0.8833
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 14.2913,
+        "predicted": 13.7111,
+        "residual": 0.5802
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.2465,
+        "predicted": 12.7639,
+        "residual": -1.5174
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.6763,
+        "predicted": 9.3289,
+        "residual": -0.6526
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 4.1982,
+        "predicted": 4.5174,
+        "residual": -0.3192
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.5655,
+        "predicted": 7.9056,
+        "residual": -0.3402
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.187,
+        "predicted": 12.7651,
+        "residual": -0.578
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.518,
+        "predicted": 7.9608,
+        "residual": -0.4429
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.3333,
+        "predicted": 13.1669,
+        "residual": 0.1664
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.8161,
+        "predicted": 6.8904,
+        "residual": -0.0743
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.0758,
+        "predicted": 9.7218,
+        "residual": -0.646
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.8825,
+        "predicted": 7.4749,
+        "residual": -0.5924
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.9858,
+        "predicted": 6.8536,
+        "residual": 0.1323
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.4329,
+        "predicted": 8.0037,
+        "residual": 0.4292
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 17.5705,
+        "predicted": 15.8924,
+        "residual": 1.6781
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 14.069,
+        "predicted": 13.9492,
+        "residual": 0.1199
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.2014,
+        "predicted": 12.0541,
+        "residual": 1.1473
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 13.2247,
+        "predicted": 13.8255,
+        "residual": -0.6007
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.1262,
+        "predicted": 8.0031,
+        "residual": -1.8769
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 5.9225,
+        "predicted": 6.0213,
+        "residual": -0.0988
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.4469,
+        "predicted": 9.6618,
+        "residual": -0.2149
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 8.7497,
+        "predicted": 8.7058,
+        "residual": 0.0439
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 7.9216,
+        "predicted": 8.3703,
+        "residual": -0.4487
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.1047,
+        "predicted": 6.4329,
+        "residual": -0.3283
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 15.2747,
+        "predicted": 15.7705,
+        "residual": -0.4958
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 17.2461,
+        "predicted": 16.3166,
+        "residual": 0.9295
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 12.8343,
+        "predicted": 13.3614,
+        "residual": -0.5272
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 9.5314,
+        "predicted": 10.1112,
+        "residual": -0.5798
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 5.4095,
+        "predicted": 5.5981,
+        "residual": -0.1886
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 10.1936,
+        "predicted": 10.2024,
+        "residual": -0.0088
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 6.7875,
+        "predicted": 7.4735,
+        "residual": -0.6861
+      },
+      {
+        "feedstock": "wheat_straw",
+        "actual": 11.1253,
+        "predicted": 11.5051,
+        "residual": -0.3798
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 15.9425,
+        "predicted": 16.5015,
+        "residual": -0.559
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 9.9651,
+        "predicted": 10.2771,
+        "residual": -0.312
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 26.2436,
+        "predicted": 27.0259,
+        "residual": -0.7823
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.1612,
+        "predicted": 19.4215,
+        "residual": -2.2603
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 25.0515,
+        "predicted": 25.0666,
+        "residual": -0.015
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 24.2381,
+        "predicted": 25.3299,
+        "residual": -1.0918
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 37.605,
+        "predicted": 37.1473,
+        "residual": 0.4578
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 28.2781,
+        "predicted": 27.2658,
+        "residual": 1.0123
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.0373,
+        "predicted": 17.1765,
+        "residual": -0.1392
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 28.3248,
+        "predicted": 29.1171,
+        "residual": -0.7923
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 15.4152,
+        "predicted": 15.3461,
+        "residual": 0.069
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 20.8781,
+        "predicted": 21.9168,
+        "residual": -1.0387
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 20.13,
+        "predicted": 20.1503,
+        "residual": -0.0203
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 35.9837,
+        "predicted": 34.5761,
+        "residual": 1.4076
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 27.652,
+        "predicted": 28.3626,
+        "residual": -0.7105
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 13.8635,
+        "predicted": 14.4858,
+        "residual": -0.6223
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 30.7332,
+        "predicted": 28.8473,
+        "residual": 1.8859
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 11.7362,
+        "predicted": 12.488,
+        "residual": -0.7518
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 27.2989,
+        "predicted": 25.855,
+        "residual": 1.444
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 35.1168,
+        "predicted": 33.7847,
+        "residual": 1.3321
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 51.974,
+        "predicted": 48.1136,
+        "residual": 3.8604
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 22.8262,
+        "predicted": 21.7647,
+        "residual": 1.0614
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.2303,
+        "predicted": 16.294,
+        "residual": -0.0637
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 21.6957,
+        "predicted": 21.3171,
+        "residual": 0.3786
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 36.3505,
+        "predicted": 32.7286,
+        "residual": 3.6219
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 28.2796,
+        "predicted": 29.3896,
+        "residual": -1.1101
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 28.1369,
+        "predicted": 28.7174,
+        "residual": -0.5804
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 19.4834,
+        "predicted": 20.1205,
+        "residual": -0.6371
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 26.9027,
+        "predicted": 26.8906,
+        "residual": 0.0121
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 21.3684,
+        "predicted": 22.1033,
+        "residual": -0.7349
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 13.3253,
+        "predicted": 13.9485,
+        "residual": -0.6232
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 19.107,
+        "predicted": 18.6129,
+        "residual": 0.494
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 30.8404,
+        "predicted": 31.7049,
+        "residual": -0.8645
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 24.0018,
+        "predicted": 25.0399,
+        "residual": -1.0381
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.0547,
+        "predicted": 17.3911,
+        "residual": -0.3365
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 28.1918,
+        "predicted": 27.8087,
+        "residual": 0.3832
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 20.293,
+        "predicted": 19.9778,
+        "residual": 0.3152
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 15.9462,
+        "predicted": 15.738,
+        "residual": 0.2082
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 19.009,
+        "predicted": 18.5118,
+        "residual": 0.4972
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 15.3027,
+        "predicted": 15.0381,
+        "residual": 0.2646
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.1125,
+        "predicted": 15.7549,
+        "residual": 0.3575
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 22.2999,
+        "predicted": 22.1118,
+        "residual": 0.1881
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 34.6878,
+        "predicted": 33.6428,
+        "residual": 1.0449
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 40.9454,
+        "predicted": 42.0222,
+        "residual": -1.0768
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.8711,
+        "predicted": 17.4514,
+        "residual": -0.5803
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 21.4439,
+        "predicted": 22.5623,
+        "residual": -1.1184
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 24.3115,
+        "predicted": 24.8875,
+        "residual": -0.576
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 22.0571,
+        "predicted": 22.9346,
+        "residual": -0.8774
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 30.8238,
+        "predicted": 29.2586,
+        "residual": 1.5652
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 21.3655,
+        "predicted": 20.9872,
+        "residual": 0.3783
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.993,
+        "predicted": 16.9113,
+        "residual": 0.0816
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.5875,
+        "predicted": 17.06,
+        "residual": -0.4725
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 14.3011,
+        "predicted": 14.9785,
+        "residual": -0.6774
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 12.5905,
+        "predicted": 13.1699,
+        "residual": -0.5794
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 32.3196,
+        "predicted": 33.5518,
+        "residual": -1.2322
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 27.2472,
+        "predicted": 25.9049,
+        "residual": 1.3424
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 14.2578,
+        "predicted": 14.3695,
+        "residual": -0.1118
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.7242,
+        "predicted": 17.3126,
+        "residual": -0.5884
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 33.7411,
+        "predicted": 34.2769,
+        "residual": -0.5358
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.5523,
+        "predicted": 16.7898,
+        "residual": 0.7626
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 12.8552,
+        "predicted": 13.7099,
+        "residual": -0.8547
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 22.0007,
+        "predicted": 21.5999,
+        "residual": 0.4008
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.743,
+        "predicted": 15.3946,
+        "residual": 1.3484
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 19.1158,
+        "predicted": 21.2773,
+        "residual": -2.1615
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 14.477,
+        "predicted": 14.104,
+        "residual": 0.373
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 29.0008,
+        "predicted": 26.8598,
+        "residual": 2.141
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 28.0722,
+        "predicted": 29.3457,
+        "residual": -1.2734
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.1989,
+        "predicted": 16.6074,
+        "residual": -0.4085
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 11.6396,
+        "predicted": 11.8252,
+        "residual": -0.1856
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 19.6041,
+        "predicted": 19.8354,
+        "residual": -0.2313
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 20.1983,
+        "predicted": 20.4139,
+        "residual": -0.2155
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.4352,
+        "predicted": 17.3085,
+        "residual": 0.1266
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 23.9281,
+        "predicted": 23.6379,
+        "residual": 0.2902
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 21.9977,
+        "predicted": 21.8649,
+        "residual": 0.1328
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 20.0889,
+        "predicted": 20.5794,
+        "residual": -0.4905
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 18.9804,
+        "predicted": 18.7169,
+        "residual": 0.2635
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 20.0883,
+        "predicted": 21.3897,
+        "residual": -1.3014
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.2224,
+        "predicted": 15.8698,
+        "residual": 1.3525
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 20.4298,
+        "predicted": 20.1588,
+        "residual": 0.271
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 18.3877,
+        "predicted": 17.5769,
+        "residual": 0.8108
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.4849,
+        "predicted": 17.6619,
+        "residual": -0.1769
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 23.0905,
+        "predicted": 23.3792,
+        "residual": -0.2887
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 19.1329,
+        "predicted": 19.3576,
+        "residual": -0.2247
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 19.6154,
+        "predicted": 19.9018,
+        "residual": -0.2864
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.1255,
+        "predicted": 18.0027,
+        "residual": -0.8773
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 23.47,
+        "predicted": 22.5059,
+        "residual": 0.964
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 26.3198,
+        "predicted": 26.9448,
+        "residual": -0.625
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 18.2405,
+        "predicted": 17.7745,
+        "residual": 0.466
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 28.1834,
+        "predicted": 26.8148,
+        "residual": 1.3686
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 10.9465,
+        "predicted": 11.6107,
+        "residual": -0.6642
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 12.2532,
+        "predicted": 13.3992,
+        "residual": -1.1459
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 12.876,
+        "predicted": 12.5947,
+        "residual": 0.2813
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 21.6743,
+        "predicted": 22.6123,
+        "residual": -0.938
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 18.6605,
+        "predicted": 19.056,
+        "residual": -0.3955
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 33.9337,
+        "predicted": 32.7957,
+        "residual": 1.1381
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 26.2873,
+        "predicted": 26.2373,
+        "residual": 0.0501
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.4162,
+        "predicted": 16.7355,
+        "residual": -0.3194
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 38.1121,
+        "predicted": 37.8944,
+        "residual": 0.2177
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 35.8583,
+        "predicted": 36.1417,
+        "residual": -0.2834
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.5023,
+        "predicted": 18.6292,
+        "residual": -2.1269
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.7666,
+        "predicted": 18.8494,
+        "residual": -1.0829
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 24.4015,
+        "predicted": 24.2195,
+        "residual": 0.182
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 12.2966,
+        "predicted": 13.1705,
+        "residual": -0.8739
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 15.2401,
+        "predicted": 15.7361,
+        "residual": -0.496
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 10.9453,
+        "predicted": 12.1869,
+        "residual": -1.2415
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 15.5966,
+        "predicted": 15.7362,
+        "residual": -0.1396
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 28.8307,
+        "predicted": 29.5121,
+        "residual": -0.6814
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 18.8256,
+        "predicted": 18.6536,
+        "residual": 0.172
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.486,
+        "predicted": 17.5718,
+        "residual": -0.0857
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 13.9861,
+        "predicted": 13.9883,
+        "residual": -0.0022
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 8.9107,
+        "predicted": 8.6196,
+        "residual": 0.2911
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 24.5736,
+        "predicted": 24.0471,
+        "residual": 0.5265
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 10.5662,
+        "predicted": 10.2898,
+        "residual": 0.2764
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 10.537,
+        "predicted": 10.0911,
+        "residual": 0.4459
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 22.8942,
+        "predicted": 23.0389,
+        "residual": -0.1447
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.7092,
+        "predicted": 16.7672,
+        "residual": 0.942
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.9778,
+        "predicted": 18.9672,
+        "residual": -0.9893
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 26.5198,
+        "predicted": 26.9896,
+        "residual": -0.4698
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.076,
+        "predicted": 16.9139,
+        "residual": -0.8379
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 29.4669,
+        "predicted": 29.872,
+        "residual": -0.4052
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 22.7711,
+        "predicted": 23.4193,
+        "residual": -0.6482
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 25.3583,
+        "predicted": 26.843,
+        "residual": -1.4847
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 19.6075,
+        "predicted": 19.1247,
+        "residual": 0.4828
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 36.502,
+        "predicted": 39.2689,
+        "residual": -2.7669
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 19.8619,
+        "predicted": 18.7203,
+        "residual": 1.1417
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 20.4674,
+        "predicted": 19.6062,
+        "residual": 0.8612
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 36.4197,
+        "predicted": 36.4141,
+        "residual": 0.0056
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 25.8742,
+        "predicted": 26.3638,
+        "residual": -0.4895
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.2037,
+        "predicted": 16.2608,
+        "residual": -0.0571
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.4426,
+        "predicted": 17.731,
+        "residual": -0.2884
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 15.9771,
+        "predicted": 16.7103,
+        "residual": -0.7333
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 19.9591,
+        "predicted": 20.0353,
+        "residual": -0.0762
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 15.491,
+        "predicted": 15.8132,
+        "residual": -0.3221
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 36.074,
+        "predicted": 35.3472,
+        "residual": 0.7269
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 14.554,
+        "predicted": 15.452,
+        "residual": -0.898
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 14.4291,
+        "predicted": 14.1458,
+        "residual": 0.2833
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 26.7234,
+        "predicted": 26.4254,
+        "residual": 0.298
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.5489,
+        "predicted": 17.3547,
+        "residual": 0.1942
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 10.3606,
+        "predicted": 11.1424,
+        "residual": -0.7818
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 13.3033,
+        "predicted": 13.5945,
+        "residual": -0.2912
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 22.7508,
+        "predicted": 23.0446,
+        "residual": -0.2938
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 13.9462,
+        "predicted": 14.5311,
+        "residual": -0.5849
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 12.4439,
+        "predicted": 12.0442,
+        "residual": 0.3996
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 21.5402,
+        "predicted": 22.5765,
+        "residual": -1.0363
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 17.8515,
+        "predicted": 17.3519,
+        "residual": 0.4996
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 27.228,
+        "predicted": 28.5933,
+        "residual": -1.3653
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 30.7352,
+        "predicted": 29.1473,
+        "residual": 1.5879
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 16.6666,
+        "predicted": 17.0362,
+        "residual": -0.3696
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 20.6089,
+        "predicted": 20.7011,
+        "residual": -0.0922
+      },
+      {
+        "feedstock": "wood_chips",
+        "actual": 32.3217,
+        "predicted": 31.4004,
+        "residual": 0.9213
+      }
+    ],
+    "saved_artifacts": [
+      "models/dryer_unified_linear_regression.pkl",
+      "models/dryer_unified_decision_tree.pkl",
+      "models/dryer_unified_random_forest.pkl",
+      "models/dryer_unified_gradient_boosting.pkl",
+      "models/dryer_best_unified_model.pkl",
+      "models/dryer_separate_olive_pomace.pkl",
+      "models/dryer_separate_wheat_straw.pkl",
+      "models/dryer_separate_wood_chips.pkl"
+    ]
+  },
+  "inference_smoke_check": {
+    "solar_kw_850wm2_28c": 9.558,
+    "dryer_kw_olive_250kg_45to12pct": 25.3743
+  }
+}

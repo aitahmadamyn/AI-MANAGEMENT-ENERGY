@@ -1,0 +1,13 @@
+task,task_code,model_name,kind,model_type_code,selected,train_rmse,val_rmse,test_rmse,test_mae,test_r2,overfit_status
+Model 1: Solar PV (kW_e),1,Baseline: Training Mean,baseline,0,0,4.08507,4.03312,4.08413,3.57927,-4e-05,Baseline Reference
+Model 1: Solar PV (kW_e),1,Baseline: Linear Nominal Rule (P_nom·(1-L)·G/1000),baseline,0,0,0.68632,0.69109,0.72285,0.41903,0.96867,Fixed Analytical Formula
+Model 1: Solar PV (kW_e),1,Linear Regression (OLS + StandardScaler),ml_model,1,0,0.15938,0.1533,0.16469,0.10378,0.99837,Well-Generalized
+Model 1: Solar PV (kW_e),1,Decision Tree Regressor,ml_model,2,0,0.06671,0.09122,0.09318,0.04731,0.99948,Well-Generalized
+Model 1: Solar PV (kW_e),1,Random Forest Regressor,ml_model,3,0,0.05207,0.07155,0.07379,0.03769,0.99967,Well-Generalized
+Model 1: Solar PV (kW_e),1,Gradient Boosting Regressor,ml_model,4,1,0.06304,0.06986,0.06991,0.03924,0.99971,Well-Generalized
+Model 2: Biomass Dryer (kW_th),2,Baseline: Training Mean,baseline,0,0,10.27333,10.27727,10.36809,8.44435,-4e-05,Baseline Reference
+Model 2: Biomass Dryer (kW_th),2,Baseline: Latent Evap Only (m_evap·h_fg / η),baseline,0,0,6.64406,6.5942,6.57287,6.19811,0.59809,Systematic Negative Bias (Omits Air Heating)
+Model 2: Biomass Dryer (kW_th),2,Linear Regression (OLS + StandardScaler),ml_model,1,0,1.86369,1.87405,1.85964,1.37525,0.96783,Well-Generalized
+Model 2: Biomass Dryer (kW_th),2,Decision Tree Regressor,ml_model,2,0,1.09897,2.07432,1.93789,1.43095,0.96506,Mild Overfit (Monitor)
+Model 2: Biomass Dryer (kW_th),2,Random Forest Regressor,ml_model,3,0,0.71999,1.22893,1.21553,0.88661,0.98625,Mild Overfit (Monitor)
+Model 2: Biomass Dryer (kW_th),2,Gradient Boosting Regressor,ml_model,4,1,0.68257,0.86575,0.87987,0.64915,0.9928,Well-Generalized

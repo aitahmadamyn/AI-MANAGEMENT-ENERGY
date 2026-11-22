@@ -1,0 +1,4 @@
+scenario,scenario_code,rows,pv_electrical_mwh_e,solar_thermal_mwh_th,ncg_recovered_mwh_th,dryer_demand_mwh_th,renewable_recovered_coverage_pct,max_mass_balance_residual_kg_s,max_energy_closure_residual_kwh,plc_safety_margin_violations
+low,1,35064,105.34,65.6,119.48,143.87,96.15,0.0,7.105427357601002e-14,0
+medium,2,35064,105.34,91.84,302.97,433.33,87.11,0.0,3.552713678800501e-14,0
+high,3,35064,105.34,118.08,664.18,1035.67,74.71,0.0,3.730349362740526e-14,0

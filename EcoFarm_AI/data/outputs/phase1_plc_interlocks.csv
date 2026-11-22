@@ -1,0 +1,5 @@
+interlock_num,id,subsystem,interlock,rule
+1,PLC-01,Sand Thermal Storage,Over-temperature trip (> 600 °C) & heater contactor cutoff,AI cannot raise charging setpoint above 550 °C or bypass thermal cutout.
+2,PLC-02,Slow Pyrolysis Reactor & NCG Burner,Oxygen concentration monitoring (O2 < safety threshold) & flame supervision,AI receives burner operating status as read-only; ignition/purge is PLC-only.
+3,PLC-03,Heat-Transfer-Fluid (HTF) Circuit,"Loop pressure relief, expansion tank level, & minimum pump flow switch",AI recommends charge/discharge mode; PLC validates pump flow & pressure before actuation.
+4,PLC-04,Biomass Dryer,Hot-spot / spark arrest & exhaust over-temperature protection,AI estimates thermal demand; PLC enforces safe inlet air ceiling.

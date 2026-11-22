@@ -1,0 +1,27 @@
+# EcoFarm Circular — AI Energy Management System
+# Phase 1: Foundational Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Data manipulation and numerical computing
+pandas>=2.2.0
+numpy>=1.26.0
+
+# External API requests (PVGIS solar & meteorological data in Phase 2)
+requests>=2.31.0
+
+# Visualization and exploratory data analysis
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Machine learning and optimization (Phases 5–6)
+scikit-learn>=1.4.0
+scipy>=1.12.0
+joblib>=1.3.0
+
+# Interactive decision-support dashboard (Phase 7)
+streamlit>=1.32.0
+plotly>=5.18.0
+
+# Notebook environment
+jupyter>=1.0.0
+ipykernel>=6.29.0

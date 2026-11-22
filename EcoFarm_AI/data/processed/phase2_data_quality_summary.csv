@@ -1,0 +1,10 @@
+metric,value,numeric_value,source
+provisional_site,"Settat, Morocco",,config.py
+merged_rows,0,0,solar_weather_merged_clean.csv
+missing_hours,0,0,UTC continuity check
+duplicate_timestamps,0,0,UTC uniqueness check
+synthetic_imputation_applied_flag,0,0,non-imputation rule (0=False)
+cross_source_temp_mae_c,0.0,0.0,PVGIS vs Open-Meteo T2m
+train_2020_2021_rows,0,0,train_2020_2021.csv
+val_2022_rows,0,0,val_2022.csv
+test_2023_rows,0,0,test_2023.csv

@@ -1,0 +1,50 @@
+{
+  "phase": "Phase 2 \u2014 Cleaned Solar & Weather Data Quality Report",
+  "site": "Settat, Casablanca-Settat, Morocco (Provisional)",
+  "coordinates": {
+    "lat": 33.001,
+    "lon": -7.6166
+  },
+  "timezone": "UTC",
+  "synthetic_imputation_used": false,
+  "pvgis_audit": {
+    "source": "European Commission PVGIS v5.3 (PVGIS-SARAH3 / ERA5)",
+    "rows_after_clean": 35064,
+    "unparseable_timestamps": 0,
+    "duplicate_timestamps_removed": 0,
+    "missing_expected_utc_hours": 0,
+    "missing_values_per_column": {},
+    "physical_bounds_violations_nulled": {
+      "pvgis_irradiance_wm2": 0,
+      "pvgis_ambient_temp_c": 0,
+      "pvgis_wind_speed_ms": 0,
+      "pvgis_pv_power_kw": 0
+    },
+    "nighttime_pv_anomalies": 0,
+    "reconstructed_solar_hours_count": 0
+  },
+  "open_meteo_audit": {
+    "source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+    "rows_after_clean": 35064,
+    "unparseable_timestamps": 0,
+    "duplicate_timestamps_removed": 0,
+    "missing_expected_utc_hours": 0,
+    "missing_values_per_column": {},
+    "physical_bounds_violations_nulled": {
+      "meteo_ambient_temp_c": 0,
+      "meteo_relative_humidity_pct": 0,
+      "meteo_wind_speed_ms": 0
+    }
+  },
+  "merged_summary": {
+    "total_rows": 35064,
+    "start_utc": "2020-01-01T00:00:00+00:00",
+    "end_utc": "2023-12-31T23:00:00+00:00",
+    "cross_source_temp_mae_c": 0.9678,
+    "chronological_splits": {
+      "train_2020_2021_rows": 17544,
+      "val_2022_rows": 8760,
+      "test_2023_rows": 8760
+    }
+  }
+}

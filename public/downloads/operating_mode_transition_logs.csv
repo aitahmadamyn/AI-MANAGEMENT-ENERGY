@@ -1,0 +1,368 @@
+scenario_id,scenario_code,strategy,strategy_code,hour_idx,timestamp,from_mode,from_mode_code,to_mode,to_mode_code,sand_temp_c,reason,plc_safe
+high_solar,1,strategy_a_rule,1,7,2023-04-11 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,167.2,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_solar,1,strategy_a_rule,1,9,2023-04-11 09:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_solar,1,strategy_a_rule,1,10,2023-04-11 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,118.1,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_solar,1,strategy_a_rule,1,17,2023-04-11 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,183.9,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_solar,1,strategy_a_rule,1,31,2023-04-12 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,143.3,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_solar,1,strategy_a_rule,1,32,2023-04-12 08:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_solar,1,strategy_a_rule,1,34,2023-04-12 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,115.9,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_solar,1,strategy_a_rule,1,41,2023-04-12 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,174.1,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+high_solar,1,strategy_a_rule,1,42,2023-04-12 18:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,172.6,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_solar,1,strategy_a_rule,1,55,2023-04-13 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,136.7,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_solar,1,strategy_a_rule,1,56,2023-04-13 08:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_solar,1,strategy_a_rule,1,58,2023-04-13 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,116.0,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_solar,1,strategy_a_rule,1,65,2023-04-13 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,164.0,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+high_solar,1,strategy_a_rule,1,66,2023-04-13 18:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,162.8,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_solar,1,strategy_a_rule,1,79,2023-04-14 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,128.5,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_solar,1,strategy_a_rule,1,80,2023-04-14 08:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_solar,1,strategy_a_rule,1,82,2023-04-14 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,115.9,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_solar,1,strategy_a_rule,1,89,2023-04-14 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,173.7,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+high_solar,1,strategy_a_rule,1,90,2023-04-14 18:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,172.4,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_solar,1,strategy_a_rule,1,103,2023-04-15 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,136.5,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_solar,1,strategy_a_rule,1,104,2023-04-15 08:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_solar,1,strategy_a_rule,1,106,2023-04-15 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,116.1,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_solar,1,strategy_a_rule,1,113,2023-04-15 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,179.8,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+high_solar,1,strategy_a_rule,1,114,2023-04-15 18:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,178.4,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_solar,1,strategy_a_rule,1,127,2023-04-16 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,141.4,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_solar,1,strategy_a_rule,1,128,2023-04-16 08:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_solar,1,strategy_a_rule,1,130,2023-04-16 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,116.2,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_solar,1,strategy_a_rule,1,137,2023-04-16 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,188.3,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+high_solar,1,strategy_a_rule,1,138,2023-04-16 18:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,186.8,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_solar,1,strategy_a_rule,1,151,2023-04-17 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,148.3,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_solar,1,strategy_a_rule,1,152,2023-04-17 08:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_solar,1,strategy_a_rule,1,154,2023-04-17 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,116.3,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_solar,1,strategy_a_rule,1,161,2023-04-17 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,189.9,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_solar,1,strategy_b_ai,2,8,2023-04-11 08:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,164.3,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+high_solar,1,strategy_b_ai,2,10,2023-04-11 10:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,120.0,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_solar,1,strategy_b_ai,2,17,2023-04-11 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_2_DISCHARGE,2,185.5,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+high_solar,1,strategy_b_ai,2,18,2023-04-11 18:00,MODE_2_DISCHARGE,2,MODE_4_STANDBY,4,153.2,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_solar,1,strategy_b_ai,2,33,2023-04-12 09:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,117.7,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_solar,1,strategy_b_ai,2,34,2023-04-12 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,115.7,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_solar,1,strategy_b_ai,2,41,2023-04-12 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_2_DISCHARGE,2,173.9,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+high_solar,1,strategy_b_ai,2,43,2023-04-12 19:00,MODE_2_DISCHARGE,2,MODE_4_STANDBY,4,120.0,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_solar,1,strategy_b_ai,2,56,2023-04-13 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,95.9,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_solar,1,strategy_b_ai,2,58,2023-04-13 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,92.8,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_solar,1,strategy_b_ai,2,65,2023-04-13 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_2_DISCHARGE,2,143.8,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+high_solar,1,strategy_b_ai,2,66,2023-04-13 18:00,MODE_2_DISCHARGE,2,MODE_4_STANDBY,4,120.0,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_solar,1,strategy_b_ai,2,80,2023-04-14 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,93.7,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_solar,1,strategy_b_ai,2,82,2023-04-14 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,90.7,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_solar,1,strategy_b_ai,2,89,2023-04-14 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_2_DISCHARGE,2,151.7,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+high_solar,1,strategy_b_ai,2,90,2023-04-14 18:00,MODE_2_DISCHARGE,2,MODE_4_STANDBY,4,120.0,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_solar,1,strategy_b_ai,2,104,2023-04-15 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,94.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_solar,1,strategy_b_ai,2,106,2023-04-15 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,91.4,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_solar,1,strategy_b_ai,2,113,2023-04-15 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_2_DISCHARGE,2,158.3,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+high_solar,1,strategy_b_ai,2,114,2023-04-15 18:00,MODE_2_DISCHARGE,2,MODE_4_STANDBY,4,126.1,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_solar,1,strategy_b_ai,2,128,2023-04-16 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,99.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_solar,1,strategy_b_ai,2,130,2023-04-16 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,96.3,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_solar,1,strategy_b_ai,2,137,2023-04-16 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_2_DISCHARGE,2,171.0,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+high_solar,1,strategy_b_ai,2,138,2023-04-16 18:00,MODE_2_DISCHARGE,2,MODE_4_STANDBY,4,139.1,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_solar,1,strategy_b_ai,2,152,2023-04-17 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,109.6,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_solar,1,strategy_b_ai,2,154,2023-04-17 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,106.3,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_solar,1,strategy_b_ai,2,161,2023-04-17 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_2_DISCHARGE,2,181.2,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+high_solar,1,strategy_b_ai,2,162,2023-04-17 18:00,MODE_2_DISCHARGE,2,MODE_4_STANDBY,4,149.3,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_solar,2,strategy_a_rule,1,7,2023-02-13 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,167.0,Dryer active & sand above T_min -> Mode 2 discharge,1
+low_solar,2,strategy_a_rule,1,9,2023-02-13 09:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_solar,2,strategy_a_rule,1,10,2023-02-13 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,118.0,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_solar,2,strategy_a_rule,1,17,2023-02-13 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,140.5,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_solar,2,strategy_a_rule,1,31,2023-02-14 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,110.6,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_solar,2,strategy_a_rule,1,34,2023-02-14 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,105.1,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_solar,2,strategy_a_rule,1,41,2023-02-14 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,114.2,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_solar,2,strategy_a_rule,1,55,2023-02-15 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,89.6,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_solar,2,strategy_a_rule,1,58,2023-02-15 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,85.1,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_solar,2,strategy_a_rule,1,65,2023-02-15 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,75.8,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_solar,2,strategy_a_rule,1,79,2023-02-16 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,59.7,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_solar,2,strategy_a_rule,1,82,2023-02-16 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,56.8,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_solar,2,strategy_a_rule,1,89,2023-02-16 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,51.2,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_solar,2,strategy_a_rule,1,103,2023-02-17 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,42.3,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_solar,2,strategy_a_rule,1,106,2023-02-17 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,40.7,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_solar,2,strategy_a_rule,1,113,2023-02-17 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,37.9,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_solar,2,strategy_a_rule,1,127,2023-02-18 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,32.1,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_solar,2,strategy_a_rule,1,130,2023-02-18 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,31.2,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_solar,2,strategy_a_rule,1,137,2023-02-18 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,52.5,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_solar,2,strategy_a_rule,1,151,2023-02-19 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,43.6,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_solar,2,strategy_a_rule,1,154,2023-02-19 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,41.8,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_solar,2,strategy_a_rule,1,161,2023-02-19 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,41.9,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_solar,2,strategy_b_ai,2,9,2023-02-13 09:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,161.0,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+low_solar,2,strategy_b_ai,2,10,2023-02-13 10:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,127.9,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_solar,2,strategy_b_ai,2,17,2023-02-13 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_2_DISCHARGE,2,149.1,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+low_solar,2,strategy_b_ai,2,18,2023-02-13 18:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,19,2023-02-13 19:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,118.0,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_solar,2,strategy_b_ai,2,32,2023-02-14 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,94.9,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,34,2023-02-14 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,91.8,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_solar,2,strategy_b_ai,2,41,2023-02-14 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,102.6,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,42,2023-02-14 18:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,100.9,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_solar,2,strategy_b_ai,2,55,2023-02-15 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,80.8,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,58,2023-02-15 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,76.8,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_solar,2,strategy_b_ai,2,65,2023-02-15 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,68.6,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_solar,2,strategy_b_ai,2,80,2023-02-16 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,53.4,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,81,2023-02-16 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,52.5,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_solar,2,strategy_b_ai,2,82,2023-02-16 10:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,51.6,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_solar,2,strategy_b_ai,2,89,2023-02-16 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,46.7,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,91,2023-02-16 19:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,45.4,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_solar,2,strategy_b_ai,2,105,2023-02-17 09:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,37.9,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,106,2023-02-17 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,37.5,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_solar,2,strategy_b_ai,2,113,2023-02-17 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,35.1,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,115,2023-02-17 19:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,34.4,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_solar,2,strategy_b_ai,2,129,2023-02-18 09:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,29.4,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,130,2023-02-18 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,29.2,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_solar,2,strategy_b_ai,2,137,2023-02-18 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,50.8,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,139,2023-02-18 19:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,49.5,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_solar,2,strategy_b_ai,2,153,2023-02-19 09:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,41.1,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,154,2023-02-19 10:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,40.6,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_solar,2,strategy_b_ai,2,161,2023-02-19 17:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,40.8,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_solar,2,strategy_b_ai,2,163,2023-02-19 19:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,40.0,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_dryer_demand,0,strategy_a_rule,1,6,2023-03-15 06:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,187.7,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_dryer_demand,0,strategy_a_rule,1,8,2023-03-15 08:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,9,2023-03-15 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,117.9,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_dryer_demand,0,strategy_a_rule,1,18,2023-03-15 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,102.9,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,20,2023-03-15 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,99.7,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_dryer_demand,0,strategy_a_rule,1,30,2023-03-16 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,84.7,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,33,2023-03-16 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,80.6,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_dryer_demand,0,strategy_a_rule,1,42,2023-03-16 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,71.2,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,44,2023-03-16 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,69.2,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_dryer_demand,0,strategy_a_rule,1,54,2023-03-17 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,59.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,57,2023-03-17 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,56.3,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_dryer_demand,0,strategy_a_rule,1,66,2023-03-17 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,50.3,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,68,2023-03-17 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,49.0,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_dryer_demand,0,strategy_a_rule,1,78,2023-03-18 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,42.4,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,81,2023-03-18 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,40.6,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_dryer_demand,0,strategy_a_rule,1,90,2023-03-18 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,36.8,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,92,2023-03-18 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,35.9,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_dryer_demand,0,strategy_a_rule,1,102,2023-03-19 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,31.5,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,105,2023-03-19 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,30.3,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_dryer_demand,0,strategy_a_rule,1,114,2023-03-19 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,28.3,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,116,2023-03-19 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,27.8,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_dryer_demand,0,strategy_a_rule,1,126,2023-03-20 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,24.8,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,129,2023-03-20 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,23.9,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_dryer_demand,0,strategy_a_rule,1,138,2023-03-20 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,24.3,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,140,2023-03-20 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,24.0,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_dryer_demand,0,strategy_a_rule,1,150,2023-03-21 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,21.7,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,153,2023-03-21 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,21.2,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_dryer_demand,0,strategy_a_rule,1,162,2023-03-21 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,24.5,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+high_dryer_demand,0,strategy_a_rule,1,164,2023-03-21 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,24.3,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_dryer_demand,0,strategy_b_ai,2,8,2023-03-15 08:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,180.8,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+high_dryer_demand,0,strategy_b_ai,2,9,2023-03-15 09:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,122.9,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_dryer_demand,0,strategy_b_ai,2,18,2023-03-15 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,106.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,22,2023-03-15 22:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,99.6,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_dryer_demand,0,strategy_b_ai,2,30,2023-03-16 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,87.4,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,31,2023-03-16 07:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,85.9,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_dryer_demand,0,strategy_b_ai,2,32,2023-03-16 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,84.5,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,33,2023-03-16 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,83.1,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_dryer_demand,0,strategy_b_ai,2,42,2023-03-16 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,73.4,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,45,2023-03-16 21:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,70.1,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_dryer_demand,0,strategy_b_ai,2,56,2023-03-17 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,58.8,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,57,2023-03-17 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,57.9,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_dryer_demand,0,strategy_b_ai,2,66,2023-03-17 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,51.6,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,70,2023-03-17 22:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,48.8,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_dryer_demand,0,strategy_b_ai,2,80,2023-03-18 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,42.2,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,81,2023-03-18 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,41.6,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_dryer_demand,0,strategy_b_ai,2,90,2023-03-18 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,37.6,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,94,2023-03-18 22:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,35.8,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_dryer_demand,0,strategy_b_ai,2,104,2023-03-19 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,31.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,105,2023-03-19 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,30.9,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_dryer_demand,0,strategy_b_ai,2,114,2023-03-19 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,28.9,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,118,2023-03-19 22:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,27.7,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_dryer_demand,0,strategy_b_ai,2,128,2023-03-20 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,24.5,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,129,2023-03-20 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,24.3,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_dryer_demand,0,strategy_b_ai,2,138,2023-03-20 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,24.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,142,2023-03-20 22:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,23.6,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_dryer_demand,0,strategy_b_ai,2,152,2023-03-21 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,21.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,153,2023-03-21 09:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,21.2,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_dryer_demand,0,strategy_b_ai,2,162,2023-03-21 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,24.5,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+high_dryer_demand,0,strategy_b_ai,2,166,2023-03-21 22:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,23.9,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_dryer_demand,0,strategy_a_rule,1,7,2023-03-15 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,166.8,Dryer active & sand above T_min -> Mode 2 discharge,1
+low_dryer_demand,0,strategy_a_rule,1,10,2023-03-15 10:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,129.3,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_dryer_demand,0,strategy_a_rule,1,16,2023-03-15 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,333.6,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+low_dryer_demand,0,strategy_a_rule,1,18,2023-03-15 18:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,333.0,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_dryer_demand,0,strategy_a_rule,1,31,2023-03-16 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,261.4,Dryer active & sand above T_min -> Mode 2 discharge,1
+low_dryer_demand,0,strategy_a_rule,1,34,2023-03-16 10:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,218.7,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_dryer_demand,0,strategy_a_rule,1,40,2023-03-16 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,406.9,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+low_dryer_demand,0,strategy_a_rule,1,42,2023-03-16 18:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,402.2,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_dryer_demand,0,strategy_a_rule,1,55,2023-03-17 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,314.3,Dryer active & sand above T_min -> Mode 2 discharge,1
+low_dryer_demand,0,strategy_a_rule,1,58,2023-03-17 10:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,267.0,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_dryer_demand,0,strategy_a_rule,1,64,2023-03-17 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,398.7,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+low_dryer_demand,0,strategy_a_rule,1,65,2023-03-17 17:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,397.3,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_dryer_demand,0,strategy_a_rule,1,79,2023-03-18 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,304.6,Dryer active & sand above T_min -> Mode 2 discharge,1
+low_dryer_demand,0,strategy_a_rule,1,82,2023-03-18 10:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,255.7,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_dryer_demand,0,strategy_a_rule,1,88,2023-03-18 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,392.8,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+low_dryer_demand,0,strategy_a_rule,1,90,2023-03-18 18:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,383.0,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_dryer_demand,0,strategy_a_rule,1,103,2023-03-19 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,299.1,Dryer active & sand above T_min -> Mode 2 discharge,1
+low_dryer_demand,0,strategy_a_rule,1,106,2023-03-19 10:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,252.7,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_dryer_demand,0,strategy_a_rule,1,112,2023-03-19 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,432.6,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+low_dryer_demand,0,strategy_a_rule,1,113,2023-03-19 17:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,432.7,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_dryer_demand,0,strategy_a_rule,1,127,2023-03-20 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,331.1,Dryer active & sand above T_min -> Mode 2 discharge,1
+low_dryer_demand,0,strategy_a_rule,1,130,2023-03-20 10:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,283.9,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_dryer_demand,0,strategy_a_rule,1,136,2023-03-20 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,465.7,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+low_dryer_demand,0,strategy_a_rule,1,138,2023-03-20 18:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,459.1,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_dryer_demand,0,strategy_a_rule,1,151,2023-03-21 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,358.0,Dryer active & sand above T_min -> Mode 2 discharge,1
+low_dryer_demand,0,strategy_a_rule,1,154,2023-03-21 10:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,310.0,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_dryer_demand,0,strategy_a_rule,1,160,2023-03-21 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_1_CHARGE,1,486.4,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+low_dryer_demand,0,strategy_a_rule,1,162,2023-03-21 18:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,478.9,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_dryer_demand,0,strategy_b_ai,2,10,2023-03-15 10:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,158.0,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_dryer_demand,0,strategy_b_ai,2,16,2023-03-15 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,309.2,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_dryer_demand,0,strategy_b_ai,2,34,2023-03-16 10:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,221.9,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_dryer_demand,0,strategy_b_ai,2,40,2023-03-16 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,359.5,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_dryer_demand,0,strategy_b_ai,2,58,2023-03-17 10:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,256.3,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_dryer_demand,0,strategy_b_ai,2,64,2023-03-17 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,347.4,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_dryer_demand,0,strategy_b_ai,2,82,2023-03-18 10:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,247.6,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_dryer_demand,0,strategy_b_ai,2,88,2023-03-18 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,339.0,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_dryer_demand,0,strategy_b_ai,2,106,2023-03-19 10:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,241.3,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_dryer_demand,0,strategy_b_ai,2,112,2023-03-19 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,369.8,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_dryer_demand,0,strategy_b_ai,2,130,2023-03-20 10:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,262.9,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_dryer_demand,0,strategy_b_ai,2,136,2023-03-20 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,396.4,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_dryer_demand,0,strategy_b_ai,2,154,2023-03-21 10:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,282.1,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_dryer_demand,0,strategy_b_ai,2,160,2023-03-21 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,411.4,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_ncg_recovery,0,strategy_a_rule,1,7,2023-05-10 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,176.3,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_ncg_recovery,0,strategy_a_rule,1,9,2023-05-10 09:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,120.0,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_ncg_recovery,0,strategy_a_rule,1,19,2023-05-10 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,380.6,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_ncg_recovery,0,strategy_a_rule,1,31,2023-05-11 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,303.8,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_ncg_recovery,0,strategy_a_rule,1,33,2023-05-11 09:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,238.8,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_ncg_recovery,0,strategy_a_rule,1,43,2023-05-11 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,472.5,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_ncg_recovery,0,strategy_a_rule,1,55,2023-05-12 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,376.2,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_ncg_recovery,0,strategy_a_rule,1,57,2023-05-12 09:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,308.4,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_ncg_recovery,0,strategy_a_rule,1,67,2023-05-12 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,527.2,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_ncg_recovery,0,strategy_a_rule,1,79,2023-05-13 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,419.3,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_ncg_recovery,0,strategy_a_rule,1,81,2023-05-13 09:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,349.6,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_ncg_recovery,0,strategy_a_rule,1,91,2023-05-13 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,550.0,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_ncg_recovery,0,strategy_a_rule,1,103,2023-05-14 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,437.2,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_ncg_recovery,0,strategy_a_rule,1,105,2023-05-14 09:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,367.1,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_ncg_recovery,0,strategy_a_rule,1,115,2023-05-14 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,550.0,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_ncg_recovery,0,strategy_a_rule,1,127,2023-05-15 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,437.2,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_ncg_recovery,0,strategy_a_rule,1,129,2023-05-15 09:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,367.6,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_ncg_recovery,0,strategy_a_rule,1,138,2023-05-15 18:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,550.0,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_ncg_recovery,0,strategy_a_rule,1,151,2023-05-16 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,429.1,Dryer active & sand above T_min -> Mode 2 discharge,1
+high_ncg_recovery,0,strategy_a_rule,1,153,2023-05-16 09:00,MODE_2_DISCHARGE,2,MODE_3_RECOVERED_HEAT_PRIORITY,3,358.9,NCG combustion active -> Mode 3 priority supply to dryer,1
+high_ncg_recovery,0,strategy_a_rule,1,163,2023-05-16 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,533.7,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+high_ncg_recovery,0,strategy_b_ai,2,9,2023-05-10 09:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,170.2,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_ncg_recovery,0,strategy_b_ai,2,19,2023-05-10 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,377.3,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_ncg_recovery,0,strategy_b_ai,2,33,2023-05-11 09:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,290.2,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_ncg_recovery,0,strategy_b_ai,2,43,2023-05-11 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,469.9,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_ncg_recovery,0,strategy_b_ai,2,57,2023-05-12 09:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,360.3,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_ncg_recovery,0,strategy_b_ai,2,67,2023-05-12 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,524.9,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_ncg_recovery,0,strategy_b_ai,2,81,2023-05-13 09:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,401.9,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_ncg_recovery,0,strategy_b_ai,2,91,2023-05-13 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,539.7,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_ncg_recovery,0,strategy_b_ai,2,105,2023-05-14 09:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,413.0,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_ncg_recovery,0,strategy_b_ai,2,115,2023-05-14 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,545.6,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_ncg_recovery,0,strategy_b_ai,2,129,2023-05-15 09:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,417.7,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_ncg_recovery,0,strategy_b_ai,2,139,2023-05-15 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,550.0,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+high_ncg_recovery,0,strategy_b_ai,2,153,2023-05-16 09:00,MODE_4_STANDBY,4,MODE_3_RECOVERED_HEAT_PRIORITY,3,420.9,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+high_ncg_recovery,0,strategy_b_ai,2,163,2023-05-16 19:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_4_STANDBY,4,539.4,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_ncg_recovery,0,strategy_a_rule,1,7,2023-05-10 07:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,167.5,Dryer active & sand above T_min -> Mode 2 discharge,1
+low_ncg_recovery,0,strategy_a_rule,1,9,2023-05-10 09:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,11,2023-05-10 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,116.3,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_ncg_recovery,0,strategy_a_rule,1,16,2023-05-10 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,119.6,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,17,2023-05-10 17:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,117.8,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_ncg_recovery,0,strategy_a_rule,1,31,2023-05-11 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,93.5,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,35,2023-05-11 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,87.9,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_ncg_recovery,0,strategy_a_rule,1,40,2023-05-11 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,91.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,41,2023-05-11 17:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,89.7,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_ncg_recovery,0,strategy_a_rule,1,55,2023-05-12 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,72.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,59,2023-05-12 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,68.0,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_ncg_recovery,0,strategy_a_rule,1,64,2023-05-12 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,71.2,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,65,2023-05-12 17:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,70.4,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_ncg_recovery,0,strategy_a_rule,1,79,2023-05-13 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,57.2,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,83,2023-05-13 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,54.2,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_ncg_recovery,0,strategy_a_rule,1,88,2023-05-13 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,58.3,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,89,2023-05-13 17:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,57.6,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_ncg_recovery,0,strategy_a_rule,1,103,2023-05-14 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,47.3,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,107,2023-05-14 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,45.2,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_ncg_recovery,0,strategy_a_rule,1,112,2023-05-14 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,50.8,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,113,2023-05-14 17:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,50.3,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_ncg_recovery,0,strategy_a_rule,1,127,2023-05-15 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,42.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,131,2023-05-15 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,40.3,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_ncg_recovery,0,strategy_a_rule,1,136,2023-05-15 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,48.6,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,137,2023-05-15 17:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,48.1,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_ncg_recovery,0,strategy_a_rule,1,151,2023-05-16 07:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,40.3,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,155,2023-05-16 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,38.6,NCG combustion active -> Mode 3 priority supply to dryer,1
+low_ncg_recovery,0,strategy_a_rule,1,160,2023-05-16 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,37.3,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+low_ncg_recovery,0,strategy_a_rule,1,161,2023-05-16 17:00,MODE_5_AUXILIARY_HEATING,5,MODE_1_CHARGE,1,37.1,Dryer idle with thermal/PV surplus below T_max -> Charge sand storage,1
+low_ncg_recovery,0,strategy_a_rule,1,162,2023-05-16 18:00,MODE_1_CHARGE,1,MODE_4_STANDBY,4,38.3,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+low_ncg_recovery,0,strategy_b_ai,2,8,2023-05-10 08:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,164.6,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+low_ncg_recovery,0,strategy_b_ai,2,10,2023-05-10 10:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,11,2023-05-10 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,118.2,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_ncg_recovery,0,strategy_b_ai,2,16,2023-05-10 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,120.0,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,18,2023-05-10 18:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,116.4,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_ncg_recovery,0,strategy_b_ai,2,32,2023-05-11 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,92.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,35,2023-05-11 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,88.2,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_ncg_recovery,0,strategy_b_ai,2,40,2023-05-11 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,91.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,42,2023-05-11 18:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,88.7,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_ncg_recovery,0,strategy_b_ai,2,56,2023-05-12 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,71.1,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,59,2023-05-12 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,68.2,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_ncg_recovery,0,strategy_b_ai,2,64,2023-05-12 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,71.4,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,66,2023-05-12 18:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,69.6,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_ncg_recovery,0,strategy_b_ai,2,80,2023-05-13 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,56.5,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,83,2023-05-13 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,54.3,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_ncg_recovery,0,strategy_b_ai,2,88,2023-05-13 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,58.4,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,90,2023-05-13 18:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,57.0,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_ncg_recovery,0,strategy_b_ai,2,104,2023-05-14 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,46.8,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,107,2023-05-14 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,45.3,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_ncg_recovery,0,strategy_b_ai,2,112,2023-05-14 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,50.8,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,114,2023-05-14 18:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,49.9,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_ncg_recovery,0,strategy_b_ai,2,128,2023-05-15 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,41.5,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,131,2023-05-15 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,40.3,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_ncg_recovery,0,strategy_b_ai,2,136,2023-05-15 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,48.6,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,138,2023-05-15 18:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,47.7,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+low_ncg_recovery,0,strategy_b_ai,2,152,2023-05-16 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,39.8,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,155,2023-05-16 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,38.6,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+low_ncg_recovery,0,strategy_b_ai,2,160,2023-05-16 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,37.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+low_ncg_recovery,0,strategy_b_ai,2,162,2023-05-16 18:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,36.8,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+combined_adverse,0,strategy_a_rule,1,6,2023-02-13 06:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,143.4,Dryer active & sand above T_min -> Mode 2 discharge,1
+combined_adverse,0,strategy_a_rule,1,7,2023-02-13 07:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,11,2023-02-13 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,112.1,NCG combustion active -> Mode 3 priority supply to dryer,1
+combined_adverse,0,strategy_a_rule,1,16,2023-02-13 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,103.7,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,20,2023-02-13 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,97.5,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+combined_adverse,0,strategy_a_rule,1,30,2023-02-14 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,82.9,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,35,2023-02-14 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,76.5,NCG combustion active -> Mode 3 priority supply to dryer,1
+combined_adverse,0,strategy_a_rule,1,40,2023-02-14 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,71.1,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,44,2023-02-14 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,66.8,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+combined_adverse,0,strategy_a_rule,1,54,2023-02-15 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,56.9,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,59,2023-02-15 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,52.7,NCG combustion active -> Mode 3 priority supply to dryer,1
+combined_adverse,0,strategy_a_rule,1,64,2023-02-15 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,49.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,68,2023-02-15 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,46.2,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+combined_adverse,0,strategy_a_rule,1,78,2023-02-16 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,39.5,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,83,2023-02-16 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,36.6,NCG combustion active -> Mode 3 priority supply to dryer,1
+combined_adverse,0,strategy_a_rule,1,88,2023-02-16 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,34.4,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,92,2023-02-16 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,32.9,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+combined_adverse,0,strategy_a_rule,1,102,2023-02-17 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,29.6,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,107,2023-02-17 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,28.2,NCG combustion active -> Mode 3 priority supply to dryer,1
+combined_adverse,0,strategy_a_rule,1,112,2023-02-17 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,27.4,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,116,2023-02-17 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,26.6,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+combined_adverse,0,strategy_a_rule,1,126,2023-02-18 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,24.2,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,131,2023-02-18 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,23.4,NCG combustion active -> Mode 3 priority supply to dryer,1
+combined_adverse,0,strategy_a_rule,1,136,2023-02-18 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,24.0,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,140,2023-02-18 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,23.6,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+combined_adverse,0,strategy_a_rule,1,150,2023-02-19 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,22.1,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,155,2023-02-19 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,21.4,NCG combustion active -> Mode 3 priority supply to dryer,1
+combined_adverse,0,strategy_a_rule,1,160,2023-02-19 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,22.6,Dryer active & sand depleted -> Mode 5 auxiliary heating,1
+combined_adverse,0,strategy_a_rule,1,164,2023-02-19 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,22.3,Dryer idle & no significant charging surplus -> Mode 4 standby,1
+combined_adverse,0,strategy_b_ai,2,8,2023-02-13 08:00,MODE_4_STANDBY,4,MODE_2_DISCHARGE,2,138.4,AI Supervisor: Mode 2 controlled discharge from sand battery,1
+combined_adverse,0,strategy_b_ai,2,9,2023-02-13 09:00,MODE_2_DISCHARGE,2,MODE_5_AUXILIARY_HEATING,5,120.0,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,11,2023-02-13 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,116.1,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+combined_adverse,0,strategy_b_ai,2,16,2023-02-13 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,107.4,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,22,2023-02-13 22:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,97.6,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+combined_adverse,0,strategy_b_ai,2,30,2023-02-14 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,85.6,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,35,2023-02-14 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,79.0,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+combined_adverse,0,strategy_b_ai,2,40,2023-02-14 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,73.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,44,2023-02-14 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,68.9,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+combined_adverse,0,strategy_b_ai,2,54,2023-02-15 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,58.7,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,59,2023-02-15 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,54.3,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+combined_adverse,0,strategy_b_ai,2,64,2023-02-15 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,50.4,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,68,2023-02-15 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,47.5,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+combined_adverse,0,strategy_b_ai,2,80,2023-02-16 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,39.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,83,2023-02-16 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,37.6,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+combined_adverse,0,strategy_b_ai,2,88,2023-02-16 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,35.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,94,2023-02-16 22:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,32.9,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+combined_adverse,0,strategy_b_ai,2,102,2023-02-17 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,30.3,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,107,2023-02-17 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,28.8,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+combined_adverse,0,strategy_b_ai,2,112,2023-02-17 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,27.9,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,116,2023-02-17 20:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,27.1,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+combined_adverse,0,strategy_b_ai,2,128,2023-02-18 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,24.2,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,131,2023-02-18 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,23.8,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+combined_adverse,0,strategy_b_ai,2,136,2023-02-18 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,24.0,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,142,2023-02-18 22:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,23.3,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+combined_adverse,0,strategy_b_ai,2,150,2023-02-19 06:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,22.1,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,151,2023-02-19 07:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,21.9,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1
+combined_adverse,0,strategy_b_ai,2,152,2023-02-19 08:00,MODE_4_STANDBY,4,MODE_5_AUXILIARY_HEATING,5,21.7,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,155,2023-02-19 11:00,MODE_5_AUXILIARY_HEATING,5,MODE_3_RECOVERED_HEAT_PRIORITY,3,21.4,AI Supervisor: NCG Priority Mode 3 aligned with dryer batch,1
+combined_adverse,0,strategy_b_ai,2,160,2023-02-19 16:00,MODE_3_RECOVERED_HEAT_PRIORITY,3,MODE_5_AUXILIARY_HEATING,5,22.6,AI Supervisor: Forecast-verified deficit -> Mode 5 auxiliary backup,1
+combined_adverse,0,strategy_b_ai,2,165,2023-02-19 21:00,MODE_5_AUXILIARY_HEATING,5,MODE_4_STANDBY,4,22.2,AI Supervisor: Forecast buffer satisfied or idle -> Mode 4 low-loss standby,1

@@ -1,0 +1,44 @@
+{
+  "phase": "Phase 2 \u2014 Real Solar & Weather Data Collection",
+  "collected_at_utc": "2026-11-20T18:08:58.799021+00:00",
+  "provisional_site": {
+    "name": "Settat, Casablanca-Settat, Morocco (Provisional)",
+    "latitude_deg": 33.001,
+    "longitude_deg": -7.6166,
+    "note": "Provisional coordinates; replaceable once pilot site GPS is confirmed."
+  },
+  "sources": {
+    "pvgis": {
+      "source_name": "European Commission JRC PVGIS v5.3 (seriescalc)",
+      "request_url": "https://re.jrc.ec.europa.eu/api/v5_3/seriescalc?lat=33.001&lon=-7.6166&startyear=2020&endyear=2023&pvcalculation=1&peakpower=15.0&loss=14.0&angle=31.0&aspect=0.0&usehorizon=1&outputformat=json",
+      "radiation_db": "PVGIS-SARAH3",
+      "meteo_db": "ERA5",
+      "elevation_m": 366.0,
+      "record_count": 35064,
+      "files": {
+        "json": "pvgis_settat_2020_2023_raw.json",
+        "json_sha256": "b9111105a309f6db08fd354fca29e8a1372df531090c191a48ba9c5af83d6aee",
+        "csv": "pvgis_settat_2020_2023_raw.csv",
+        "csv_sha256": "48cee33cba796ce8f0a821e6edf2c8f517cfc4146867e9e5030d534c108e504e"
+      }
+    },
+    "open_meteo": {
+      "source_name": "Open-Meteo Historical Weather Archive (ERA5 Reanalysis)",
+      "request_url": "https://archive-api.open-meteo.com/v1/archive?latitude=33.001&longitude=-7.6166&start_date=2020-01-01&end_date=2023-12-31&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m&wind_speed_unit=ms&timezone=UTC",
+      "elevation_m": 368.0,
+      "record_count": 35064,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "relative_humidity_2m": "%",
+        "wind_speed_10m": "m/s"
+      },
+      "files": {
+        "json": "open_meteo_settat_2020_2023_raw.json",
+        "json_sha256": "bef57ccf21ea0c9587f59515d8f585f3c84f9c65ad2afcd3359db1a781b30ab4",
+        "csv": "open_meteo_settat_2020_2023_raw.csv",
+        "csv_sha256": "6286fcbfb5d89839adb588eafaa79ad5500bce6c692137f66b3312a395470e15"
+      }
+    }
+  }
+}
